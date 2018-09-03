@@ -14,6 +14,12 @@ if(process.env.PORT !== undefined){
 	port = parseInt(process.env.PORT)
 }
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // mount the WelcomeController at the /welcome route. See welcome.controller.ts for more information.
 app.use('/welcome', WelcomeController);
 

@@ -26,7 +26,7 @@ router.get('/', (req: Request, res: Response) => {
     };
 
     // specify the HTTP status code (see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-    res.statusCode = 200;
+    res.statusCode = 200; // TODO this doesn't seem to be working?
 
     // respond to the request with the JSON payload we just created
     res.json(res_payload);

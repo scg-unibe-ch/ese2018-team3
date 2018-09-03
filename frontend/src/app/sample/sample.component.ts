@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SampleService } from './sample.service';
 import {WeatherService} from "../weather.service";
 
 

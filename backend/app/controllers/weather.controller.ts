@@ -19,17 +19,17 @@ router.get('/', (req: Request, res: Response) => {
     var humidity = Math.round(Math.random() * 100);
 
     // put the data into a response object
-    var res_payload = {
+    var resPayload = {
         "tmp_celsius": temperature,
         "rel_humidity_percent": humidity,
         "timestamp": Date.now()
     };
 
     // specify the HTTP status code (see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-    res.statusCode = 200; // TODO this doesn't seem to be working?
+    res.statusCode = 200;
 
     // respond to the request with the JSON payload we just created
-    res.json(res_payload);
+    res.json(resPayload);
 });
 
 // export this controller's router as WeatherController, with type Router

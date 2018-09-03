@@ -8,7 +8,7 @@
 1. Run `node build/server.js`, The command line output should say something like `Listening at http://localhost:3000/`
 1. Test your installation by opening the following endpoints (i.e. "pages") in your browser:
     - [http://localhost:3000/welcome](http://localhost:3000/welcome)
-    - [http://localhost:3000/welcome/Burt Macklin](http://localhost:3000/welcome/Burt Macklin) (or substitute any other name at the end)
+    - [http://localhost:3000/welcome/BurtMacklin](http://localhost:3000/welcome/BurtMacklin) (or substitute any other name at the end)
 
 ## Explanations
 TBA

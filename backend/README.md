@@ -11,10 +11,18 @@
     - [http://localhost:3000/welcome/BurtMacklin](http://localhost:3000/welcome/BurtMacklin) (or substitute any other name at the end)
 
 ## Explanations
-TBA
+**TODO**:
+- Only work with TS files, don't edit JS
+- Currently only showing GET endpoints, but all HTTP methods available
+- Need to figure out how you can get the three different types of parameters
+    - path parameters
+    - query parameters
+    - payload parameters
 
-## Adding a New Endpoint / Controller
-TBA
+## Adding a New Endpoint or Controller
+To add a new endpoint that logically belongs to an existing controller, you simply have to add a new route to that controller's Router. See `welcome.controller.ts` or `weather.controller.ts` for examples.
+
+If you need to define a new controller () **TODO...**
 
 ## Streamline Your Development
 So far, you need to recompile your TypeScript code and restart your express application after every change. This can get annoying really quickly, but can streamline this process by doing two things:

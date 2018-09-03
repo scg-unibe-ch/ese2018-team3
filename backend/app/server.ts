@@ -1,27 +1,27 @@
-/* app/server.ts */
 
-// Import everything from express and assign it to the express variable
+// import everything from express and assign it to the express variable
 import express from 'express';
 
-// Import WelcomeController from controllers entry point
+// import all the controllers. If you add a new controller, make sure to import it here as well.
 import {WelcomeController, WeatherController} from './controllers';
 
-// Create a new express application instance
+// create a new express application instance
 const app: express.Application = express();
-// The port the express app will listen on
 
+// define the port the express app will listen on
 var port: number = 3000;
 if(process.env.PORT !== undefined){
 	port = parseInt(process.env.PORT)
 }
 
-// Mount the WelcomeController at the /welcome route
+// mount the WelcomeController at the /welcome route. See welcome.controller.ts for more information.
 app.use('/welcome', WelcomeController);
 
+// mount the WelcomeController at the /welcome route. See weather.controller.ts for more information.
 app.use('/weather', WeatherController);
 
-// Serve the application at the given port
+// start serving the application on the given port
 app.listen(port, () => {
-    // Success callback
+    // success callback, log something to console as soon as the application has started
     console.log(`Listening at http://localhost:${port}/`);
 });

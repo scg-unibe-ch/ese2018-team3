@@ -1,14 +1,6 @@
-<mat-list>
- <mat-list-item *ngFor="let user of users"> 
- 	<h3 matLine>{{user.name}}</h3>
- 	<p matLine>
-      <span> {{user.username}} </span>
-    </p>
-    <p matLine>
-      <span> {{user.website}} </span>
-    </p>
-    <p matLine>
-      <span> {{user.phone}} </span>
-    </p>
- </mat-list-item>
-</mat-list>
+<div style="margin-left: 20px">
+  <h1>Latest Weather Data</h1>
+  <p><span><b>Temperature: </b></span>{{weather_data.tmp_celsius}}<span> °C</span></p>
+  <p><span><b>Relative humidity: </b></span>{{weather_data.rel_humidity_percent}}%</p>
+  <p><span><b>Timestamp: </b></span>{{weather_data.timestamp}}</p>
+</div>

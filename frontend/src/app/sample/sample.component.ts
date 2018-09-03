@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { SampleService } from './sample.service';
+import {WeatherService} from "../weather.service";
 
 
 @Component({
   selector: 'app-sample',
   templateUrl: './sample.component.html',
   styleUrls: ['./sample.component.css'],
-  providers:[ SampleService ],
+  providers:[ WeatherService ],
 })
 export class SampleComponent implements OnInit {
 
-	users: any=[];
+	weather_data: any=[];
 
-  constructor(private sampleService: SampleService) { }
+  constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
 
   	// call service from component
-  	this.sampleService.getUsers().subscribe(data=>{
-  		this.users=data;
-  		console.log(this.users)
+  	this.weatherService.getWeatherData().subscribe(data=>{
+  		this.weather_data=data;
+  		console.log(this.weather_data);
   	})
 
   }

@@ -4,7 +4,7 @@
 import express from 'express';
 
 // Import WelcomeController from controllers entry point
-import {WelcomeController, GoodbyeController, WeatherController} from './controllers';
+import {WelcomeController, WeatherController} from './controllers';
 
 // Create a new express application instance
 const app: express.Application = express();
@@ -17,9 +17,6 @@ if(process.env.PORT !== undefined){
 
 // Mount the WelcomeController at the /welcome route
 app.use('/welcome', WelcomeController);
-
-// Mount the GoodbyeController at the /goodbye route
-app.use('/goodbye', GoodbyeController);
 
 app.use('/weather', WeatherController);
 

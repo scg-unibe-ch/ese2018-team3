@@ -4,11 +4,11 @@ Welcome to the 2018 ESE course. You can use this scaffolding as a starting point
 - [backend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/backend): a Node.js application written in TypeScript, using the express.js web framework 
 
 ## Prerequisites
-- You should have [Node.js](https://nodejs.org/en/) and NPM installed  which are needed by both Angular and Express projects. You can verify whether you have both by running `node -v` and `npm -v` in terminal or command prompt.
+- You should have [Node.js](https://nodejs.org/en/) and NPM installed  which are needed by both [frontend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/frontend) and [backend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/backend) projects. You can verify whether you have both by running `node -v` and `npm -v` in terminal or command prompt.
 
 ## Getting started
 - Clone this repo on your machine and immediately delete `.git` folder.
-- Decide among your team members, and create a git repository on Github of your own. Push this project as an initial commit.
+- Decide among your team members, and create a new git repository on Github of your own. Push this project as an initial commit.
 - [frontend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/frontend) and [backend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/backend) contain instructions to set up the projects on your machines.
 
 ## Understanding project structure

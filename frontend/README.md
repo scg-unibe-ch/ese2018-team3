@@ -1,7 +1,7 @@
 # Front-End Scaffolding
 
 ## Initial Setup
-1. Install [Node.js](https://nodejs.org/en/) (must be done already, as it is a part of prerequite!)
+1. Install [Node.js](https://nodejs.org/en/) (must be done already, as it is a part of prerequisite!)
 1. Run `npm install` which will install all the required dependencies
 1. When successful, run `ng serve --open` - this will open the application in your default web browser.
 1. Alternatively, you can run just `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

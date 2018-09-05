@@ -11,6 +11,8 @@ Welcome to the 2018 ESE course. You can use this scaffolding as a starting point
 - Clone this repo on your machine and immediately delete `.git` folder.
 - Decide among your team members, and create a new git repository on Github of your own. Push this project as an initial commit.
 - [frontend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/frontend) and [backend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/backend) contain instructions to set up the projects on your machines.
+- We encourage you to use [WebStorm](https://www.jetbrains.com/webstorm/) as an IDE for this project. Once you clone the project to your machine, refere [this](https://www.jetbrains.com/help/webstorm/angular.html) tutorial, specifically section 'Starting with an existing Angular application' to open and use the project in WebStorm. 
+
 
 ## Understanding project structure
 - The main project folder contains two subfolders- frontend and backend. These two are projects on their own which you will run independently. 

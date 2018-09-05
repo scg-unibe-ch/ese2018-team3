@@ -5,6 +5,7 @@ Welcome to the 2018 ESE course. You can use this scaffolding as a starting point
 
 ## Prerequisites
 - You should have [Node.js](https://nodejs.org/en/) and NPM installed (NPM is installed automatically with latest versions of Node.js) which are needed by both [frontend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/frontend) and [backend](https://github.com/SilasBerger/ESE-2018-Scaffolding/tree/master/backend) projects. You can verify whether you have both by running `node -v` and `npm -v` in terminal or command prompt.
+- You should have [Angular CLI](https://cli.angular.io/) globally installed on your machine.
 
 ## Getting started
 - Clone this repo on your machine and immediately delete `.git` folder.

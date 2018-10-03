@@ -1,1 +1,6 @@
-<app-sample></app-sample>
+<mat-form-field>
+  <input matInput placeholder="Create list" [(ngModel)]="todoList.name" name="name">
+</mat-form-field>
+<button mat-button (click)="onTodoListCreate()">create</button>
+<app-todo-list [todoList]="todoList" (destroy)="onTodoListDestroy($event)"
+               *ngFor="let todoList of todoLists"></app-todo-list>

@@ -73,4 +73,4 @@ router.delete('/:id', async (req: Request, res: Response) => {
 	res.send();
 });
 
-export const TodoListController: Router = router;
+export const JobListController: Router = router;

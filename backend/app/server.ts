@@ -8,11 +8,11 @@ import {JobList} from './models/joblist.model';
 import {JobItem} from './models/jobitem.model';
 
 const sequelize =  new Sequelize({
-  database: 'development',
-  dialect: 'sqlite',
-  username: 'root',
-  password: '',
-  storage: 'db.sqlite'
+    database: 'development',
+    dialect: 'sqlite',
+    username: 'root',
+    password: '',
+    storage: 'db.sqlite'
 });
 
 sequelize.addModels([JobList, JobItem]);
@@ -24,14 +24,14 @@ app.use(express.json());
 // define the port the express app will listen on
 var port: number = 3000;
 if (process.env.PORT !== undefined) {
-  port = parseInt(process.env.PORT);
+    port = parseInt(process.env.PORT);
 }
 
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
 });
 
 app.use('/todolist', JobListController);
@@ -40,8 +40,8 @@ app.use('/todoitem', JobItemController);
 
 sequelize.sync().then(() => {
 // start serving the application on the given port
-  app.listen(port, () => {
-    // success callback, log something to console as soon as the application has started
-    console.log(`Listening at http://localhost:${port}/`);
-  });
+    app.listen(port, () => {
+        // success callback, log something to console as soon as the application has started
+        console.log(`Listening at http://localhost:${port}/`);
+    });
 });

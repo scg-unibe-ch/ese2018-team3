@@ -12,12 +12,13 @@ import {
 	MatCheckboxModule,
 	MatDatepickerModule,
 	MatInputModule,
-	MatListModule
+	MatListModule,
+	MatMenuModule,
+	MatNativeDateModule
 } from '@angular/material';
 import { FormsModule  } from '@angular/forms';
 import { JobItemComponent } from './job-item/job-item.component';
 import { JobListComponent } from './job-list/job-list.component';
-
 
 @NgModule({
 	declarations: [
@@ -26,6 +27,9 @@ import { JobListComponent } from './job-list/job-list.component';
 		JobListComponent,
 	],
 	imports: [
+		MatDatepickerModule,
+		MatNativeDateModule,
+		MatMenuModule,
 		BrowserModule,
 		BrowserAnimationsModule,
 		FormsModule,

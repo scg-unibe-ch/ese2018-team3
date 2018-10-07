@@ -5,4 +5,17 @@
 <mat-form-field>
 	<textarea matInput placeholder="Description" [(ngModel)]="jobItem.description" name="description" (ngModelChange)="onSave()"></textarea>
 </mat-form-field>
+<mat-form-field>
+	<input matInput placeholder="End Date" [(ngModel)]="jobItem.endDate" name="endDate" (ngModelChange)="onSave()" [matDatepicker]="myDatepicker">
+	<mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+	<mat-datepicker #myDatepicker></mat-datepicker>
+</mat-form-field>
+<button mat-button [matMenuTriggerFor]="menu">qualifications</button>
+<mat-menu #menu="matMenu">
+	<mat-list>
+		<mat-list-item> Pepper </mat-list-item>
+		<mat-list-item> Salt </mat-list-item>
+		<mat-list-item> Paprika </mat-list-item>
+	</mat-list>
+</mat-menu>
 <button mat-button (click)="onDestroy()">delete</button>

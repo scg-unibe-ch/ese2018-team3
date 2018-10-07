@@ -36,5 +36,4 @@ export class JobItemComponent implements OnInit {
 			this.destroy.emit(this.jobItem);
 		});
 	}
-
 }

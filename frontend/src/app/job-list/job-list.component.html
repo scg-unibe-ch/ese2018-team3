@@ -2,7 +2,7 @@
   <mat-form-field>
     <input matInput placeholder="Name" [(ngModel)]="jobList.name" name="name" (ngModelChange)="onSave()">
   </mat-form-field>
-  <button mat-button (click)="onDestroy()">destroy</button>
+  <button mat-button (click)="onDestroy()">delete</button>
   <br>
   <mat-form-field>
     <input matInput placeholder="Create Job" [(ngModel)]="jobItem.name" name="name">

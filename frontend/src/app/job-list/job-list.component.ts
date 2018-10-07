@@ -12,7 +12,7 @@ export class JobListComponent implements OnInit {
 
     @Input()
     jobList: JobList;
-    jobItem: JobItem = new JobItem(null, null, '', false);
+    jobItem: JobItem = new JobItem(null, null, '', false, '');
     jobItems: JobItem[] = [];
     @Output()
     destroy = new EventEmitter<JobList>();
@@ -25,7 +25,7 @@ export class JobListComponent implements OnInit {
         this.httpClient.get('http://localhost:3000/jobitem', {
             params:  new HttpParams().set('jobListId', '' + this.jobList.id)
         }).subscribe((instances: any) => {
-            this.jobItems = instances.map((instance) => new JobItem(instance.id, instance.jobListId, instance.name, instance.done));
+            this.jobItems = instances.map((instance) => new JobItem(instance.id, instance.jobListId, instance.name, instance.done, instance.description));
         });
     }
 
@@ -50,7 +50,7 @@ export class JobListComponent implements OnInit {
         }).subscribe((instance: any) => {
             this.jobItem.id = instance.id;
             this.jobItems.push(this.jobItem);
-            this.jobItem = new JobItem(null, this.jobList.id, '', false);
+            this.jobItem = new JobItem(null, this.jobList.id, '', false, '');
         });
     }
 

@@ -24,7 +24,8 @@ export class JobItemComponent implements OnInit {
     this.httpClient.put('http://localhost:3000/jobitem/' + this.jobItem.id, {
       'name': this.jobItem.name,
       'jobListId': this.jobItem.jobListId,
-      'done': this.jobItem.done
+      'done': this.jobItem.done,
+      'description': this.jobItem.description
     }).subscribe();
   }
 

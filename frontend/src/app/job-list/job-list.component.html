@@ -8,6 +8,10 @@
     <input matInput placeholder="Create Item" [(ngModel)]="jobItem.name" name="name">
   </mat-form-field>
   <button mat-button (click)="onJobItemCreate()">add</button>
+  <mat-form-field>
+    <input matInput placeholder="Create Item" [(ngModel)]="jobItem.description" name="description">
+  </mat-form-field>
+  <button mat-button (click)="onJobItemCreate()">add</button>
   <mat-list>
     <mat-list-item *ngFor="let jobItem of jobItems">
       <app-job-item [jobItem]="jobItem" (destroy)="onJobItemDestroy($event)"></app-job-item>

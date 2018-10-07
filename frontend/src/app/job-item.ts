@@ -5,7 +5,8 @@ export class JobItem {
       public id: number,
       public jobListId: number,
       public name: string,
-      public done: boolean
+      public done: boolean,
+      public description: string
     ) {
     }
   

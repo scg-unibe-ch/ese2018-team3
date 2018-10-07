@@ -6,6 +6,7 @@ export class JobItem extends Model<JobItem> {
 
 	@Column
 	name!: string;
+	description!: string;
 
 	@Column
 	done!: boolean;
@@ -21,12 +22,14 @@ export class JobItem extends Model<JobItem> {
 		return {
 			'id': this.id,
 			'name': this.name,
+			'description': this.description,
 			'done': this.done
 		};
 	}
 
 	fromSimplification(simplification: any): void {
 		this.name = simplification['name'];
+		this.description = simplification['description'];
 		this.done = simplification['done'];
 		this.jobListId = simplification['jobListId'];
 	}

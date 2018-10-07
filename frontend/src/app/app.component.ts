@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TodoList} from './todo-list';
-import {TodoItem} from './todo-item';
+import {JobList} from './job-list';
+import {JobItem} from './job-item';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -9,31 +9,31 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  todoList: TodoList = new TodoList(null, '');
-  todoLists: TodoList[] = [];
+  jobList: JobList = new JobList(null, '');
+  jobLists: JobList[] = [];
 
   constructor(private httpClient: HttpClient) {
 
   }
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:3000/todolist').subscribe((instances: any) => {
-      this.todoLists = instances.map((instance) => new TodoList(instance.id, instance.name));
+    this.httpClient.get('http://localhost:3000/joblist').subscribe((instances: any) => {
+      this.jobLists = instances.map((instance) => new JobList(instance.id, instance.name));
     });
   }
 
-  onTodoListCreate() {
-    this.httpClient.post('http://localhost:3000/todolist', {
-      'name': this.todoList.name
+  onJobListCreate() {
+    this.httpClient.post('http://localhost:3000/joblist', {
+      'name': this.jobList.name
     }).subscribe((instance: any) => {
-      this.todoList.id = instance.id;
-      this.todoLists.push(this.todoList);
-      this.todoList = new TodoList(null, '');
+      this.jobList.id = instance.id;
+      this.jobLists.push(this.jobList);
+      this.jobList = new JobList(null, '');
     });
   }
 
-  onTodoListDestroy(todoList: TodoList) {
-    this.todoLists.splice(this.todoLists.indexOf(todoList), 1);
+  onJobListDestroy(jobList: JobList) {
+    this.jobLists.splice(this.jobLists.indexOf(jobList), 1);
   }
 
 }

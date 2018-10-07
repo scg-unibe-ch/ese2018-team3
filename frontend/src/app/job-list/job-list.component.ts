@@ -12,7 +12,7 @@ export class JobListComponent implements OnInit {
 
     @Input()
     jobList: JobList;
-    jobItem: JobItem = new JobItem(null, null, '', null, null, '', null);
+    jobItem: JobItem = new JobItem(null, null, '', new Date(), null, '', null);
     jobItems: JobItem[] = [];
     @Output()
     destroy = new EventEmitter<JobList>();

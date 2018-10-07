@@ -11,6 +11,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import {FormsModule} from '@angular/forms';
 import { JobItemComponent } from './job-item/job-item.component';
+import { JobListComponent } from './job-list/job-list.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { JobItemComponent } from './job-item/job-item.component';
     TodoListComponent,
     TodoItemComponent,
     JobItemComponent,
+    JobListComponent,
   ],
   imports: [
     BrowserModule,

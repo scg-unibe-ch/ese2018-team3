@@ -1,5 +1,6 @@
 export class JobItem {
 
+    //TODO: adapt for jobs.
     constructor(
       public id: number,
       public jobListId: number,

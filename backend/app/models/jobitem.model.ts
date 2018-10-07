@@ -1,4 +1,4 @@
-import {Table, Column, Model, HasMany, BelongsTo, ForeignKey} from 'sequelize-typescript';
+import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, CreatedAt} from 'sequelize-typescript';
 import {JobList} from './joblist.model';
 
 @Table
@@ -6,9 +6,18 @@ export class JobItem extends Model<JobItem> {
 
 	@Column
 	name!: string;
+
+	@Column
 	description!: string;
-	dateCreated!: Date;
+
+	@CreatedAt
+	@Column
+	createdAt!: Date;
+
+	@Column
 	endDate!: Date;
+
+	@Column
 	qualifications!: string;
 
 	@ForeignKey(() => JobList)
@@ -23,14 +32,17 @@ export class JobItem extends Model<JobItem> {
 			'id': this.id,
 			'name': this.name,
 			'description': this.description,
+			'dateCreated': this.createdAt,
+			'endDate': this.endDate,
+			'qualifications': this.qualifications
 		};
 	}
 
 	fromSimplification(simplification: any): void {
+		this.jobListId = simplification['jobListId'];
 		this.name = simplification['name'];
 		this.description = simplification['description'];
-		this.jobListId = simplification['jobListId'];
-		this.dateCreated = simplification['dateCreated'];
+		this.createdAt = simplification['createdAt'];
 		this.endDate = simplification['endDate'];
 		this.qualifications = simplification['qualifications'];
 	}

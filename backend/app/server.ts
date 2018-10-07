@@ -34,8 +34,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/todolist', JobListController);
-app.use('/todoitem', JobItemController);
+app.use('/joblist', JobListController);
+app.use('/jobitem', JobItemController);
 
 
 sequelize.sync().then(() => {

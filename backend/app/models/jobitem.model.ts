@@ -7,9 +7,9 @@ export class JobItem extends Model<JobItem> {
 	@Column
 	name!: string;
 	description!: string;
-
-	@Column
-	done!: boolean;
+	dateCreated!: Date;
+	endDate!: Date;
+	qualifications!: string;
 
 	@ForeignKey(() => JobList)
 	@Column
@@ -23,15 +23,16 @@ export class JobItem extends Model<JobItem> {
 			'id': this.id,
 			'name': this.name,
 			'description': this.description,
-			'done': this.done
 		};
 	}
 
 	fromSimplification(simplification: any): void {
 		this.name = simplification['name'];
 		this.description = simplification['description'];
-		this.done = simplification['done'];
 		this.jobListId = simplification['jobListId'];
+		this.dateCreated = simplification['dateCreated'];
+		this.endDate = simplification['endDate'];
+		this.qualifications = simplification['qualifications'];
 	}
 
 }

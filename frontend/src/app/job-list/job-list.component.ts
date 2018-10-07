@@ -12,7 +12,7 @@ export class JobListComponent implements OnInit {
 
     @Input()
     jobList: JobList;
-    jobItem: JobItem = new JobItem(null, null, '', false, '', '', '', '', '');
+    jobItem: JobItem = new JobItem(null, null, '', null, null, '', null);
     jobItems: JobItem[] = [];
     @Output()
     destroy = new EventEmitter<JobList>();
@@ -25,7 +25,7 @@ export class JobListComponent implements OnInit {
         this.httpClient.get('http://localhost:3000/jobitem', {
             params:  new HttpParams().set('jobListId', '' + this.jobList.id)
         }).subscribe((instances: any) => {
-            this.jobItems = instances.map((instance) => new JobItem(instance.id, instance.jobListId, instance.name, instance.done, instance.company, instance.dateCreated, instance.endDate, instance.description, instance.qualifications));
+            this.jobItems = instances.map((instance) => new JobItem(instance.id, instance.jobListId, instance.name, instance.dateCreated, instance.endDate, instance.description, instance.qualifications));
         });
     }
 
@@ -46,12 +46,14 @@ export class JobListComponent implements OnInit {
         this.httpClient.post('http://localhost:3000/jobitem', {
             'jobListId': this.jobItem.jobListId,
             'name': this.jobItem.name,
-            'done': this.jobItem.done,
-            'description': this.jobItem.description
+            'description': this.jobItem.description,
+            'dateCreated': this.jobItem.dateCreated,
+            'endDate': this.jobItem.endDate,
+            'qualifications': this.jobItem.qualifications
         }).subscribe((instance: any) => {
             this.jobItem.id = instance.id;
             this.jobItems.push(this.jobItem);
-            this.jobItem = new JobItem(null, this.jobList.id, '', false, '', '', '', '', '');
+            this.jobItem = new JobItem(null, this.jobList.id, '', null, null, '', null);
         });
     }
 

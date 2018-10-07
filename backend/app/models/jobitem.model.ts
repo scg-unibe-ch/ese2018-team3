@@ -23,13 +23,16 @@ export class JobItem extends Model<JobItem> {
 			'id': this.id,
 			'name': this.name,
 			'description': this.description,
+			'dateCreated': this.dateCreated,
+			'endDate': this.endDate,
+			'qualifications': this.qualifications
 		};
 	}
 
 	fromSimplification(simplification: any): void {
+		this.jobListId = simplification['jobListId'];
 		this.name = simplification['name'];
 		this.description = simplification['description'];
-		this.jobListId = simplification['jobListId'];
 		this.dateCreated = simplification['dateCreated'];
 		this.endDate = simplification['endDate'];
 		this.qualifications = simplification['qualifications'];

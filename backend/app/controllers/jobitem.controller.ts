@@ -32,7 +32,7 @@ router.post('/', async (req: Request, res: Response) => {
 	res.statusCode = 201;
 	res.send(instance.toSimplification());
 });
-
++
 router.get('/:id', async (req: Request, res: Response) => {
 	const id = parseInt(req.params.id);
 	const instance = await JobItem.findById(id);

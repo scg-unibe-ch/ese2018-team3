@@ -1,6 +1,6 @@
 <mat-form-field>
-  <input matInput placeholder="Company" [(ngModel)]="jobList.name" name="name">
+	<input matInput placeholder="Company" [(ngModel)]="jobList.name" name="name">
 </mat-form-field>
 <button mat-button (click)="onJobListCreate()">create</button>
 <app-job-list [jobList]="jobList" (destroy)="onJobListDestroy($event)"
-               *ngFor="let jobList of jobLists"></app-job-list>
+              *ngFor="let jobList of jobLists"></app-job-list>

@@ -3,38 +3,38 @@ import {JobItem} from '../job-item';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-job-item',
-  templateUrl: './job-item.component.html',
-  styleUrls: ['./job-item.component.css']
+	selector: 'app-job-item',
+	templateUrl: './job-item.component.html',
+	styleUrls: ['./job-item.component.css']
 })
 export class JobItemComponent implements OnInit {
 
-  @Input()
-  jobItem: JobItem;
-  @Output()
-  destroy = new EventEmitter<JobItem>();
+	@Input()
+	jobItem: JobItem;
+	@Output()
+	destroy = new EventEmitter<JobItem>();
 
-  constructor(private httpClient: HttpClient) {
-  }
+	constructor(private httpClient: HttpClient) {
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  onSave() {
-    this.httpClient.put('http://localhost:3000/jobitem/' + this.jobItem.id, {
-      'name': this.jobItem.name,
-      'jobListId': this.jobItem.jobListId,
-      'dateCreated': this.jobItem.dateCreated,
-      'endDate': this.jobItem.endDate,
-      'description': this.jobItem.description,
-      'qualifications': this.jobItem.qualifications
-    }).subscribe();
-  }
+	onSave() {
+		this.httpClient.put('http://localhost:3000/jobitem/' + this.jobItem.id, {
+			'name': this.jobItem.name,
+			'jobListId': this.jobItem.jobListId,
+			'dateCreated': this.jobItem.dateCreated,
+			'endDate': this.jobItem.endDate,
+			'description': this.jobItem.description,
+			'qualifications': this.jobItem.qualifications
+		}).subscribe();
+	}
 
-  onDestroy() {
-    this.httpClient.delete('http://localhost:3000/jobitem/' + this.jobItem.id).subscribe(() => {
-      this.destroy.emit(this.jobItem);
-    });
-  }
+	onDestroy() {
+		this.httpClient.delete('http://localhost:3000/jobitem/' + this.jobItem.id).subscribe(() => {
+			this.destroy.emit(this.jobItem);
+		});
+	}
 
 }

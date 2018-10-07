@@ -47,13 +47,13 @@ export class JobListComponent implements OnInit {
 			'jobListId': this.jobItem.jobListId,
 			'name': this.jobItem.name,
 			'description': this.jobItem.description,
-			'dateCreated': this.jobItem.createdAt,
+			'createdAt': this.jobItem.createdAt,
 			'endDate': this.jobItem.endDate,
 			'qualifications': this.jobItem.qualifications
 		}).subscribe((instance: any) => {
 			this.jobItem.id = instance.id;
 			this.jobItems.push(this.jobItem);
-			this.jobItem = new JobItem(null, this.jobList.id, '', null, null, '', null);
+			this.jobItem = new JobItem(null, this.jobList.id, '', new Date(), null, '', null);
 		});
 	}
 

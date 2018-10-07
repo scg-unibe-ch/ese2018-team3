@@ -1,5 +1,5 @@
 import {Table, Column, Model, HasMany} from 'sequelize-typescript';
-import {JobItem} from '.jobitem.model';
+import {JobItem} from './jobitem.model';
 
 @Table
 export class JobList extends Model<JobList> {

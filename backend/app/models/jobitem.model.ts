@@ -32,7 +32,7 @@ export class JobItem extends Model<JobItem> {
 			'id': this.id,
 			'name': this.name,
 			'description': this.description,
-			'dateCreated': this.createdAt,
+			'createdAt': this.createdAt,
 			'endDate': this.endDate,
 			'qualifications': this.qualifications
 		};

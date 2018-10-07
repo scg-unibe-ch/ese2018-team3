@@ -1,6 +1,6 @@
 <mat-form-field>
 	<input matInput placeholder="Name" [(ngModel)]="jobItem.name" name="name" (ngModelChange)="onSave()">
-	<mat-hint>Created:{{jobItem.dateCreated | date: 'dd/MM/yy'}}</mat-hint>
+	<mat-hint>Created:{{jobItem.createdAt | date: 'dd/MM/yy'}}</mat-hint>
 </mat-form-field>
 <mat-form-field>
 	<textarea matInput placeholder="Description" [(ngModel)]="jobItem.description" name="description" (ngModelChange)="onSave()"></textarea>

@@ -24,7 +24,7 @@ export class JobItemComponent implements OnInit {
 		this.httpClient.put('http://localhost:3000/jobitem/' + this.jobItem.id, {
 			'name': this.jobItem.name,
 			'jobListId': this.jobItem.jobListId,
-			'dateCreated': this.jobItem.dateCreated,
+			'createdAt': this.jobItem.createdAt,
 			'endDate': this.jobItem.endDate,
 			'description': this.jobItem.description,
 			'qualifications': this.jobItem.qualifications

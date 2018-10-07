@@ -25,7 +25,7 @@ export class JobListComponent implements OnInit {
 		this.httpClient.get('http://localhost:3000/jobitem', {
 			params:  new HttpParams().set('jobListId', '' + this.jobList.id)
 		}).subscribe((instances: any) => {
-			this.jobItems = instances.map((instance) => new JobItem(instance.id, instance.jobListId, instance.name, instance.dateCreated, instance.endDate, instance.description, instance.qualifications));
+			this.jobItems = instances.map((instance) => new JobItem(instance.id, instance.jobListId, instance.name, instance.createdAt, instance.endDate, instance.description, instance.qualifications));
 		});
 	}
 
@@ -47,7 +47,7 @@ export class JobListComponent implements OnInit {
 			'jobListId': this.jobItem.jobListId,
 			'name': this.jobItem.name,
 			'description': this.jobItem.description,
-			'dateCreated': this.jobItem.dateCreated,
+			'dateCreated': this.jobItem.createdAt,
 			'endDate': this.jobItem.endDate,
 			'qualifications': this.jobItem.qualifications
 		}).subscribe((instance: any) => {

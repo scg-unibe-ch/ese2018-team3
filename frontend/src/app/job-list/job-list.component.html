@@ -8,9 +8,9 @@
     <input matInput placeholder="Create Job" [(ngModel)]="jobItem.name" name="name">
   </mat-form-field>
   <button mat-button (click)="onJobItemCreate()">add</button>
-  <mat-list>
-    <mat-list-item *ngFor="let jobItem of jobItems">
+  <mat-card>
+    <mat-card-content *ngFor="let jobItem of jobItems">
       <app-job-item [jobItem]="jobItem" (destroy)="onJobItemDestroy($event)"></app-job-item>
-    </mat-list-item>
-  </mat-list>
+    </mat-card-content>
+  </mat-card>
 </mat-card>

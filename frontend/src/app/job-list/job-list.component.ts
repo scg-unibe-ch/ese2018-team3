@@ -46,7 +46,8 @@ export class JobListComponent implements OnInit {
         this.httpClient.post('http://localhost:3000/jobitem', {
             'jobListId': this.jobItem.jobListId,
             'name': this.jobItem.name,
-            'done': this.jobItem.done
+            'done': this.jobItem.done,
+            'description': this.jobItem.description
         }).subscribe((instance: any) => {
             this.jobItem.id = instance.id;
             this.jobItems.push(this.jobItem);

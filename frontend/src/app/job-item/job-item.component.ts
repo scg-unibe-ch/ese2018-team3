@@ -25,7 +25,11 @@ export class JobItemComponent implements OnInit {
       'name': this.jobItem.name,
       'jobListId': this.jobItem.jobListId,
       'done': this.jobItem.done,
-      'description': this.jobItem.description
+      'company': this.jobItem.company,
+      'dateCreated': this.jobItem.dateCreated,
+      'endDate': this.jobItem.endDate,
+      'description': this.jobItem.description,
+      'qualifications': this.jobItem.qualifications
     }).subscribe();
   }
 

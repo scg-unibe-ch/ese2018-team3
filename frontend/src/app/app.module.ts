@@ -19,12 +19,14 @@ import {
 import { FormsModule  } from '@angular/forms';
 import { JobItemComponent } from './job-item/job-item.component';
 import { JobListComponent } from './job-list/job-list.component';
+import { JobComponent } from './job/job.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		JobItemComponent,
 		JobListComponent,
+		JobComponent,
 	],
 	imports: [
 		MatDatepickerModule,

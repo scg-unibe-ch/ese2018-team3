@@ -10,7 +10,9 @@
   <button mat-button (click)="onJobItemCreate()">create</button>
   <mat-card class="jobColor" theme="">
     <mat-card-content *ngFor="let jobItem of jobItems">
-      <app-job-item [jobItem]="jobItem" (destroy)="onJobItemDestroy($event)"></app-job-item>
+      <app-job-item [jobItem]="jobItem" (destroy)="onJobItemDestroy($event)">
+        <button mat-button (click)="onSave()">save</button>
+      </app-job-item>
     </mat-card-content>
   </mat-card>
 </mat-card>

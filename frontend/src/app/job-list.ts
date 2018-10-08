@@ -1,6 +1,6 @@
-import {TodoItem} from './todo-item';
+import {JobItem} from './job-item';
 
-export class TodoList {
+export class JobList {
 
   constructor(
     public id: number,

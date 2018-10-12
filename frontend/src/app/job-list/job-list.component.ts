@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {JobList} from '../job-list';
 import {JobItem} from '../job-item';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
 	selector: 'app-job-list',
@@ -9,6 +10,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 	styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
+	
+	baseUrl;
 
 	@Input()
 	jobList: JobList;
@@ -18,11 +21,12 @@ export class JobListComponent implements OnInit {
 	destroy = new EventEmitter<JobList>();
 
 	constructor(private httpClient: HttpClient) {
+		this.baseUrl = environment.baseUrl;
 
 	}
 
 	ngOnInit() {
-		this.httpClient.get('http://localhost:3000/jobitem', {
+		this.httpClient.get(this.baseUrl + '/jobitem', {
 			params:  new HttpParams().set('jobListId', '' + this.jobList.id)
 		}).subscribe((instances: any) => {
 			this.jobItems = instances.map((instance) => new JobItem(instance.id, instance.jobListId, instance.name, instance.createdAt, instance.endDate, instance.description, instance.qualifications));
@@ -30,20 +34,20 @@ export class JobListComponent implements OnInit {
 	}
 
 	onSave() {
-		this.httpClient.put('http://localhost:3000/joblist/' + this.jobList.id, {
+		this.httpClient.put(this.baseUrl + '/joblist/' + this.jobList.id, {
 			'name': this.jobList.name
 		}).subscribe();
 	}
 
 	onDestroy() {
-		this.httpClient.delete('http://localhost:3000/joblist/' + this.jobList.id).subscribe(() => {
+		this.httpClient.delete(this.baseUrl + '/joblist/' + this.jobList.id).subscribe(() => {
 			this.destroy.emit(this.jobList);
 		});
 	}
 
 	onJobItemCreate() {
 		this.jobItem.jobListId = this.jobList.id;
-		this.httpClient.post('http://localhost:3000/jobitem', {
+		this.httpClient.post(this.baseUrl + '/jobitem', {
 			'jobListId': this.jobItem.jobListId,
 			'name': this.jobItem.name,
 			'description': this.jobItem.description,

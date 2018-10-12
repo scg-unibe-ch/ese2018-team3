@@ -1,0 +1,22 @@
+Mauro Quarta
+Sara Krättli
+Julius Oeftiger
+Brian Schweigler
+
+Lecture Week 1: 
+Angular Tutorial
+downloading all the required programs 
+some general organizational stuff (git, docs, responsibilities)
+Mauro & Julius Back-end, Sara and Brian front-end, is the plan until milestone 1	
+	
+Lecture Week 2:
+Requirements Collection - Mauro
+Scenario – Sara
+Brian – rough outline of UI
+Julius – General outline
+Discussion with client to answer our questions
+
+Lecture Week 3:
+Met online to implement a working project with CRUD (Everybody)
+Troubleshooting Heroku Deployment – Mauro/Brian
+General issues with browser, database, etc. (fixed by recreating the DB file)

@@ -20,6 +20,7 @@ import { FormsModule  } from '@angular/forms';
 import { JobItemComponent } from './job-item/job-item.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { JobComponent } from './job/job.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,8 @@ import { JobComponent } from './job/job.component';
 		MatListModule,
 		MatInputModule,
 		MatCheckboxModule,
-		MatCardModule
+		MatCardModule,
+		AppRoutingModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ import {environment} from '../environments/environment';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+	title = 'Job For You';
 	baseUrl = environment.baseUrl;
 
   jobList: JobList = new JobList(null, '');

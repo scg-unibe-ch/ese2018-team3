@@ -1,8 +1,37 @@
 <h1>{{title}}</h1>
-<h2>{{"List of Job Offers"}}</h2>
-<mat-form-field>
-	<input matInput placeholder="New Company" [(ngModel)]="jobList.name" name="name">
-</mat-form-field>
-<button mat-button (click)="onJobListCreate()">create</button>
-<app-job-list [jobList]="jobList" (destroy)="onJobListDestroy($event)"
-              *ngFor="let jobList of jobLists"></app-job-list>
+
+<header id="header">
+  <div class="inner">
+    <a href="javascript:void(0)" *ngIf="loginStatus" class="greeting">Hallo {{user.name}}</a>
+    <!-- TO DO: Logo? <a routerLink="/" class="logo">jobly</a> -->
+    <nav id="nav">
+
+      <a routerLink="/">Home</a>
+      <a routerLink="/job_search">Job Search</a>
+      <a routerLink="/contact_us">Contact Us</a>
+      <a routerLink="/login" *ngIf="!loginStatus">Login</a>
+      <a routerLink="/profile" *ngIf="loginStatus">Profile</a>
+      <!-- TO DO  <a (click)="this.userService.logout()" *ngIf="loginStatus">Logout</a> -->
+     </nav>
+   </div>
+ </header>
+
+ <h2>{{"List of Job Offers"}}</h2>
+ <mat-form-field>
+   <input matInput placeholder="New Company" [(ngModel)]="jobList.name" name="name">
+ </mat-form-field>
+ <button mat-button (click)="onJobListCreate()">create</button>
+ <app-job-list [jobList]="jobList" (destroy)="onJobListDestroy($event)"
+               *ngFor="let jobList of jobLists"></app-job-list>
+
+
+
+
+ <!-- footer-->
+<section id="footer">
+  <div class="inner">
+    <div class="copyright">
+      &copy; Job For You: <a href="https://job-for-you.com/">job-for-you.com</a>
+    </div>
+  </div>
+</section>

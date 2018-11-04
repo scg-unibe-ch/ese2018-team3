@@ -18,6 +18,7 @@ import {
 } from '@angular/material';
 import { FormsModule  } from '@angular/forms';
 import { JobItemComponent } from './job-item/job-item.component';
+import { AboutComponent} from './about/about.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { JobComponent } from './job/job.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -26,6 +27,7 @@ import { AppRoutingModule } from './/app-routing.module';
 	declarations: [
 		AppComponent,
 		JobItemComponent,
+    AboutComponent,
 		JobListComponent,
 		JobComponent,
 	],

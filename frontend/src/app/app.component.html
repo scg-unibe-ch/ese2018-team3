@@ -2,15 +2,15 @@
 
 <header id="header">
   <div class="inner">
-    <a href="javascript:void(0)" *ngIf="loginStatus" class="greeting">Hallo {{user.name}}</a>
+    <!-- <a href="javascript:void(0)" *ngIf="loginStatus" class="greeting">Hallo {{user.name}}</a>-->
     <!-- TO DO: Logo? <a routerLink="/" class="logo">jobly</a> -->
     <nav id="nav">
 
       <a routerLink="/">Home</a>
-      <a routerLink="/job_search">Job Search</a>
-      <a routerLink="/contact_us">Contact Us</a>
+      <a routerLink="/job-search">Job Search</a>
+      <a routerLink="/about">About</a>
       <a routerLink="/login" *ngIf="!loginStatus">Login</a>
-      <a routerLink="/profile" *ngIf="loginStatus">Profile</a>
+      <!--<a routerLink="/profile" *ngIf="loginStatus">Profile</a>-->
       <!-- TO DO  <a (click)="this.userService.logout()" *ngIf="loginStatus">Logout</a> -->
      </nav>
    </div>

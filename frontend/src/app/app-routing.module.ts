@@ -8,6 +8,7 @@ import { JobItemComponent}  from './job-item/job-item.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  {path: 'home', redirectTo: '/'},
   { path: 'jobList', component: JobListComponent },
 
   {path: 'about', component: AboutComponent},

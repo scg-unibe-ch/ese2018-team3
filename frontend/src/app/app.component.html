@@ -7,7 +7,7 @@
     <nav id="nav">
 
       <a routerLink="/home">Home</a>
-      <a routerLink="/job-search">Job Search</a>
+      <a routerLink="/jobOverview">Job Overview</a>
       <a routerLink="/about">About</a>
       <a routerLink="/login" *ngIf="!loginStatus">Login</a>
       <!--<a routerLink="/profile" *ngIf="loginStatus">Profile</a>-->
@@ -16,17 +16,11 @@
    </div>
  </header>
 
- <h2>{{"List of Job Offers"}}</h2>
- <mat-form-field>
-   <input matInput placeholder="New Company" [(ngModel)]="jobList.name" name="name">
- </mat-form-field>
- <button mat-button (click)="onJobListCreate()">create</button>
- <app-job-list [jobList]="jobList" (destroy)="onJobListDestroy($event)"
-               *ngFor="let jobList of jobLists"></app-job-list>
 
 <router-outlet></router-outlet>
 
-
+<br>
+<br>
  <!-- footer-->
 <section id="footer">
   <div class="inner">

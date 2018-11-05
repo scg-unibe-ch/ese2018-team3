@@ -22,6 +22,7 @@ import { AboutComponent} from './about/about.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { JobComponent } from './job/job.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { JobOverviewComponent } from './job-overview/job-overview.component';
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,7 @@ import { AppRoutingModule } from './/app-routing.module';
     AboutComponent,
 		JobListComponent,
 		JobComponent,
+		JobOverviewComponent,
 	],
 	imports: [
 		MatDatepickerModule,

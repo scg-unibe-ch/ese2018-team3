@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {environment} from '../../environments/environment';
 import {JobList} from '../job-list';
-import {JobItem} from '../job-item';
+
 import {HttpClient} from '@angular/common/http';
 
 @Component({

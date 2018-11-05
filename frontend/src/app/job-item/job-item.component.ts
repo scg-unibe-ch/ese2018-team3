@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {JobItem} from '../job-item';
-
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 

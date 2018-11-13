@@ -1,6 +1,32 @@
-<mat-form-field>
-	<input matInput placeholder="New Company" [(ngModel)]="jobList.name" name="name">
-</mat-form-field>
-<button mat-button (click)="onJobListCreate()">create</button>
-<app-job-list [jobList]="jobList" (destroy)="onJobListDestroy($event)"
-              *ngFor="let jobList of jobLists"></app-job-list>
+<h1>{{title}}</h1>
+
+<header id="header">
+  <div class="inner">
+    <!-- <a href="javascript:void(0)" *ngIf="loginStatus" class="greeting">Hallo {{user.name}}</a>-->
+    <!-- TO DO: Logo? <a routerLink="/" class="logo">Job For You</a> -->
+    <nav id="nav">
+
+      <a routerLink="/home">Home</a>
+      <a routerLink="/jobOverview">Job Overview</a>
+      <a routerLink="/about">About</a>
+      <a routerLink="/login" *ngIf="!loginStatus">Login</a>
+      <!--<a routerLink="/profile" *ngIf="loginStatus">Profile</a>-->
+      <!-- TO DO  <a (click)="this.userService.logout()" *ngIf="loginStatus">Logout</a> -->
+     </nav>
+   </div>
+ </header>
+
+<br>
+
+<router-outlet></router-outlet>
+
+<br>
+<br>
+ <!-- footer-->
+<section id="footer">
+  <div class="inner">
+    <div class="copyright">
+      &copy; Job For You: <a href="https://job-for-you.com/">job-for-you.com</a>
+    </div>
+  </div>
+</section>

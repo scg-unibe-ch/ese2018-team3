@@ -4,7 +4,7 @@ import { AboutComponent} from './about/about.component';
 
 import { JobOverviewComponent} from './job-overview/job-overview.component';
 import { JobListComponent }   from './job-list/job-list.component';
-import { JobComponent }      from './job/job.component';
+
 import { JobItemComponent}  from './job-item/job-item.component';
 
 const routes: Routes = [
@@ -18,7 +18,6 @@ const routes: Routes = [
   //{path: 'job/new', component: ProfilNewJobComponent},
   //{path: 'profil', component: JobManagementComponent},
 
-  { path: 'jobs', component: JobComponent },
   { path: 'detail/:jobListId', component: JobItemComponent},
   { path: '**', redirectTo: '/login' }
 ];

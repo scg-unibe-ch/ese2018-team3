@@ -1,0 +1,8 @@
+14.11.18
+Http Module Fehler Diskussion
+-> frontend / backend - where do certain components need to be
+-> error handler 'around' the backend
+-> 
+
+Usability testing: roles, read aloud, timer, scenario, what do we do during test, waht will manuel do
+what is our goal.

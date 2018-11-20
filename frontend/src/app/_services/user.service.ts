@@ -58,7 +58,11 @@ export class UserService {
 	}
 
 	getById(id: number) {
-		return this.http.get(this.URL + 'id/' + id);
+		return this.http.get(`http://localhost:3000/users/id/${id}`);
+	}
+
+	getByName(name: string) {
+		return this.http.get(`http://localhost:3000/users/username/${name}`);
 	}
 
 	register(user: any) {

@@ -107,6 +107,7 @@ export class UserServices {
 		const u = new User();
 		u.fromSimplification({
 			'company': user.company,
+			'email': user.email,
 			'username': user.username,
 			'password': user.password,
 			'isApproved': false

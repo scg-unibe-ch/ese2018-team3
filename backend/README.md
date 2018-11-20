@@ -1,27 +1,24 @@
-# Back-End Scaffolding
+# Back-End 
 
 ## Initial Setup
-1. Install [Node.js](https://nodejs.org/en/) (must be done already, as it is a part of prerequisite!)
+1. Install [Node.js](https://nodejs.org/en/)
 1. `cd` into this backend folder with your shell (note: if you're on Windows, you can for example use [Git Bash](https://git-scm.com/download/win) as a shell)
-1. run `npm install`
+1. run `npm install` or 'npm update' 
 1. To compile the TypeScript code to JavaScript, run `npm run tsc`. After that, this folder should have a `build` folder containing a bunch of JavaScript files
-1. Run `node build/server.js`. The command line output should say something like `Listening at http://localhost:3000/`
+1. Run `node build/app/server.js`. The command line output should say something like `Listening at http://localhost:3000/`
 1. Test your installation by opening the following endpoints (i.e. "pages") in your browser:
-    - [http://localhost:3000/welcome](http://localhost:3000/welcome)
-    - [http://localhost:3000/welcome/BurtMacklin](http://localhost:3000/welcome/BurtMacklin) (or substitute any other name at the end)
-    - [http://localhost:3000/weather](http://localhost:3000/weather)
+    - [http://localhost:3000/](http://localhost:3000/)
 
 ## Explanations
 The inline comments in the .ts files of this scaffolding should help you understand most of what's going on. Here are a few additional explanations:
 - While the application is just JavaScript code running in Node.js (see next point), the actual source code is written in TypeScript (.ts). TypeScript is essentially "JavaScript with types", and will be compiled to JavaScript to run in Node.js. Bottom line: only edit the .ts files, since all JavaScript files in this backend are compiler-generated and will be overwritten as soon as you recompile the application.
 - Since this is the backend, the JavaScript code compiled from TypeScript will not be running in a web browser. Instead, we use [Node.js](https://nodejs.org) as our JavaScript runtime. You can think of Node.js as something similar to the Java Virtual Machine to run your compiled Java program, or a Python interpreter to run your Python code.
 - Because we want to build a web server, we are using the [Express.js](http://expressjs.com/de/) JavaScript web framework to help us with handling requests and providing responses. If you study the import statements in this scaffolding, you can see Express.js how is being used here.
-- This scaffolding only contains a couple of GET endpoints. However, when you develop a REST API, you will also need other HTTP request methods, such as POST, PUT, and DELETE. You can find more on that [here](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods). 
-- In this scaffolding, the only endpoint that takes a parameter is `/welcome/:name`. Here, `name` is a _path parameter_, since it's part of the endpoint's path. However, you might also want to have a look at _query parameters_ and _request body parameters_.
+- This scaffolding only contains a couple of GET endpoints. However, when you develop a REST API, you will also need other HTTP request methods, such as POST, PUT, and DELETE. 
 - whenever you change something, make sure to recompile the TypeScript code (`npm run tsc`) and restart the express application (`node build/server.js`). Check out the last section of this README for tips on how to easily streamline this process.
 
 ## Adding a New Endpoint or Controller
-To add a new endpoint that logically belongs to an existing controller, you simply have to add a new route to that controller's Router. See `welcome.controller.ts` or `weather.controller.ts` for examples.
+To add a new endpoint that logically belongs to an existing controller, you simply have to add a new route to that controller's Router. 
 
 If you need to define a new controller, there are a few things you need to do:
 1. create a new file `<mycontroller>.controller.ts` in the `controllers` folder. Check out our example controllers to see what to do within that file.

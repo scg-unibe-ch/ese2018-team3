@@ -1,4 +1,4 @@
-import {Admin, User} from '../models';
+import {AdminModel, UserModel} from '../models';
 import {
 	InvalidPasswordError,
 	InvalidTokenError,
@@ -18,8 +18,8 @@ export class UserServices {
 	 * Tries to authenticate the specified user as an admin.
 	 * @param user the user to be authenticated
 	 */
-	static async authAdmin(user: any): Promise<Admin> {
-		const admin = await Admin.findOne({
+	static async authAdmin(user: any): Promise<AdminModel> {
+		const admin = await AdminModel.findOne({
 			where: {
 				userId: user.id
 			}
@@ -33,8 +33,8 @@ export class UserServices {
 	 * Tries to authenticate the specified user by comparing tokens.
 	 * @param user the user to be authenticated
 	 */
-	static async authenticate(user: any): Promise<User> {
-		const u = await User.findById(user.id);
+	static async authenticate(user: any): Promise<UserModel> {
+		const u = await UserModel.findById(user.id);
 
 		if (!u) throw new UserNotFoundError();
 		if (u.token === null) throw new UserNotLoggedInError();
@@ -48,8 +48,8 @@ export class UserServices {
 	 * On successful authentication, a token will be generated for the user.
 	 * @param user the user to be logged in
 	 */
-	static async login(user: any): Promise<User> {
-		const u = await User.findOne({
+	static async login(user: any): Promise<UserModel> {
+		const u = await UserModel.findOne({
 			where: {
 				username: user.username
 			}
@@ -69,8 +69,8 @@ export class UserServices {
 	 * Tries to logout the specified user. The user's token will be nullified.
 	 * @param user the user to be logged out
 	 */
-	static async logout(user: any): Promise<User> {
-		const u = await User.findById(user.id);
+	static async logout(user: any): Promise<UserModel> {
+		const u = await UserModel.findById(user.id);
 
 		if (!u) throw new UserNotFoundError();
 		if (u.token === null) throw new UserNotLoggedInError();
@@ -85,8 +85,8 @@ export class UserServices {
 	 * Tries to update the specified user's information in the database.
 	 * @param user the user to be updated
 	 */
-	static async updateUser(user: any): Promise<User> {
-		const u = await User.findOne({
+	static async updateUser(user: any): Promise<UserModel> {
+		const u = await UserModel.findOne({
 			where: {
 				username: user.username
 			}
@@ -103,8 +103,8 @@ export class UserServices {
 	 * Tries to register the specified user into the database.
 	 * @param user the user to be registered
 	 */
-	static async register(user: any): Promise<User> {
-		const u = new User();
+	static async register(user: any): Promise<UserModel> {
+		const u = new UserModel();
 		u.fromSimplification({
 			'company': user.company,
 			'email': user.email,

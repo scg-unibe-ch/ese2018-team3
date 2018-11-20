@@ -1,15 +1,13 @@
 # Back-End Scaffolding
 
 ## Initial Setup
-1. Install [Node.js](https://nodejs.org/en/) (must be done already, as it is a part of prerequisite!)
+1. Install [Node.js](https://nodejs.org/en/)
 1. `cd` into this backend folder with your shell (note: if you're on Windows, you can for example use [Git Bash](https://git-scm.com/download/win) as a shell)
-1. run `npm install`
+1. run `npm install` or 'npm update' 
 1. To compile the TypeScript code to JavaScript, run `npm run tsc`. After that, this folder should have a `build` folder containing a bunch of JavaScript files
-1. Run `node build/server.js`. The command line output should say something like `Listening at http://localhost:3000/`
+1. Run `node build/app/server.js`. The command line output should say something like `Listening at http://localhost:3000/`
 1. Test your installation by opening the following endpoints (i.e. "pages") in your browser:
-    - [http://localhost:3000/welcome](http://localhost:3000/welcome)
-    - [http://localhost:3000/welcome/BurtMacklin](http://localhost:3000/welcome/BurtMacklin) (or substitute any other name at the end)
-    - [http://localhost:3000/weather](http://localhost:3000/weather)
+    - [http://localhost:3000/](http://localhost:3000/)
 
 ## Explanations
 The inline comments in the .ts files of this scaffolding should help you understand most of what's going on. Here are a few additional explanations:

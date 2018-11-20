@@ -10,6 +10,7 @@ and a list of user with a link to delete any user.
 	<li>
 		<div>ID:  <code>{{user.id}}</code></div>
 		<div>Username:  <code>{{user.username}}</code></div>
+		<div *ngIf="user.email"> email: <code>{{user.email}}</code></div>
 		<div>isApproved:  <code>{{user.isApproved ? 'true' : 'false'}}</code></div>
 		- <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
 	</li>

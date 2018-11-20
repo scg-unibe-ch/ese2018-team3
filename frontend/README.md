@@ -6,15 +6,11 @@
 1. Run `npm install` which will install all the required dependencies
 1. When successful, run `ng serve --open` - this will open the application in your default web browser.
 1. Alternatively, you can run just `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. 
-1. This project uses [Angular Material](https://material.angular.io/) for styling. It is enabled for you by by us by running `ng add @angular/material`. 
-
-This project is generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8. Refere their website for commands to generate components, services, pipes easily.
-
 
 ## Further development 
 - Run `ng generate component component-name` to generate a new component. 
-- You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module` to generate other artificat.
-
+- You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module` to generate other artifact.
+- This project is generated with [Angular CLI](https://github.com/angular/angular-cli) 
 
 ## Build
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build. This `dist` folder is used to put on production server.

@@ -66,19 +66,19 @@ router.post('/login', async (req: Request, res: Response) => {
 				case UserNotFoundError.name:
 					console.log(lg + 'user not found: \'' + req.body.username + '\'');
 					res.statusCode = 404;
-					res.json({'message': 'not found'});
+					res.json({'message': 'user not found'});
 					return;
 
 				case InvalidPasswordError.name:
 					console.log(lg + 'invalid password for: \'' + req.body.username + '\'');
 					res.statusCode = 401;
-					res.json({'message': 'unauthorized'});
+					res.json({'message': 'wrong password'});
 					return;
 
 				case UserNotApprovedError.name:
 					console.log(lg + 'user not approved: \'' + req.body.username + '\'');
-					res.statusCode = 401;
-					res.json({'message': 'unauthorized'});
+					res.statusCode = 403;
+					res.json({'message': 'not yet approved'});
 					return;
 
 				default:

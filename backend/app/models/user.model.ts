@@ -1,11 +1,12 @@
-import {Column, Model, Table, Unique} from 'sequelize-typescript';
+import {Column, HasMany, Model, Table, Unique} from 'sequelize-typescript';
+import {JobModel} from './job.model';
 
 @Table
-export class User extends Model<User> {
+export class UserModel extends Model<UserModel> {
 
-	// JobItem must have foreign key User
-	// @HasMany(() => JobItem)
-	// createdJobs!: JobItem[];
+	// JobModel must have foreign key UserModel
+	@HasMany(() => JobModel)
+	createdJobs!: JobModel[];
 
 	@Column
 	company!: string;

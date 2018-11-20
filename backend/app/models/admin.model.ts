@@ -1,10 +1,10 @@
 import {Column, ForeignKey, Model, Table} from 'sequelize-typescript';
-import {User} from './';
+import {UserModel} from './';
 
 @Table
 export class AdminModel extends Model<AdminModel> {
 
-    @ForeignKey(() => User)
+    @ForeignKey(() => UserModel)
     @Column
     userId!: number;
 

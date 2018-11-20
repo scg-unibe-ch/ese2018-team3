@@ -1,10 +1,10 @@
 import {Column, ForeignKey, Model, Table} from 'sequelize-typescript';
-import {JobModel, User} from './';
+import {JobModel, UserModel} from './';
 
 @Table
 export class UserToJobModel extends Model<UserToJobModel> {
 
-    @ForeignKey(() => User)
+    @ForeignKey(() => UserModel)
     @Column
     userId!: number;
 

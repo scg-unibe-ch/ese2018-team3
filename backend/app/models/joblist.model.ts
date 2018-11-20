@@ -1,4 +1,4 @@
-import {Table, Column, Model, HasMany} from 'sequelize-typescript';
+import {Column, HasMany, Model, Table} from 'sequelize-typescript';
 import {JobItem} from './jobitem.model';
 
 @Table
@@ -8,7 +8,7 @@ export class JobList extends Model<JobList> {
 	name !: string;
 
 	@HasMany(() => JobItem)
-	jobitem !: JobItem[];
+	jobItem !: JobItem[];
 
 	toSimplification(): any {
 		return {

@@ -1,5 +1,5 @@
-import {Router, Request, Response} from 'express';
-import {JobList} from '../models/joblist.model';
+import {Request, Response, Router} from 'express';
+import {JobList} from '../models';
 
 const router: Router = Router();
 

@@ -1,4 +1,4 @@
-import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, CreatedAt} from 'sequelize-typescript';
+import {BelongsTo, Column, CreatedAt, ForeignKey, Model, Table, UpdatedAt} from 'sequelize-typescript';
 import {JobList} from './joblist.model';
 
 @Table
@@ -13,6 +13,10 @@ export class JobItem extends Model<JobItem> {
 	@CreatedAt
 	@Column
 	createdAt!: Date;
+
+	@UpdatedAt
+	@Column
+	updatedAt!: Date;
 
 	@Column
 	endDate!: Date;

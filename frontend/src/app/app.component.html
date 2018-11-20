@@ -1,28 +1,53 @@
 <h1>{{title}}</h1>
 
-<header id="header">
+<!-- navigation bar -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/home">Home</a>
+        <a class="nav-item nav-link" routerLink="/jobOverview">Job Overview</a>
+        <a class="nav-item nav-link" routerLink="/about">About</a>
+        <a class="nav-item nav-link" routerLink="/login"    *ngIf="!currentUser">Login</a>
+        <a class="nav-item nav-link" routerLink="/register" *ngIf="!currentUser">Register</a>
+        <a class="nav-item nav-link" (click)="logout()"     *ngIf="currentUser">Logout</a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <alert></alert>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DEPRECATED ? -->
+<!--<header id="header">
   <div class="inner">
-    <!-- <a href="javascript:void(0)" *ngIf="loginStatus" class="greeting">Hallo {{user.name}}</a>-->
-    <!-- TO DO: Logo? <a routerLink="/" class="logo">Job For You</a> -->
+    &lt;!&ndash; <a href="javascript:void(0)" *ngIf="loginStatus" class="greeting">Hallo {{user.name}}</a>&ndash;&gt;
+    &lt;!&ndash; TODO: Logo? <a routerLink="/" class="logo">Job For You</a> &ndash;&gt;
     <nav id="nav">
 
       <a routerLink="/home">Home</a>
       <a routerLink="/jobOverview">Job Overview</a>
       <a routerLink="/about">About</a>
       <a routerLink="/login" *ngIf="!loginStatus">Login</a>
-      <!--<a routerLink="/profile" *ngIf="loginStatus">Profile</a>-->
-      <!-- TO DO  <a (click)="this.userService.logout()" *ngIf="loginStatus">Logout</a> -->
+      &lt;!&ndash;<a routerLink="/profile" *ngIf="loginStatus">Profile</a>&ndash;&gt;
+      &lt;!&ndash; TO DO  <a (click)="this.userService.logout()" *ngIf="loginStatus">Logout</a> &ndash;&gt;
      </nav>
    </div>
  </header>
 
 <br>
-
 <router-outlet></router-outlet>
+<br>
+<br>-->
 
-<br>
-<br>
- <!-- footer-->
+
+<!-- footer-->
 <section id="footer">
   <div class="inner">
     <div class="copyright">

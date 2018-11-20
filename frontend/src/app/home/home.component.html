@@ -1,0 +1,16 @@
+<!--
+The home component template contains html and angular 7 template syntax for displaying a simple welcome message
+and a list of user with a link to delete any user.
+-->
+
+<h1>Welcome to the experimental Login System!</h1>
+<p>You are currently on the homepage of everything</p>
+<h3>All registered users:</h3>
+<ul *ngFor="let user of users">
+	<li>
+		<div>ID:  <code>{{user.id}}</code></div>
+		<div>Username:  <code>{{user.username}}</code></div>
+		<div>isApproved:  <code>{{user.isApproved ? 'true' : 'false'}}</code></div>
+		- <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+	</li>
+</ul>

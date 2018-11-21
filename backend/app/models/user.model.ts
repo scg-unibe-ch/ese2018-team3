@@ -4,10 +4,6 @@ import {JobModel} from './job.model';
 @Table
 export class UserModel extends Model<UserModel> {
 
-	// JobModel must have foreign key UserModel
-	@HasMany(() => JobModel)
-	createdJobs!: JobModel[];
-
 	@Column
 	company!: string;
 

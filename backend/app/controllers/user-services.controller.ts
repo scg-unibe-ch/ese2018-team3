@@ -15,7 +15,13 @@ function genLog(): string {
 }
 
 router.post('/auth', async (req: Request, res: Response) => {
-	UserServices.authenticate(req.body)
+    if (!req.headers.authorization) {
+        res.statusCode = 400;
+        res.json({'message': 'no authorization token'});
+        return;
+    }
+
+	UserServices.authenticate(req.headers.authorization)
 		.then(user => {
 			console.log(genLog() + 'Successfully authenticated\'' + user.username + '\'');
 			res.statusCode = 204;   // no content
@@ -56,7 +62,6 @@ router.post('/login', async (req: Request, res: Response) => {
 	UserServices.login(req.body)
 		.then(async user => {
 			console.log(genLog() + 'Successfully logged in \'' + req.body.username + '\'');
-
 			res.statusCode = 200;
 			res.send(user.toSimplification());
 		})
@@ -91,7 +96,13 @@ router.post('/login', async (req: Request, res: Response) => {
 });
 
 router.post('/logout', async (req: Request, res: Response) => {
-	UserServices.logout(req.body)
+	if (!req.headers.authorization) {
+		res.statusCode = 400;
+		res.json({'message': 'no authorization token'});
+		return;
+    }
+
+	UserServices.logout(req.headers.authorization)
 		.then(async user => {
 			console.log('user-service\t' + 'Successfully logged out \'' + req.body.username + '\'');
 			res.statusCode = 200;
@@ -104,12 +115,6 @@ router.post('/logout', async (req: Request, res: Response) => {
 					console.log(lg + 'user not found: \'' + req.body.username + '\'');
 					res.statusCode = 404;
 					res.json({'message': 'not found'});
-					return;
-
-				case UserNotLoggedInError.name:
-					console.log(lg + 'user not logged in: \'' + req.body.username + '\'');
-					res.statusCode = 412;
-					res.json({'message': 'precondition failed'});
 					return;
 
 				default:
@@ -142,6 +147,41 @@ router.post('/register', async (req: Request, res: Response) => {
 });
 
 router.put('update-user', async (req: Request, res: Response) => {
+    if (!req.headers.authorization) {
+        res.statusCode = 400;
+        res.json({'message': 'no authorization token'});
+        return;
+    }
+
+    UserServices.authenticate(req.headers.authorization)
+        .catch(err => {
+            const lg = genLog() + 'auth: ';
+            switch (err.name) {
+                case UserNotFoundError.name:
+                    console.log(lg + 'user not found: \'' + req.body.username + '\'');
+                    res.statusCode = 404;
+                    res.json({'message': 'not found'});
+                    return;
+
+                case UserNotLoggedInError.name:
+                    console.log(lg + 'user not logged in: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                case InvalidTokenError.name:
+                    console.log(lg + 'invalid token: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
 	UserServices.updateUser(req.body)
 		.then(user => {
 			console.log('user-service\t' + 'Successfully updated \'' + req.body.username + '\'');

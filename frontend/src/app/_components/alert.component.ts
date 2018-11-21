@@ -9,28 +9,28 @@ import {AlertService} from '../_services';
  * It does this by subscribing to the alert service's getMessage() method which returns an Observable.
  */
 @Component({
-	selector: 'alert',
-	templateUrl: 'alert.component.html'
+    selector: 'alert',
+    templateUrl: 'alert.component.html'
 })
 export class AlertComponent implements OnInit, OnDestroy {
 
-	alertService: AlertService;
-	message: any;
-	private subscription: Subscription;
+    alertService: AlertService;
+    message: any;
+    private subscription: Subscription;
 
-	constructor(alertService: AlertService) {
-		this.alertService = alertService;
-	}
+    constructor(alertService: AlertService) {
+        this.alertService = alertService;
+    }
 
-	ngOnInit(): void {
-		this.subscription = this.alertService.getMessage().subscribe(message => {
-			this.message = message;
-		});
-	}
+    ngOnInit(): void {
+        this.subscription = this.alertService.getMessage().subscribe(message => {
+            this.message = message;
+        });
+    }
 
-	ngOnDestroy(): void {
-		if (this.subscription)
-			this.subscription.unsubscribe();
-	}
+    ngOnDestroy(): void {
+        if (this.subscription)
+            this.subscription.unsubscribe();
+    }
 
 }

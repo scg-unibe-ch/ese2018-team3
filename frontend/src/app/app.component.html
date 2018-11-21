@@ -1,16 +1,15 @@
-<h1>{{title}}</h1>
-
 <!-- navigation bar -->
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/home">Home</a>
         <a class="nav-item nav-link" routerLink="/jobOverview">Job Overview</a>
         <a class="nav-item nav-link" routerLink="/about">About</a>
-        <a class="nav-item nav-link" routerLink="/login"    *ngIf="!currentUser">Login</a>
+        <a class="nav-item nav-link" routerLink="/login" *ngIf="!currentUser">Login</a>
         <a class="nav-item nav-link" routerLink="/register" *ngIf="!currentUser">Register</a>
-        <a class="nav-item nav-link" (click)="logout()"     *ngIf="currentUser">Logout</a>
+        <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
     </div>
 </nav>
+<a class="nav-item" style="float:right"><h1>{{title}}</h1></a>
 
 <!-- main app container -->
 <div class="jumbotron">
@@ -49,9 +48,9 @@
 
 <!-- footer-->
 <section id="footer">
-  <div class="inner">
-    <div class="copyright">
-      &copy; Job For You: <a href="https://job-for-you.com/">job-for-you.com</a>
+    <div class="inner">
+        <div class="copyright">
+            &copy; Job For You: <a href="https://job-for-you.com/">job-for-you.com</a>
+        </div>
     </div>
-  </div>
 </section>

@@ -1,5 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
 
 import {User} from '../_models';
 import {UserService} from '../_services';
@@ -15,41 +14,32 @@ import {UserService} from '../_services';
  * via the _users_ property.
  */
 @Component({
-	selector: 'app-home',
-	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
-	currentUser: User;
-	currentUserSubscription: Subscription;
-	users: User[] = [];
+export class HomeComponent implements OnInit {
 
-	constructor(
-		private userService: UserService
-	) {
-		this.currentUserSubscription = this.userService.currentUser.subscribe(user => {
-			this.currentUser = user;
-		});
-	}
+    users: User[] = [];
 
-	ngOnInit() {
-		this.loadAllUsers();
-	}
+    constructor(
+        private userService: UserService
+    ) {
+    }
 
-	ngOnDestroy() {
-		// unsubscribe to ensure no memory leaks
-		this.currentUserSubscription.unsubscribe();
-	}
+    ngOnInit() {
+        this.loadAllUsers();
+    }
 
-	deleteUser(id: number) {
-		this.userService.delete(id).subscribe(() => {
-			this.loadAllUsers()
-		});
-	}
+    deleteUser(id: number) {
+        this.userService.delete(id).subscribe(() => {
+            this.loadAllUsers()
+        });
+    }
 
-	private loadAllUsers() {
-		this.userService.getAll().subscribe(users => {
-			this.users = users;
-		});
-	}
+    private loadAllUsers() {
+        this.userService.getAll().subscribe(users => {
+            this.users = users;
+        });
+    }
 }

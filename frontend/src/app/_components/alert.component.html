@@ -2,6 +2,6 @@
 
 <div *ngIf="message"
      [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
-	{{message.text}}
-	<a (click)="alertService.clear()" style="float:right">X</a>
+    {{message.text}}
+    <a (click)="alertService.clear()" style="float:right">X</a>
 </div>

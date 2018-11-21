@@ -14,27 +14,24 @@ export class UserService {
 
 	private URL = 'http://localhost:3000/user-services/';
 
-	public currentUser: Observable<User>;
-	private currentUserSubject: BehaviorSubject<User>;
+	public currentUser: Observable<string>;
+	private currentUserSubject: BehaviorSubject<string>;
 
 	constructor(
 		private alert: AlertService,
 		private http: HttpClient,
 	) {
-		this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+		this.currentUserSubject = new BehaviorSubject<string>(localStorage.getItem('currentUser'));
 		this.currentUser = this.currentUserSubject.asObservable();
 	}
 
-	public get currentUserValue(): User {
+	public get currentUserValue(): string {
 		return this.currentUserSubject.value;
 	}
 
-	save(user: any) {
-		localStorage.setItem('currentUser', JSON.stringify({
-			'id': user.id,
-			'token': user.token
-		}));
-		this.currentUserSubject.next(user);
+	save(token: string) {
+		localStorage.setItem('currentUser', token);
+		this.currentUserSubject.next(localStorage.getItem('currentUser'));
 	}
 
 	login(user: any) {
@@ -42,7 +39,7 @@ export class UserService {
 	}
 
 	logout() {
-		this.http.post(this.URL + 'logout', this.currentUserValue, {withCredentials: true}).subscribe(
+		this.http.post(this.URL + 'logout',{withCredentials: true}).subscribe(
 			() => {
 				this.alert.success('Successfully logged out', true);
 			},
@@ -74,6 +71,6 @@ export class UserService {
 	}
 
 	delete(id: number) {
-		return this.http.post('http://localhost:3000/users/delete/id/' + id, this.currentUserValue, {withCredentials: true});
+		return this.http.delete('http://localhost:3000/users/id/' + id, {withCredentials: true});
 	}
 }

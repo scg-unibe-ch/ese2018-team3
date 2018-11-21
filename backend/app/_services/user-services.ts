@@ -38,11 +38,14 @@ export class UserServices {
 
     /**
      * Tries to authenticate the specified user by comparing tokens.
-     * @param token the token to be authenticated
+     * @param auth_header the token to be authenticated
      * @param asAdmin if the token should be validated as admin
      */
-	static async authenticate(token: string, asAdmin: boolean = false): Promise<UserModel> {
-        const payload = jwt.decode(token, this.TOKEN_SECRET);
+	static async authenticate(auth_header: string, asAdmin: boolean = false): Promise<UserModel> {
+		// Ommit leading 'Bearer'
+		const tok = auth_header.split(" ")[1];
+
+        const payload = jwt.decode(tok, this.TOKEN_SECRET);
         const userId = payload.sub;
         const future = moment(payload.iat).add(30, 'minutes').unix();
         const now = moment().unix();
@@ -60,7 +63,7 @@ export class UserServices {
 
 		const u = await UserModel.findById(userId);
 		if (!u) throw new UserNotFoundError();
-		if (u.token != token) throw new InvalidTokenError();
+		if (u.token != tok) throw new InvalidTokenError();
 
 		return u;
 	}
@@ -94,11 +97,16 @@ export class UserServices {
 
 	/**
 	 * Tries to logout the specified user. The user's token will be nullified.
-	 * @param user the user to be logged out
+	 * @param auth_header the user to be logged out
 	 */
-	static async logout(user: any): Promise<UserModel> {
-		const u = await UserModel.findById(user.id);
+	static async logout(auth_header: string): Promise<UserModel> {
+		// Ommit leading 'Bearer'
+        const tok = auth_header.split(" ")[1];
 
+        const payload = jwt.decode(tok, this.TOKEN_SECRET);
+        const userId = payload.sub;
+
+		const u = await UserModel.findById(userId);
 		if (!u) throw new UserNotFoundError();
 
 		u.token = '';

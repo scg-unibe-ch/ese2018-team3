@@ -16,6 +16,7 @@ import {HomeComponent} from './home';
 import {AlertComponent} from './_components';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import { JobDisplayComponent } from './job-display/job-display.component';
+import { AdComponent } from './ad/ad.component';
 
 // @ts-ignore
 @NgModule({
@@ -30,7 +31,8 @@ import { JobDisplayComponent } from './job-display/job-display.component';
         JobOverviewComponent,
         LoginComponent,
         RegisterComponent,
-        JobDisplayComponent
+        JobDisplayComponent,
+        AdComponent
 	],
 	imports: [
 		BrowserModule,

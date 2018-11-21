@@ -7,9 +7,16 @@ import {
 	UserNotFoundError,
 	UserNotLoggedInError
 } from '../errors';
-import {TokenGenerator} from './token-generator';
+import jwt from 'jwt-simple';
+import moment from 'moment';
+import {TokenExpiredError} from '../errors/TokenExpiredError';
+
 
 export class UserServices {
+
+	private static TOKEN_SECRET: string = '%Bw[HNtju_lo:N{o&mKEcKc\"Qf5d1NH$w$EWz>UY;aS&$-wnNXx1&zqTVE8tWR&';
+	private static EXPIRES_IN: number = 30;
+	private static EXPIRES_TYPE: string = 'minutes';
 
 	constructor() {
 	}
@@ -29,16 +36,31 @@ export class UserServices {
 		return admin;
 	}
 
-	/**
-	 * Tries to authenticate the specified user by comparing tokens.
-	 * @param user the user to be authenticated
-	 */
-	static async authenticate(user: any): Promise<UserModel> {
-		const u = await UserModel.findById(user.id);
+    /**
+     * Tries to authenticate the specified user by comparing tokens.
+     * @param token the token to be authenticated
+     * @param asAdmin if the token should be validated as admin
+     */
+	static async authenticate(token: string, asAdmin: boolean = false): Promise<UserModel> {
+        const payload = jwt.decode(token, this.TOKEN_SECRET);
+        const userId = payload.sub;
+        const future = moment(payload.iat).add(30, 'minutes').unix();
+        const now = moment().unix();
 
+        if (now > future) throw new TokenExpiredError();
+
+		if (asAdmin) {
+            const admin = await AdminModel.findOne({
+                where: {
+                    userId: userId
+                }
+            });
+            if (!admin) throw new UserNotAdminError();
+		}
+
+		const u = await UserModel.findById(userId);
 		if (!u) throw new UserNotFoundError();
-		if (u.token === null) throw new UserNotLoggedInError();
-		if (!(user.token === u.token)) throw new InvalidTokenError();
+		if (u.token != token) throw new InvalidTokenError();
 
 		return u;
 	}
@@ -59,7 +81,12 @@ export class UserServices {
 		if (!(u.password === user.password)) throw new InvalidPasswordError();
 		if (!u.isApproved) throw new UserNotApprovedError();
 
-		u.token = TokenGenerator.gen(user.id);
+		const payload = {
+			iat: moment().unix(),	// issued at
+			sub: u.id				// subject
+		};
+
+		u.token = jwt.encode(payload, this.TOKEN_SECRET);
 		await u.save();
 
 		return u;
@@ -73,7 +100,6 @@ export class UserServices {
 		const u = await UserModel.findById(user.id);
 
 		if (!u) throw new UserNotFoundError();
-		if (u.token === null) throw new UserNotLoggedInError();
 
 		u.token = '';
 		await u.save();

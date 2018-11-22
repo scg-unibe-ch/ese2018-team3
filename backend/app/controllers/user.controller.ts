@@ -73,23 +73,7 @@ router.get('/username/:username', async (req: Request, res: Response) => {
 });
 
 router.put('/id/:id', async (req: Request, res: Response) => {
-    UserServices.authAdmin(req.body)
-        .catch(err => {
-            const lg = genLog() + 'update: ';
-            switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
-                    res.statusCode = 401;
-                    res.json({'message': 'unauthorized'});
-                    return;
-
-                default:
-                    console.log(lg + err);
-                    res.statusCode = 400;
-                    res.json({'message': 'bad request'});
-                    return;
-            }
-        })
+    UserServices.authenticate(req.headers.authorization, true)
         .then(async () => {
             const id = parseInt(req.params.id);
             const instance = await UserModel.findById(id);
@@ -107,11 +91,7 @@ router.put('/id/:id', async (req: Request, res: Response) => {
 
             res.statusCode = 200;
             res.send(instance.toSimplification());
-        });
-});
-
-router.put('/username/:username', async (req: Request, res: Response) => {
-    UserServices.authAdmin(req.body)
+        })
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
@@ -127,7 +107,11 @@ router.put('/username/:username', async (req: Request, res: Response) => {
                     res.json({'message': 'bad request'});
                     return;
             }
-        })
+        });
+});
+
+router.put('/username/:username', async (req: Request, res: Response) => {
+    UserServices.authenticate(req.headers.authorization, true)
         .then(async () => {
             const instance = await UserModel.findOne(req.params.username);
 
@@ -144,20 +128,150 @@ router.put('/username/:username', async (req: Request, res: Response) => {
 
             res.statusCode = 200;
             res.send(instance.toSimplification());
+        })
+        .catch(err => {
+            const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case UserNotAdminError.name:
+                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
+});
+
+router.put('/approve/id/:id', async (req: Request, res: Response) => {
+    UserServices.authenticate(req.headers.authorization, true)
+        .then(async () => {
+            const id = parseInt(req.params.id);
+            const instance = await UserModel.findById(id);
+
+            if (instance == null) {
+                res.statusCode = 404;
+                res.json({
+                    'message': 'not found'
+                });
+                return;
+            }
+
+            instance.isApproved = req.body.approval;
+            await instance.save();
+
+            res.statusCode = 200;
+            res.send(instance.toSimplification());
+        })
+        .catch(err => {
+            const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case UserNotAdminError.name:
+                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
+});
+
+router.put('/approve/username/:username', async (req: Request, res: Response) => {
+    UserServices.authenticate(req.headers.authorization, true)
+        .then(async () => {
+            const instance = await UserModel.findOne({
+                where: {
+                    username: req.params.username
+                }
+            });
+
+            if (instance == null) {
+                res.statusCode = 404;
+                res.json({
+                    'message': 'not found'
+                });
+                return;
+            }
+
+            instance.isApproved = req.body.approval;
+            await instance.save();
+
+            res.statusCode = 200;
+            res.send(instance.toSimplification());
+        })
+        .catch(err => {
+            const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case UserNotAdminError.name:
+                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
         });
 });
 
 router.delete('/id/:id', async (req: Request, res: Response) => {
-    if (!req.headers.authorization) {
-        res.statusCode = 400;
-        res.json({'message': 'no authorization token'});
-        return;
-    }
-
-    UserServices.authenticate(req.headers.authorization)
+    UserServices.authenticate(req.headers.authorization, true)
         .then(async () => {
             const id = parseInt(req.params.id);
             const instance = await UserModel.findById(id);
+
+            if (instance == null) {
+                res.statusCode = 404;
+                res.json({
+                    'message': 'not found'
+                });
+                return;
+            }
+
+            instance.fromSimplification(req.body);
+            await instance.destroy();
+
+            res.statusCode = 204;
+            res.send();
+        })
+        .catch(err => {
+            const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case UserNotAdminError.name:
+                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
+});
+
+router.delete('/username/:username', async (req: Request, res: Response) => {
+    UserServices.authenticate(req.headers.authorization, true)
+        .then(async () => {
+            const instance = await UserModel.findOne({
+                where: {
+                    username: req.params.username
+                }
+            });
 
             if (instance == null) {
                 res.statusCode = 404;

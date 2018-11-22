@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {JobItem} from '../_models/job-item';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';

@@ -1,0 +1,6 @@
+<div>ID: <code>{{user.id}}</code></div>
+<div>Company: <code>{{user.company}}</code></div>
+<div>Username: <code>{{user.username}}</code></div>
+<div *ngIf="user.email"> email: <code>{{user.email}}</code></div>
+<div>isApproved: <code>{{user.isApproved ? 'true' : 'false'}}</code></div>
+- <a (click)="confirmDelete(user.id)" class="text-danger">Delete</a>

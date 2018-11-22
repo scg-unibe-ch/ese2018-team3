@@ -1,29 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { JobEditorComponent } from './job-editor';
-import { AboutComponent} from './about/about.component';
-import { AppRoutingModule } from './app-routing.module';
-import { JobOverviewComponent } from './job-overview/job-overview.component';
+import {JobEditorComponent} from './job-editor';
+import {AboutComponent} from './about/about.component';
+import {AppRoutingModule} from './app-routing.module';
+import {JobOverviewComponent} from './job-overview/job-overview.component';
 import {RegisterComponent} from './register';
 import {LoginComponent} from './login';
 import {HomeComponent} from './home';
 import {AlertComponent} from './_components';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
-import { JobDisplayComponent } from './job-display/job-display.component';
-import { AdComponent } from './ad/ad.component';
+import {JobDisplayComponent} from './job-display/job-display.component';
+import {AdComponent} from './ad/ad.component';
+import {AdminPanelComponent} from './admin-panel/admin-panel.component';
+import {UsersPanelComponent} from './admin-panel/users-panel/users-panel.component';
+import {JobsPanelComponent} from './admin-panel/jobs-panel/jobs-panel.component';
+import { UserDetailComponent } from './admin-panel/users-panel/user-detail/user-detail.component';
 
 // @ts-ignore
 @NgModule({
-	declarations: [
-		AlertComponent,
+    declarations: [
+        AlertComponent,
         AboutComponent,
-		AppComponent,
+        AppComponent,
         AlertComponent,
         HomeComponent,
         JobEditorComponent,
@@ -32,21 +36,25 @@ import { AdComponent } from './ad/ad.component';
         LoginComponent,
         RegisterComponent,
         JobDisplayComponent,
-        AdComponent
-	],
-	imports: [
-		BrowserModule,
-		BrowserAnimationsModule,
-		FormsModule,
-		HttpClientModule,
+        AdComponent,
+        AdminPanelComponent,
+        UsersPanelComponent,
+        JobsPanelComponent,
+        UserDetailComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientModule,
         ReactiveFormsModule,
-		AppRoutingModule
-	],
-	providers: [
-		{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        AppRoutingModule
+    ],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-	],
-	bootstrap: [AppComponent]
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

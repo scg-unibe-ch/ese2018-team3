@@ -1,8 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {JobItem, User} from '../_models';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {JobItem} from '../_models';
 import {AlertService} from './alert.service';
 
 /**
@@ -36,7 +35,8 @@ export class UserService implements OnInit {
     }
 
     update(job: JobItem) {
-        return this.http.put(this.job_url + `${job.id}`, job);;
+        return this.http.put(this.job_url + `${job.id}`, job);
+        ;
     }
 
     delete(id: number) {

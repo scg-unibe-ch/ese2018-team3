@@ -1,0 +1,14 @@
+<table id="users" style="width:80%">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>isApproved</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.isApproved ? 'true' : 'false'}}</td>
+        <td><a routerLink="/admin-panel/users/{{user.id}}">Details</a></td>
+    </tr>
+</table>

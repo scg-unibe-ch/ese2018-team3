@@ -10,7 +10,15 @@ function genLog(): string {
 }
 
 router.post('/', async (req: Request, res: Response) => {
-    UserServices.authAdmin(req.body)
+    UserServices.authenticate(req.headers.authorization, true)
+        .then(async () => {
+            const instance = new AdminModel();
+            instance.fromSimplification(req.body);
+            await instance.save();
+
+            res.statusCode = 201;
+            res.send(instance.toSimplification());
+        })
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
@@ -26,14 +34,6 @@ router.post('/', async (req: Request, res: Response) => {
                     res.json({'message': 'bad request'});
                     return;
             }
-        })
-        .then(async () => {
-            const instance = new AdminModel();
-            instance.fromSimplification(req.body);
-            await instance.save();
-
-            res.statusCode = 201;
-            res.send(instance.toSimplification());
         });
 });
 
@@ -81,23 +81,7 @@ router.get('/user-id/:userId', async (req: Request, res: Response) => {
 });
 
 router.put('/:id', async (req: Request, res: Response) => {
-    UserServices.authAdmin(req.body)
-        .catch(err => {
-            const lg = genLog() + 'update: ';
-            switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
-                    res.statusCode = 401;
-                    res.json({'message': 'unauthorized'});
-                    return;
-
-                default:
-                    console.log(lg + err);
-                    res.statusCode = 400;
-                    res.json({'message': 'bad request'});
-                    return;
-            }
-        })
+    UserServices.authenticate(req.headers.authorization, true)
         .then(async () => {
             const id = parseInt(req.params.id);
             const instance = await AdminModel.findById(id);
@@ -115,11 +99,7 @@ router.put('/:id', async (req: Request, res: Response) => {
 
             res.statusCode = 200;
             res.send(instance.toSimplification());
-        });
-});
-
-router.put('/user-id/:id', async (req: Request, res: Response) => {
-    UserServices.authAdmin(req.body)
+        })
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
@@ -135,7 +115,11 @@ router.put('/user-id/:id', async (req: Request, res: Response) => {
                     res.json({'message': 'bad request'});
                     return;
             }
-        })
+        });
+});
+
+router.put('/user-id/:id', async (req: Request, res: Response) => {
+    UserServices.authenticate(req.headers.authorization, true)
         .then(async () => {
             const id = parseInt(req.params.id);
             const instance = await AdminModel.findOne({
@@ -157,11 +141,7 @@ router.put('/user-id/:id', async (req: Request, res: Response) => {
 
             res.statusCode = 200;
             res.send(instance.toSimplification());
-        });
-});
-
-router.delete('/:id', async (req: Request, res: Response) => {
-    UserServices.authAdmin(req.body)
+        })
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
@@ -177,7 +157,11 @@ router.delete('/:id', async (req: Request, res: Response) => {
                     res.json({'message': 'bad request'});
                     return;
             }
-        })
+        });
+});
+
+router.delete('/:id', async (req: Request, res: Response) => {
+    UserServices.authenticate(req.headers.authorization, true)
         .then(async () => {
             const id = parseInt(req.params.id);
             const instance = await AdminModel.findById(id);
@@ -195,6 +179,22 @@ router.delete('/:id', async (req: Request, res: Response) => {
 
             res.statusCode = 204;
             res.send();
+        })
+        .catch(err => {
+            const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case UserNotAdminError.name:
+                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
         });
 });
 

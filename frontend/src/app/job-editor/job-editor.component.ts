@@ -68,6 +68,7 @@ export class JobEditorComponent implements OnInit {
             },
             err => {
                 this.alert.error(err);
+                this.loading = false;
             });
     }
 

@@ -9,19 +9,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JobEditorComponent} from './job-editor';
 import {AboutComponent} from './about/about.component';
 import {AppRoutingModule} from './app-routing.module';
-import {JobOverviewComponent} from './job-overview/job-overview.component';
+import {JobOverviewComponent} from './job-overview';
 import {RegisterComponent} from './register';
 import {LoginComponent} from './login';
 import {HomeComponent} from './home';
 import {AlertComponent} from './_components';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
-import {JobDisplayComponent} from './job-display/job-display.component';
 import {AdComponent} from './ad/ad.component';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
-import {UsersPanelComponent} from './admin-panel/users-panel/users-panel.component';
+import {UsersPanelComponent} from './admin-panel/users-panel';
 import {JobsPanelComponent} from './admin-panel/jobs-panel/jobs-panel.component';
-import { UserDetailComponent } from './admin-panel/users-panel/user-detail/user-detail.component';
-import { UserEditComponent } from './admin-panel/users-panel/user-edit/user-edit.component';
+import {UserDetailComponent} from './admin-panel/users-panel/user-detail';
+import {UserEditComponent} from './admin-panel/users-panel/user-edit';
+import {JobDetailComponent} from './job-overview/job-detail';
 
 // @ts-ignore
 @NgModule({
@@ -32,17 +32,16 @@ import { UserEditComponent } from './admin-panel/users-panel/user-edit/user-edit
         AlertComponent,
         HomeComponent,
         JobEditorComponent,
-        JobDisplayComponent,
         JobOverviewComponent,
         LoginComponent,
         RegisterComponent,
-        JobDisplayComponent,
         AdComponent,
         AdminPanelComponent,
         UsersPanelComponent,
         JobsPanelComponent,
         UserDetailComponent,
-        UserEditComponent
+        UserEditComponent,
+        JobDetailComponent
     ],
     imports: [
         BrowserModule,

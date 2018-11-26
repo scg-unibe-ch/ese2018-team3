@@ -44,8 +44,8 @@ router.get('id/:id', async (req: Request, res: Response) => {
 });
 
 router.get('/user/:id', async (req: Request, res: Response) => {
-    const q_userId = parseInt(req.params.id);
-    const user = await UserModel.findById(q_userId);
+    const userId = parseInt(req.params.id);
+    const user = await UserModel.findById(userId);
 
     if (user == null) {
         res.statusCode = 404;
@@ -61,7 +61,39 @@ router.get('/user/:id', async (req: Request, res: Response) => {
             model: UserToJobModel,
             required: true,
             where: {
-                userId: q_userId,
+                userId: user.id,
+                jobId: Sequelize.col('JobModel.id')
+            }
+        }]
+    });
+
+    res.statusCode = 200;
+    res.send(instances.map(e => e.toSimplification()));
+});
+
+router.get('/company/:company', async (req: Request, res: Response) => {
+    const company = parseInt(req.params.company);
+    const user = await UserModel.findOne({
+        where: {
+            company: company
+        }
+    });
+
+    if (user == null) {
+        res.statusCode = 404;
+        res.json({
+            'message': 'not found'
+        });
+        return;
+    }
+
+    // VERY EXPERIMENTAL
+    const instances = await JobModel.findAll({
+        include: [{
+            model: UserToJobModel,
+            required: true,
+            where: {
+                userId: user.id,
                 jobId: Sequelize.col('JobModel.id')
             }
         }]

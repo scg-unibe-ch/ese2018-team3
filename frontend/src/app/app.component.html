@@ -3,7 +3,7 @@
     <div class="nav-item"><h2>{{shortTitle}}</h2></div>
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/home">Home</a>
-        <a class="nav-item nav-link" routerLink="/jobOverview">Job Overview</a>
+        <a class="nav-item nav-link" routerLink="/jobs">Job Overview</a>
         <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/admin-panel">Admin-Panel</a>
         <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/login">Login</a>
         <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/register">Register</a>

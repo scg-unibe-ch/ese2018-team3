@@ -1,14 +1,12 @@
 <h2>{{"List of Job Offers"}}</h2>
 <div>
+    <h3 *ngIf="jobs.length == 0">There are currently no job postings.</h3>
     <ul *ngFor="let job of jobs">
-        <li>
+        <li routerLink="/jobs/{{job.id}}">
             <h3>{{job.name}}</h3>
 
             <h4>Description</h4>
-            <div>{{job.description}}</div>
-
-            <h4>Qualifications</h4>
-            <div>{{job.qualifications}}</div>
+            <div>{{shortenDescription(job)}}...</div>
         </li>
     </ul>
 </div>

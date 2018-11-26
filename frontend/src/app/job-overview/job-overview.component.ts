@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {environment} from '../../environments/environment';
-
-import {HttpClient} from '@angular/common/http';
-import {JobItem} from '../_models';
+import {Job} from '../_models';
+import {JobService} from '../_services';
 
 @Component({
     selector: 'app-job-overview',
@@ -10,17 +8,27 @@ import {JobItem} from '../_models';
     styleUrls: ['./job-overview.component.css']
 })
 export class JobOverviewComponent implements OnInit {
-    baseUrl = environment.baseUrl;
 
-    jobs: JobItem[];
+    jobs: Job[];
 
-    constructor(private httpClient: HttpClient) {
-        // this.baseUrl = environment.baseUrl;
+    constructor(
+        private jobService: JobService
+    ) {
     }
 
     ngOnInit() {
-        this.httpClient.get(this.baseUrl + '/jobs').subscribe((instances: any) => {
-            this.jobs = instances;
-        });
+        this.jobs = [];
+        this.loadAllJobs();
+    }
+
+    private loadAllJobs() {
+        this.jobService.getAll().subscribe(jobs => {
+            this.jobs = jobs;
+        })
+    }
+
+    shortenDescription(job: Job) {
+        const length = Math.min(job.description.length-1, 100);
+        return job.description.substr(0, length);
     }
 }

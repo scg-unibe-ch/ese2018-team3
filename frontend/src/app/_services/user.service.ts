@@ -53,18 +53,6 @@ export class UserService {
         this.clearLogin();
     }
 
-    getAll() {
-        return this.http.get<User[]>('http://localhost:3000/users/');
-    }
-
-    getById(id: number) {
-        return this.http.get(`http://localhost:3000/users/id/${id}`);
-    }
-
-    getByName(name: string) {
-        return this.http.get(`http://localhost:3000/users/username/${name}`);
-    }
-
     register(user: any) {
         return this.http.post(this.URL + 'register', user, {withCredentials: true});
     }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Job} from '../_models/job';
+import {Job} from '../_models';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';

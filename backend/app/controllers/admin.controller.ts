@@ -37,6 +37,31 @@ router.post('/', async (req: Request, res: Response) => {
         });
 });
 
+router.get('/auth', async (req: Request, res: Response) => {
+    console.log(genLog() + 'authenticating as admin...');
+    UserServices.authenticate(req.headers.authorization, true)
+        .then(async () => {
+            console.log(genLog() + 'Successfully authenticated as admin');
+            res.statusCode = 200;
+        })
+        .catch(err => {
+            const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case UserNotAdminError.name:
+                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
+});
+
 router.get('/', async (req: Request, res: Response) => {
     const instances = await AdminModel.findAll();
 

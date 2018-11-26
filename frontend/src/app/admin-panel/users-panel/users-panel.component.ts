@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../_models';
-import {AdminService} from '../../_services/admin.service';
-import {ActivatedRoute} from '@angular/router';
+import {AdminService} from '../../_services';
 
 @Component({
     selector: 'app-users-panel',
@@ -10,15 +9,15 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UsersPanelComponent implements OnInit {
 
-    users: User[] = [];
+    users: User[];
 
     constructor(
-        private adminService: AdminService,
-        private route: ActivatedRoute
+        private adminService: AdminService
     ) {
     }
 
     ngOnInit() {
+        this.users = [];
         this.loadAllUsers()
     }
 

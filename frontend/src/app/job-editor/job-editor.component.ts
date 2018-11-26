@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {JobItem} from '../_models/job-item';
+import {Job} from '../_models/job';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -17,7 +17,7 @@ export class JobEditorComponent implements OnInit {
 
     registerForm: FormGroup;
     returnUrl: string;
-    jobItem: JobItem;
+    jobItem: Job;
 
     submitted = false;
     loading = false;

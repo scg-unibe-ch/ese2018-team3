@@ -4,7 +4,7 @@
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/home">Home</a>
         <a class="nav-item nav-link" routerLink="/jobOverview">Job Overview</a>
-        <a class="nav-item nav-link" routerLink="/about">About</a>
+        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/admin-panel">Admin-Panel</a>
         <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/login">Login</a>
         <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/register">Register</a>
         <a (click)="logout()" *ngIf="currentUser" class="nav-item nav-link">Logout</a>
@@ -27,6 +27,9 @@
 <!-- footer-->
 <section id="footer">
     <div class="inner">
+        <div class="about">
+            <a routerLink="/about">About us</a>
+        </div>
         <div class="copyright">
             &copy; Job For You: <a href="https://job-for-you.com/">job-for-you.com</a>
         </div>

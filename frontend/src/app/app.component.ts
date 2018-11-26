@@ -13,7 +13,7 @@ export class AppComponent {
 
     currentUser: string;
     title = 'Job For You';
-    shortTitle = 'J4U';
+    shortTitle = 'J4Y';
     baseUrl = environment.baseUrl;
 
     constructor(

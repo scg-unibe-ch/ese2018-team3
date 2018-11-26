@@ -8,21 +8,9 @@ import {Router} from '@angular/router';
 })
 export class AdminPanelComponent implements OnInit {
 
-    private usersPanel: string = '/admin-panel/users';
-    private jobsPanel: string = '/admin-panel/jobs';
-
     constructor(
-        private router: Router
     ) {}
 
     ngOnInit() {
-    }
-
-    toUsersPanel() {
-        this.router.navigate([this.usersPanel]);
-    }
-
-    toJobsPanel() {
-        this.router.navigate([this.jobsPanel]);
     }
 }

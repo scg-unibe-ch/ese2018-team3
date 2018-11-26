@@ -1,6 +1,22 @@
-<div>ID: <code>{{user.id}}</code></div>
-<div>Company: <code>{{user.company}}</code></div>
-<div>Username: <code>{{user.username}}</code></div>
-<div *ngIf="user.email"> email: <code>{{user.email}}</code></div>
-<div>isApproved: <code>{{user.isApproved ? 'true' : 'false'}}</code></div>
-- <a (click)="confirmDelete(user.id)" class="text-danger">Delete</a>
+<table id="users-detail" style="width:60%" *ngIf="user">
+    <tr>
+        <th>ID:</th><td><code>{{user.id}}</code></td>
+    </tr>
+    <tr>
+        <th>Company:</th><td>{{user.company}}</td>
+    </tr>
+    <tr>
+        <th>Email:</th><td>{{user.email}}</td>
+    </tr>
+    <tr>
+        <th>Username:</th><td>{{user.username}}</td>
+    </tr>
+    <tr>
+        <th>Is Approved:</th><td class="{{user.isApproved ? 'text-default' : 'text-danger'}}">{{user.isApproved ?'true' : 'false'}}</td>
+    </tr>
+</table>
+
+<div>
+    <a style="float:left" routerLink="{{this.router.url}}/edit" class="text-warning">Edit</a>
+    <a style="float:right" (click)="confirmDelete(user.id)" class="text-danger">Delete</a>
+</div>

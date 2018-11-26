@@ -11,6 +11,7 @@ import {AlertService} from '../../../_services';
 })
 export class UserDetailComponent implements OnInit {
 
+    router: Router;
     user: User;
     private returnUrl: string;
 
@@ -18,12 +19,13 @@ export class UserDetailComponent implements OnInit {
         private adminService: AdminService,
         private alert: AlertService,
         private route: ActivatedRoute,
-        private router: Router
+        router: Router
     ) {
+        this.router = router;
     }
 
     ngOnInit() {
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/admin-panel/users';
         this.adminService.getUser(this.route.snapshot.params.id).subscribe(
             (user: User) => {
                 this.user = user;

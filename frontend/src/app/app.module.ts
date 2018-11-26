@@ -21,6 +21,7 @@ import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 import {UsersPanelComponent} from './admin-panel/users-panel/users-panel.component';
 import {JobsPanelComponent} from './admin-panel/jobs-panel/jobs-panel.component';
 import { UserDetailComponent } from './admin-panel/users-panel/user-detail/user-detail.component';
+import { UserEditComponent } from './admin-panel/users-panel/user-edit/user-edit.component';
 
 // @ts-ignore
 @NgModule({
@@ -40,7 +41,8 @@ import { UserDetailComponent } from './admin-panel/users-panel/user-detail/user-
         AdminPanelComponent,
         UsersPanelComponent,
         JobsPanelComponent,
-        UserDetailComponent
+        UserDetailComponent,
+        UserEditComponent
     ],
     imports: [
         BrowserModule,

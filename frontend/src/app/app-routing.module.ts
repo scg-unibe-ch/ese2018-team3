@@ -9,11 +9,12 @@ import {LoginComponent} from './login';
 import {RegisterComponent} from './register';
 import {AuthGuard} from './_guards';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
-import {UsersPanelComponent} from './admin-panel/users-panel/users-panel.component';
-import {UserDetailComponent} from './admin-panel/users-panel/user-detail/user-detail.component';
+import {UserEditComponent, UsersPanelComponent} from './admin-panel/users-panel';
+import {UserDetailComponent} from './admin-panel/users-panel/';
+import {AdminAuthGuard} from './_guards/admin-auth.guard';
 
 const routes: Routes = [
-    {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+    {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'about', component: AboutComponent},
 
@@ -22,9 +23,10 @@ const routes: Routes = [
 
     {path: 'jobOverview', component: JobOverviewComponent},
 
-    {path: 'admin-panel', component: AdminPanelComponent},
-    {path: 'admin-panel/users', component: UsersPanelComponent},
-    {path: 'admin-panel/users/:id', component: UserDetailComponent},
+    {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard]},
+    {path: 'admin-panel/users', component: UsersPanelComponent, canActivate: [AuthGuard]},
+    {path: 'admin-panel/users/:id', component: UserDetailComponent, canActivate: [AuthGuard]},
+    {path: 'admin-panel/users/:id/edit', component: UserEditComponent, canActivate: [AuthGuard]},
 
     //{path: 'job/new', component: ProfilNewJobComponent},
     //{path: 'profil', component: JobManagementComponent},

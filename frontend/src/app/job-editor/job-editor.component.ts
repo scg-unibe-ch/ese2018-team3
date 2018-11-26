@@ -73,7 +73,7 @@ export class JobEditorComponent implements OnInit {
     }
 
     confirmDelete() {
-        if (confirm('Are you sure you want to **delete** this job posting?')) this.onDelete();
+        if (confirm('Are you sure you want to delete this job posting?')) this.onDelete();
     }
 
     onDelete() {

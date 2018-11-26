@@ -10,9 +10,9 @@ import {sha256} from 'js-sha256';
  * The login component uses the authentication service to login to the application. If the user is already logged in
  * they are automatically redirected to the home page.
  *
- * The loginForm: FormGroup object defines the form controls and validators, and is used to access data entered
+ * The userEditForm: FormGroup object defines the form controls and validators, and is used to access data entered
  * into the form. The FormGroup is part of the Angular Reactive Forms module and is bound to the login template
- * above with the [formGroup]="loginForm" directive.
+ * above with the [formGroup]="userEditForm" directive.
  */
 @Component({
     selector: 'app-login',

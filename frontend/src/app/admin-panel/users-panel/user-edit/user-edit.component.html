@@ -1,0 +1,62 @@
+<h2>Editing User</h2>
+<form [formGroup]="userEditForm">
+    <table id="users-detail" style="width:120%" *ngIf="user">
+        <tr>
+            <th>ID:</th>
+            <td><code>{{originalUser.id}}</code></td>
+            <td><code>{{user.id}}</code></td>
+        </tr>
+        <tr>
+            <th>Company:</th>
+            <td>{{originalUser.company}}</td>
+            <td class="form-group">
+                <input type="text" formControlName="company" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.company.errors }"/>
+                <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                    <div *ngIf="f.company.errors.required">Company is required</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td>{{originalUser.email}}</td>
+            <td class="form-group">
+                <input type="email" formControlName="email" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Username:</th>
+            <td>{{originalUser.username}}</td>
+            <td class="form-group">
+                <input type="text" formControlName="username" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Is Approved:</th>
+            <td class="{{originalUser.isApproved ? 'text-default' : 'text-danger'}}">{{originalUser.isApproved ? 'true' : 'false'}}</td>
+            <td class="form-group">
+                <input type="checkbox" formControlName="isApproved" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                <div *ngIf="submitted && f.isApproved.errors" class="invalid-feedback">
+                    <div *ngIf="f.isApproved.errors.required">isApproved is required</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+    <div class="form-group">
+        <button [disabled]="loading" (click)="onSubmit()" class="btn btn-primary">Save</button>
+        <img *ngIf="loading" class="pl-3"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        <button [disabled]="hasChanged()" (click)="onReset()" class="btn btn-danger">Reset</button>
+    </div>
+</form>

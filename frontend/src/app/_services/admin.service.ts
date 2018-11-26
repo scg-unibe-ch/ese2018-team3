@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AlertService} from './alert.service';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../_models';
+import {UserService} from './user.service';
 
 @Injectable({providedIn: 'root'})
 export class AdminService {
@@ -13,8 +14,24 @@ export class AdminService {
 
     constructor(
         private alert: AlertService,
+        private userService: UserService,
         private http: HttpClient
     ) {
+    }
+
+    isAdmin() {
+        this.auth().subscribe(
+            () => {
+                return true;
+            },
+            err => {
+                return false;
+            }
+        );
+    }
+
+    auth() {
+        return this.http.get(this.adminsUrl + `auth/`);
     }
 
     getAllUsers() {
@@ -25,12 +42,12 @@ export class AdminService {
         return this.http.get<User[]>(this.usersUrl + 'unapproved');
     }
 
-    getUser(user: number | string) {
-        return this.http.get(this.usersUrl + `${typeof user === 'number' ? 'id' : 'username'}/${user}`);
+    getUser(user: number) {
+        return this.http.get(this.usersUrl + `id/${user}`);
     }
 
-    changeUserApproval(user: number | string, approval: boolean) {
-        return this.http.put(this.usersUrl + `approve/${typeof user === 'number' ? 'id' : 'username'}/${user}`, approval);
+    changeUserApproval(user: number, approval: boolean) {
+        return this.http.put(this.usersUrl + `approve/id/${user}`, approval);
     }
 
     updateUser(user: any) {
@@ -38,6 +55,6 @@ export class AdminService {
     }
 
     deleteUser(user: number | string) {
-        return this.http.delete(this.usersUrl + `approve/${typeof user === 'number' ? 'id' : 'username'}/${user}\``);
+        return this.http.delete(this.usersUrl + `delete/id/${user}`);
     }
 }

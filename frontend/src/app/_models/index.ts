@@ -1,3 +1,2 @@
-export * from './job-item';
-export * from './job-list';
-export * from './User';
+export * from './job';
+export * from './user';

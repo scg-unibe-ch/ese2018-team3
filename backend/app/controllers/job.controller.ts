@@ -27,7 +27,7 @@ router.post('/', async (req: Request, res: Response) => {
     res.send(instance.toSimplification());
 });
 
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('id/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const instance = await JobModel.findById(id);
 

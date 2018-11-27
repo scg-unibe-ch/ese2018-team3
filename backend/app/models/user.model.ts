@@ -1,5 +1,4 @@
 import {Column, HasMany, Model, Table, Unique} from 'sequelize-typescript';
-import {JobModel} from './job.model';
 
 @Table
 export class UserModel extends Model<UserModel> {

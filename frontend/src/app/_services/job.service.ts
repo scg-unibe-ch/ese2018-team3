@@ -14,6 +14,10 @@ export class JobService implements OnInit {
     constructor(
         private http: HttpClient
     ) {
+	}
+	
+	save(job: any) {
+        return this.http.post(this.jobsUrl, job);
     }
 
     ngOnInit(): void {

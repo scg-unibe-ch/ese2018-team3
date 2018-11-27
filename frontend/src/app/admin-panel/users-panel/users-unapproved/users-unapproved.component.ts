@@ -3,7 +3,7 @@ import {User} from '../../../_models';
 import {AdminService} from '../../../_services';
 
 @Component({
-    selector: 'app-user-unapproved',
+    selector: 'app-users-unapproved',
     templateUrl: './users-unapproved.component.html',
     styleUrls: ['./users-unapproved.component.css']
 })

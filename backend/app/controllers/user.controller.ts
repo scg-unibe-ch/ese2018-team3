@@ -128,14 +128,39 @@ router.get('/username/:username', async (req: Request, res: Response) => {
 });
 
 router.get('/unapproved', async (req: Request, res: Response) => {
-    const instances = await UserModel.findAll({
-        where: {
-            isApproved: false
-        }
-    });
+    UserServices.authAdmin(req.headers.authorization)
+        .then(async () => {
+            const instances = await UserModel.findAll({
+                where: {
+                    isApproved: false
+                }
+            });
 
-    res.statusCode = 200;
-    res.send(instances.map(u => u.toSimplification()));
+            res.statusCode = 200;
+            res.send(instances.map(u => u.toSimplification()));
+        })
+        .catch(err => {
+            const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case InvalidTokenError.name:
+                    console.log(lg + 'invalid token: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
 });
 
 router.put('/id/:id', async (req: Request, res: Response) => {

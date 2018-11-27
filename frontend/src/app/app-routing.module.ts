@@ -32,6 +32,7 @@ const routes: Routes = [
 
 
     {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard]},
+    {path: 'admin-panel/jobs-panel', component: AdminPanelComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/users', component: UsersPanelComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/users-unapproved', component: UsersUnapprovedComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/users/:id', component: UserDetailComponent, canActivate: [AuthGuard]},

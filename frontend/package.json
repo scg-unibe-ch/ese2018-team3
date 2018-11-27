@@ -29,7 +29,6 @@
     "@types/jest": "^23.3.5",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
-    "glyphicons": "^0.2.0",
     "jest": "^23.6.0",
     "jest-preset-angular": "^6.0.1",
     "js-sha256": "^0.9.0",

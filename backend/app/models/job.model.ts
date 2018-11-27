@@ -7,7 +7,7 @@ export class JobModel extends Model<JobModel> {
     name!: string;
 
     @Column
-    description!: string;
+    description!: {validate: { len: [0, 1024]}};
 
     @CreatedAt
     @Column

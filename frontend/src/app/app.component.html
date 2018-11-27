@@ -5,6 +5,7 @@
         <a class="nav-item nav-link" routerLink="/home">Home</a>
         <a class="nav-item nav-link" routerLink="/jobs">Job Overview</a>
         <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/admin-panel">Admin-Panel</a>
+        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/job-creator">Job Creator</a>
         <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/login">Login</a>
         <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/register">Register</a>
         <a (click)="logout()" *ngIf="currentUser" class="nav-item nav-link">Logout</a>

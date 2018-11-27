@@ -31,7 +31,7 @@ export class UserServices {
 			}
         });
         if (!admin) throw new UserUnauthorizedError();
-		return;
+		return admin;
 	}
 
     /**

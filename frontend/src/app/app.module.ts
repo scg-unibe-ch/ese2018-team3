@@ -22,6 +22,7 @@ import {JobsPanelComponent} from './admin-panel/jobs-panel/jobs-panel.component'
 import {UserDetailComponent} from './admin-panel/users-panel/user-detail';
 import {UserEditComponent} from './admin-panel/users-panel/user-edit';
 import {JobDetailComponent} from './job-overview/job-detail';
+import { JobCreatorComponent } from './job-overview/job-creator/job-creator.component';
 
 // @ts-ignore
 @NgModule({
@@ -41,7 +42,8 @@ import {JobDetailComponent} from './job-overview/job-detail';
         JobsPanelComponent,
         UserDetailComponent,
         UserEditComponent,
-        JobDetailComponent
+        JobDetailComponent,
+        JobCreatorComponent
     ],
     imports: [
         BrowserModule,

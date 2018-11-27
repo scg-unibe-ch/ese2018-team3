@@ -15,6 +15,7 @@ import {AuthGuard} from './_guards';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 import {UserEditComponent, UsersPanelComponent} from './admin-panel/users-panel';
 import {UserDetailComponent} from './admin-panel/users-panel/';
+import {JobCreatorComponent} from './job-overview/job-creator/job-creator.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
 
     {path: 'jobs', component: JobOverviewComponent},
     {path: 'jobs/:id', component: JobDetailComponent},
+    {path: 'job-creator', component: JobCreatorComponent},
 
 
     {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard]},

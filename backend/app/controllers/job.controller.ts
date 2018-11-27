@@ -1,6 +1,7 @@
 import {Request, Response, Router} from 'express';
 import {JobModel, UserModel, UserToJobModel} from '../models';
 import {Sequelize} from 'sequelize-typescript';
+import {UserServices} from '../_services';
 
 const router: Router = Router();
 
@@ -12,19 +13,24 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
-    const instance = new JobModel();
-    instance.fromSimplification(req.body);
-    await instance.save();
+    UserServices.authenticate(req.headers.authorization)
+        .then(async user => {
+            const instance = new JobModel();
+            instance.fromSimplification(req.body);
+            await instance.save();
 
-    const link = new UserToJobModel();
-    link.fromSimplification({
-        'userId': req.body.user.id,
-        'jobId': instance.id
-    });
-    await link.save();
+            const link = new UserToJobModel();
+            link.fromSimplification({
+                'userId':user.id,
+                'jobId': instance.id
+            });
+            await link.save();
 
-    res.statusCode = 201;
-    res.send(instance.toSimplification());
+            res.statusCode = 201;
+            res.send(instance.toSimplification());
+        })
+
+
 });
 
 router.get('id/:id', async (req: Request, res: Response) => {

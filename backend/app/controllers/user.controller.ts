@@ -1,7 +1,7 @@
 import {Request, Response, Router} from 'express';
 import {UserModel} from '../models';
 import {UserServices} from '../_services';
-import {UserNotAdminError} from '../errors';
+import {UserUnauthorizedError} from '../errors';
 
 const router: Router = Router();
 
@@ -19,15 +19,43 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 router.get('/', async (req: Request, res: Response) => {
-    console.log(genLog() + 'Finding all users...');
-    const instances = await UserModel.findAll();
+    UserServices.authenticate(req.headers.authorization, true)
+        .then(async () => {
 
-    res.statusCode = 200;
-    res.send(instances.map(e => e.toSimplification()));
+            console.log(genLog() + 'Finding all users...');
+            const instances = await UserModel.findAll();
+
+            res.statusCode = 200;
+            res.send(instances.map(e => e.toSimplification()));
+        })
+        .catch(err => {
+            const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
 });
 
 router.get('/id/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
+    UserServices.authenticateSameUser(req.headers.authorization, id)
+        .then(instance => {
+            res.statusCode = 200;
+            res.send(instance.toSimplification());
+        })
+        .catch(error => {
+
+        });
     const instance = await UserModel.findById(id);
 
     if (instance == null) {
@@ -95,8 +123,8 @@ router.put('/id/:id', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -132,8 +160,8 @@ router.put('/username/:username', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -170,8 +198,8 @@ router.put('/approve/id/:id', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -211,8 +239,8 @@ router.put('/approve/username/:username', async (req: Request, res: Response) =>
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -249,8 +277,8 @@ router.delete('/id/:id', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -290,8 +318,8 @@ router.delete('/username/:username', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;

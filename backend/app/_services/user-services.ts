@@ -1,10 +1,9 @@
 import {AdminModel, UserModel} from '../models';
 import {
-	InvalidPasswordError,
-	InvalidTokenError,
-	UserNotAdminError,
-	UserNotApprovedError,
-	UserNotFoundError,
+    InvalidPasswordError,
+    InvalidTokenError,
+    UserNotApprovedError,
+    UserNotFoundError, UserUnauthorizedError,
 } from '../errors';
 import jwt from 'jwt-simple';
 import moment from 'moment';
@@ -40,7 +39,7 @@ export class UserServices {
                     userId: userId
                 }
             });
-            if (!admin) throw new UserNotAdminError();
+            if (!admin) throw new UserUnauthorizedError();
 		}
 
 		const u = await UserModel.findById(userId);
@@ -49,6 +48,24 @@ export class UserServices {
 
 		return u;
 	}
+
+	static async authenticateSameUser(auth_header: string | undefined, id: number): Promise<UserModel> {
+        if (!auth_header) throw Error.prototype;
+        // Ommit leading 'Bearer'
+        const tok = auth_header.split(" ")[1];
+
+        const payload = jwt.decode(tok, this.TOKEN_SECRET);
+        const now = moment().unix();
+        if (now > payload.exp) throw new TokenExpiredError();
+
+        const userId = payload.sub;
+        if (userId !== id) throw new UserUnauthorizedError();
+
+        const u = await UserModel.findById(userId);
+        if (!u) throw new UserNotFoundError();
+
+        return u;
+    }
 
 	/**
 	 * Tries to authenticate the specified user by comparing passwords.

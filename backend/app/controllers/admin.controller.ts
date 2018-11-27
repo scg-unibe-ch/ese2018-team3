@@ -1,7 +1,7 @@
 import {Request, Response, Router} from 'express';
 import {AdminModel} from '../models';
 import {UserServices} from '../_services';
-import {UserNotAdminError} from '../errors';
+import {UserUnauthorizedError} from '../errors';
 
 const router: Router = Router();
 
@@ -22,8 +22,8 @@ router.post('/', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -47,8 +47,8 @@ router.get('/auth', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -128,8 +128,8 @@ router.put('/:id', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -170,8 +170,8 @@ router.put('/user-id/:id', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;
@@ -208,8 +208,8 @@ router.delete('/:id', async (req: Request, res: Response) => {
         .catch(err => {
             const lg = genLog() + 'update: ';
             switch (err.name) {
-                case UserNotAdminError.name:
-                    console.log(lg + 'user not admin: \'' + req.body.username + '\'');
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
                     res.statusCode = 401;
                     res.json({'message': 'unauthorized'});
                     return;

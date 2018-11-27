@@ -110,6 +110,7 @@ router.get('/company/:company', async (req: Request, res: Response) => {
 });
 
 router.put('/:id', async (req: Request, res: Response) => {
+    //UserServices.authenticateSameUser(req.headers.authorization)
     const id = parseInt(req.params.id);
     const instance = await JobModel.findById(id);
 

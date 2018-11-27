@@ -15,12 +15,6 @@ function genLog(): string {
 }
 
 router.post('/auth', async (req: Request, res: Response) => {
-    if (!req.headers.authorization) {
-        res.statusCode = 400;
-        res.json({'message': 'no authorization token'});
-        return;
-    }
-
 	UserServices.authenticate(req.headers.authorization)
 		.then(user => {
 			console.log(genLog() + 'Successfully authenticated\'' + user.username + '\'');

@@ -23,7 +23,7 @@ import {UserDetailComponent} from './admin-panel/users-panel/user-detail';
 import {UserEditComponent} from './admin-panel/users-panel/user-edit';
 import {JobDetailComponent} from './job-overview/job-detail';
 import { JobCreatorComponent } from './job-overview/job-creator/job-creator.component';
-import { UserUnapprovedComponent } from './user-unapproved/user-unapproved.component';
+import { UsersUnapprovedComponent } from './admin-panel/users-panel/users-unapproved/users-unapproved.component';
 
 // @ts-ignore
 @NgModule({
@@ -45,7 +45,7 @@ import { UserUnapprovedComponent } from './user-unapproved/user-unapproved.compo
         UserEditComponent,
         JobDetailComponent,
         JobCreatorComponent,
-        UserUnapprovedComponent
+        UsersUnapprovedComponent
     ],
     imports: [
         BrowserModule,

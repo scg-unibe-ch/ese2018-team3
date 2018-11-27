@@ -76,7 +76,7 @@ export class UserServices {
         if (now > payload.exp) throw new InvalidTokenError();
 
         const userId = payload.sub;
-        const u = await UserModel.findById(userId);
+        const u = await UserModel.findById(id);
         if (!u) throw new UserNotFoundError();
 
         const admin = await AdminModel.findOne({
@@ -84,6 +84,7 @@ export class UserServices {
                 userId: userId
             }
         });
+
         if (admin) return u;
         else if (userId !== id) throw new UserUnauthorizedError();
         return u;

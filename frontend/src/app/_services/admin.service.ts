@@ -51,7 +51,7 @@ export class AdminService {
     }
 
     updateUser(user: any) {
-        return this.http.put(this.usersUrl + user.id, user);
+        return this.http.put(this.usersUrl + `id/${user.id}`, user);
     }
 
     deleteUser(user: number | string) {

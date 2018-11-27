@@ -10,7 +10,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UserEditComponent implements OnInit {
 
-    originalUser: any;
     user: any;
     userEditForm: FormGroup;
     loading = false;
@@ -25,9 +24,9 @@ export class UserEditComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.adminService.getUser(this.route.snapshot.params.id).subscribe(
-            (user: any) => {
-                this.originalUser = user;
+        if (!this.user) this.adminService.getUser(this.route.snapshot.params.id).subscribe(
+            user => {
+                if (!user) this.alert.error('Backend error');
                 this.user = user;
             },
             err => {
@@ -35,11 +34,12 @@ export class UserEditComponent implements OnInit {
             });
 
         this.userEditForm = this.formBuilder.group({
-            company: [this.user.company, Validators.required],
-            email: [this.user.email, Validators.required],
-            username: [this.user.username, Validators.required],
-            isApproved: [this.user.isApproved]
+            company: ['', Validators.required],
+            email: ['', Validators.required],
+            username: ['', Validators.required],
+            isApproved: ['']
         });
+        this.onReset();
     }
 
     // convenience getter for easy access to form fields
@@ -62,6 +62,7 @@ export class UserEditComponent implements OnInit {
         this.adminService.updateUser(this.user).subscribe(
             (user: any) => {
                 this.alert.success('Successfully updated user.');
+                this.loading = false;
             },
             error => {
                 this.alert.error(error);
@@ -70,11 +71,12 @@ export class UserEditComponent implements OnInit {
         )
     }
 
-    hasChanged(): boolean {
-        return this.originalUser !== this.user;
-    }
-
     onReset() {
-        this.user = this.originalUser;
+        this.userEditForm.reset({
+            company: this.user.company,
+            email: this.user.email,
+            username: this.user.username,
+            isApproved: this.user.isApproved
+        });
     }
 }

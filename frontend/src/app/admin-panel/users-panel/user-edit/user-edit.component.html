@@ -1,14 +1,19 @@
 <h2>Editing User</h2>
-<form [formGroup]="userEditForm">
+<form [formGroup]="userEditForm" (submit)="onSubmit()">
     <table id="users-detail" style="width:120%" *ngIf="user">
         <tr>
+            <th></th>
+            <th>Original</th>
+            <th>Edit</th>
+        </tr>
+        <tr>
             <th>ID:</th>
-            <td><code>{{originalUser.id}}</code></td>
+            <td><code>{{user.id}}</code></td>
             <td><code>{{user.id}}</code></td>
         </tr>
         <tr>
             <th>Company:</th>
-            <td>{{originalUser.company}}</td>
+            <td>{{user.company}}</td>
             <td class="form-group">
                 <input type="text" formControlName="company" class="form-control"
                        [ngClass]="{ 'is-invalid': submitted && f.company.errors }"/>
@@ -19,7 +24,7 @@
         </tr>
         <tr>
             <th>Email:</th>
-            <td>{{originalUser.email}}</td>
+            <td>{{user.email}}</td>
             <td class="form-group">
                 <input type="email" formControlName="email" class="form-control"
                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
@@ -30,7 +35,7 @@
         </tr>
         <tr>
             <th>Username:</th>
-            <td>{{originalUser.username}}</td>
+            <td>{{user.username}}</td>
             <td class="form-group">
                 <input type="text" formControlName="username" class="form-control"
                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
@@ -41,7 +46,7 @@
         </tr>
         <tr>
             <th>Is Approved:</th>
-            <td class="{{originalUser.isApproved ? 'text-default' : 'text-danger'}}">{{originalUser.isApproved ? 'true' : 'false'}}</td>
+            <td class="{{user.isApproved ? 'text-default' : 'text-danger'}}">{{user.isApproved ? 'true' : 'false'}}</td>
             <td class="form-group">
                 <input type="checkbox" formControlName="isApproved" class="form-control"
                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
@@ -51,12 +56,11 @@
             </td>
         </tr>
     </table>
-
-
-    <div class="form-group">
-        <button [disabled]="loading" (click)="onSubmit()" class="btn btn-primary">Save</button>
-        <img *ngIf="loading" class="pl-3"
-             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-        <button [disabled]="hasChanged()" (click)="onReset()" class="btn btn-danger">Reset</button>
-    </div>
 </form>
+
+<div>
+    <button [disabled]="loading" (click)="onSubmit()" class="btn btn-primary">Save</button>
+    <img *ngIf="loading" class="pl-3"
+         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    <button (click)="onReset()" class="btn btn-danger">Reset</button>
+</div>

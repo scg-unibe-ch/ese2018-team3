@@ -7,14 +7,31 @@ import {
 } from '../errors';
 import jwt from 'jwt-simple';
 import moment from 'moment';
-import {TokenExpiredError} from '../errors/TokenExpiredError';
 
 
 export class UserServices {
 
 	private static TOKEN_SECRET: string = '%Bw[HNtju_lo:N{o&mKEcKc\"Qf5d1NH$w$EWz>UY;aS&$-wnNXx1&zqTVE8tWR&';
 
-	constructor() {
+	constructor() {}
+
+	static async authAdmin(auth_header: string | undefined) {
+        if (!auth_header) throw Error.prototype;
+        // Ommit leading 'Bearer'
+        const tok = auth_header.split(" ")[1];
+
+        const payload = jwt.decode(tok, this.TOKEN_SECRET);
+        const now = moment().unix();
+        if (now > payload.exp) throw new InvalidTokenError();
+
+        const userId = payload.sub;
+        const admin = await AdminModel.findOne({
+			where: {
+				userId: userId
+			}
+        });
+        if (!admin) throw new UserUnauthorizedError();
+		return;
 	}
 
     /**
@@ -29,7 +46,7 @@ export class UserServices {
 
         const payload = jwt.decode(tok, this.TOKEN_SECRET);
         const now = moment().unix();
-        if (now > payload.exp) throw new TokenExpiredError();
+        if (now > payload.exp) throw new InvalidTokenError();
 
         const userId = payload.sub;
 
@@ -56,14 +73,19 @@ export class UserServices {
 
         const payload = jwt.decode(tok, this.TOKEN_SECRET);
         const now = moment().unix();
-        if (now > payload.exp) throw new TokenExpiredError();
+        if (now > payload.exp) throw new InvalidTokenError();
 
         const userId = payload.sub;
-        if (userId !== id) throw new UserUnauthorizedError();
-
         const u = await UserModel.findById(userId);
         if (!u) throw new UserNotFoundError();
 
+        const admin = await AdminModel.findOne({
+            where: {
+                userId: userId
+            }
+        });
+        if (admin) return u;
+        else if (userId !== id) throw new UserUnauthorizedError();
         return u;
     }
 

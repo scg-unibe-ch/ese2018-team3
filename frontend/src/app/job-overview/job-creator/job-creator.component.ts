@@ -30,7 +30,8 @@ export class JobCreatorComponent implements OnInit {
 		this.jobForm = this.formBuilder.group({
 			name: ['', Validators.required],
 			endDate: ['', Validators.required],
-			description: ['', Validators.required]
+			description: ['', Validators.required],
+            qualifications: ['', Validators.required]
 		})
 	}
 
@@ -43,7 +44,8 @@ export class JobCreatorComponent implements OnInit {
 		let job = {
             'name': this.f.name.value,
             'endDate': this.f.endDate.value,
-            'description': this.f.description.value
+            'description': this.f.description.value,
+			'qualifications': this.f.qualifications.value
         };
 		
 		this.jobService.save(job).subscribe(

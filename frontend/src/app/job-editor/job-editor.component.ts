@@ -28,7 +28,6 @@ export class JobEditorComponent implements OnInit {
         private alert: AlertService,
         private formBuilder: FormBuilder,
         private jobService: JobService,
-        private httpClient: HttpClient,
         private route: ActivatedRoute,
         private router: Router
     ) {
@@ -69,12 +68,7 @@ export class JobEditorComponent implements OnInit {
 
         this.loading = true;
 
-        this.httpClient.put(this.jobsUrl + this.job.id, {
-            'name': this.f.name.value,
-            'endDate': this.f.endDate.value,
-            'description': this.f.description.value,
-            'qualifications': this.f.qualifications.value
-        }).subscribe(
+        this.jobService.save(this.job).subscribe(
             () => {
                 this.alert.success('Successfully updated');
             },
@@ -89,10 +83,7 @@ export class JobEditorComponent implements OnInit {
     }
 
     onDelete() {
-        this.httpClient.delete(this.baseUrl + '/jobitem/' + this.job.id).subscribe(() => {
-            this.alert.success(`Successfully deleted job with ID ${this.job.id}`, true);
-            this.router.navigate([this.returnUrl]);
-        });
+        confirm('Not implemented right now');
     }
 
     onReset() {

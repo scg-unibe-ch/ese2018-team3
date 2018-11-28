@@ -22,6 +22,7 @@ export class JobDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log(this.route.snapshot.params.id);
 		this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/jobs';
         this.jobService.getById(this.route.snapshot.params.id).subscribe(
             (job: Job) => {

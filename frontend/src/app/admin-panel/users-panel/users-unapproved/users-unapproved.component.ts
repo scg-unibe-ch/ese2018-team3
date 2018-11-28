@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../../_models';
 import {AdminService} from '../../../_services';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-users-unapproved',
@@ -12,7 +13,8 @@ export class UsersUnapprovedComponent implements OnInit {
     users: User[];
 
     constructor(
-        private adminService: AdminService
+        private adminService: AdminService,
+        private location: Location
     ) {
     }
 
@@ -25,5 +27,9 @@ export class UsersUnapprovedComponent implements OnInit {
         this.adminService.getAllUnapproved().subscribe(users => {
             this.users = users;
         });
+    }
+
+    goBack(): void {
+      this.location.back();
     }
 }

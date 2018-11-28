@@ -68,10 +68,12 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 router.get('id/:id', async (req: Request, res: Response) => {
+    console.log(genLog() + `retrieving ${req.params.id}`);
     const id = parseInt(req.params.id);
     const instance = await JobModel.findById(id);
 
     if (instance == null) {
+        console.log(genLog() + `${req.params.id} not found`);
         res.statusCode = 404;
         res.json({
             'message': 'not found'

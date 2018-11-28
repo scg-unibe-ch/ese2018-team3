@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Job} from '../_models';
+import {JobService} from '../_services';
 
 /**
  * The home component ets the current user from the authentication service by subscribing to the
@@ -16,10 +18,29 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+    jobs: Job[];
+
+
     constructor(
+        private jobService: JobService
     ) {
     }
 
     ngOnInit() {
+        this.jobs = [];
+        this.loadAllJobs();
+    }
+
+    private loadAllJobs() {
+        this.jobService.getAll().subscribe(jobs => {
+
+          //use jobs.length due to new jobs being added at the end of the array
+          this.jobs = jobs.slice(jobs.length-4,jobs.length-1);
+      })
+    }
+
+    shortenDescription(job: Job) {
+      const length = Math.min(job.description.length-1, 100);
+      return job.description.substr(0, length);
     }
 }

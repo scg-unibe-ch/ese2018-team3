@@ -3,7 +3,7 @@ import {Job} from '../_models';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AlertService} from '../_services';
+import {AlertService, JobService} from '../_services';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -17,7 +17,7 @@ export class JobEditorComponent implements OnInit {
 
     private jobsUrl = 'http://localhost:3000//jobs/';
 
-    registerForm: FormGroup;
+    jobEditForm: FormGroup;
     returnUrl: string;
     job: Job;
 
@@ -27,7 +27,7 @@ export class JobEditorComponent implements OnInit {
     constructor(
         private alert: AlertService,
         private formBuilder: FormBuilder,
-        private httpClient: HttpClient,
+        private jobService: JobService,
         private route: ActivatedRoute,
         private router: Router
     ) {
@@ -36,11 +36,20 @@ export class JobEditorComponent implements OnInit {
 
     // convenience getter for easy access to form fields
     get f() {
-        return this.registerForm.controls;
+        return this.jobEditForm.controls;
     }
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
+        if (!this.job) this.jobService.getById(this.route.snapshot.params.id).subscribe(
+            (job: Job) => {
+                if (!job) this.alert.error('Backend error');
+                this.job = job;
+            },
+            err => {
+                this.alert.error(err, true);
+            });
+
+        this.jobEditForm = this.formBuilder.group({
             name: ['', Validators.required],
             endDate: [''],
             description: ['', Validators.required],
@@ -51,20 +60,15 @@ export class JobEditorComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
 
-    onSave() {
+    onSubmit() {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.registerForm.invalid) return;
+        if (this.jobEditForm.invalid) return;
 
         this.loading = true;
 
-        this.httpClient.put(this.jobsUrl + this.job.id, {
-            'name': this.f.name.value,
-            'endDate': this.f.endDate.value,
-            'description': this.f.description.value,
-            'qualifications': this.f.qualifications.value
-        }).subscribe(
+        this.jobService.save(this.job).subscribe(
             () => {
                 this.alert.success('Successfully updated');
             },
@@ -79,9 +83,15 @@ export class JobEditorComponent implements OnInit {
     }
 
     onDelete() {
-        this.httpClient.delete(this.baseUrl + '/jobitem/' + this.job.id).subscribe(() => {
-            this.alert.success(`Successfully deleted job with ID ${this.job.id}`, true);
-            this.router.navigate([this.returnUrl]);
+        confirm('Not implemented right now');
+    }
+
+    onReset() {
+        this.jobEditForm.reset({
+            name: this.job.name,
+            endDate: this.job.endDate,
+            description: this.job.description,
+            qualifications: this.job.qualifications
         });
     }
 }

@@ -141,13 +141,31 @@ router.post('/register', async (req: Request, res: Response) => {
 });
 
 router.put('update-user', async (req: Request, res: Response) => {
-    if (!req.headers.authorization) {
-        res.statusCode = 400;
-        res.json({'message': 'no authorization token'});
-        return;
-    }
-
     UserServices.authenticate(req.headers.authorization)
+		.then(() => {
+            UserServices.updateUser(req.body)
+                .then(user => {
+                    console.log('user-service\t' + 'Successfully updated \'' + req.body.username + '\'');
+                    res.statusCode = 200;
+                    res.send(user.toSimplification());
+                })
+                .catch(err => {
+                    const lg = genLog() + 'update: ';
+                    switch (err.name) {
+                        case UserNotFoundError.name:
+                            console.log(lg + 'user not found: \'' + req.body.username + '\'');
+                            res.statusCode = 404;
+                            res.json({'message': 'not found'});
+                            return;
+
+                        default:
+                            console.log(lg + err);
+                            res.statusCode = 400;
+                            res.json({'message': 'bad request'});
+                            return;
+                    }
+                });
+		})
         .catch(err => {
             const lg = genLog() + 'auth: ';
             switch (err.name) {
@@ -176,28 +194,6 @@ router.put('update-user', async (req: Request, res: Response) => {
                     return;
             }
         });
-	UserServices.updateUser(req.body)
-		.then(user => {
-			console.log('user-service\t' + 'Successfully updated \'' + req.body.username + '\'');
-			res.statusCode = 200;
-			res.send(user.toSimplification());
-		})
-		.catch(err => {
-			const lg = genLog() + 'update: ';
-			switch (err.name) {
-				case UserNotFoundError.name:
-					console.log(lg + 'user not found: \'' + req.body.username + '\'');
-					res.statusCode = 404;
-					res.json({'message': 'not found'});
-					return;
-
-				default:
-					console.log(lg + err);
-					res.statusCode = 400;
-					res.json({'message': 'bad request'});
-					return;
-			}
-		});
 });
 
 export const UserServicesController: Router = router;

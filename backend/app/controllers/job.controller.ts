@@ -21,6 +21,7 @@ router.post('/', async (req: Request, res: Response) => {
     UserServices.authenticate(req.headers.authorization)
         .then(async user => {
             const instance = new JobModel();
+
             instance.fromSimplification(req.body);
             instance.isApproved = false;
             instance.hasChanged = false;
@@ -36,8 +37,34 @@ router.post('/', async (req: Request, res: Response) => {
             res.statusCode = 201;
             res.send(instance.toSimplification());
         })
+        .catch(err => {
+            const lg = genLog() + 'auth: ';
+            switch (err.name) {
+                case UserNotFoundError.name:
+                    console.log(lg + 'user not found: \'' + req.body.username + '\'');
+                    res.statusCode = 404;
+                    res.json({'message': 'not found'});
+                    return;
 
+                case UserNotLoggedInError.name:
+                    console.log(lg + 'user not logged in: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
 
+                case InvalidTokenError.name:
+                    console.log(lg + 'invalid token: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
 });
 
 router.get('id/:id', async (req: Request, res: Response) => {
@@ -136,11 +163,9 @@ router.get('/current-user/', async (req: Request, res: Response) => {
                     return;
             }
         });
-
 });
 
 router.put('/:id', async (req: Request, res: Response) => {
-    //UserServices.authenticateSameUser(req.headers.authorization)
     const id = parseInt(req.params.id);
     const instance = await JobModel.findById(id);
 
@@ -152,12 +177,37 @@ router.put('/:id', async (req: Request, res: Response) => {
         return;
     }
 
-    instance.fromSimplification(req.body);
-    instance.hasChanged = true;
-    await instance.save();
+    UserServices.authenticateSameUser(req.headers.authorization, instance.userId)
+        .then(async () => {
+            instance.fromSimplification(req.body);
+            instance.hasChanged = true;
+            await instance.save();
 
-    res.statusCode = 200;
-    res.send(instance.toSimplification());
+            res.statusCode = 200;
+            res.send(instance.toSimplification());
+        })
+        .catch(err => {
+            const lg = genLog() + 'auth: ';
+            switch (err.name) {
+                case UserNotFoundError.name:
+                    console.log(lg + 'user not found: \'' + req.body.username + '\'');
+                    res.statusCode = 404;
+                    res.json({'message': 'not found'});
+                    return;
+
+                case InvalidTokenError.name:
+                    console.log(lg + 'invalid token: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
 });
 
 router.delete('/:id', async (req: Request, res: Response) => {
@@ -173,13 +223,35 @@ router.delete('/:id', async (req: Request, res: Response) => {
     }
 
     UserServices.authenticateSameUser(req.headers.authorization, instance.userId)
-        .then()
+        .then(async () => {
+            instance.fromSimplification(req.body);
+            await instance.destroy();
 
-    instance.fromSimplification(req.body);
-    await instance.destroy();
+            res.statusCode = 204;
+            res.send();
+        })
+        .catch(err => {
+            const lg = genLog() + 'auth: ';
+            switch (err.name) {
+                case UserNotFoundError.name:
+                    console.log(lg + 'user not found: \'' + req.body.username + '\'');
+                    res.statusCode = 404;
+                    res.json({'message': 'not found'});
+                    return;
 
-    res.statusCode = 204;
-    res.send();
+                case InvalidTokenError.name:
+                    console.log(lg + 'invalid token: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
 });
 
 export const JobController: Router = router;

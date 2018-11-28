@@ -24,7 +24,7 @@ import {UserEditComponent} from './admin-panel/users-panel/user-edit';
 import {JobDetailComponent} from './job-overview/job-detail';
 import { JobCreatorComponent } from './job-overview/job-creator/job-creator.component';
 import { UsersUnapprovedComponent } from './admin-panel/users-panel/users-unapproved/users-unapproved.component';
-import { MyJobsPanelComponent } from './admin-panel/my-jobs-panel/my-jobs-panel.component';
+import { MyJobsPanelComponent } from './job-overview/my-jobs-panel/my-jobs-panel.component';
 
 // @ts-ignore
 @NgModule({

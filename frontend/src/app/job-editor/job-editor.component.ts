@@ -42,7 +42,7 @@ export class JobEditorComponent implements OnInit {
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
             name: ['', Validators.required],
-            endDate: ['', Validators.required],
+            endDate: [''],
             description: ['', Validators.required],
             qualifications: ['', Validators.required],
         });

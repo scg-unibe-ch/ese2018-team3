@@ -4,6 +4,7 @@ export class Job {
         public id: number,
         public name: string,
         public createdAt: Date,
+        public updatedOn: Date,
         public endDate: Date,
         public description: string,
         public qualifications: string

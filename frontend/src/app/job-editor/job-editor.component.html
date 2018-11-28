@@ -9,9 +9,22 @@
         </div>
     </div>
 
+    <div>
+        <h5>Created: {{job.createdAt}}</h5>
+        <h5>Updated: {{job.updatedOn}}</h5>
+    </div>
     <!-- TODO: Show _createdAt_, _updatedOn_ ? -->
 
     <!-- TODO: Date picker for _endDate_ -->
+
+    <div class="form-group">
+        <label for="endDate">Until</label>
+        <input type="date" formControlName="endDate" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }"/>
+        <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+            <div *ngIf="f.endDate.errors.required">'Until' is required</div>
+        </div>
+    </div>
 
     <div class="form-group">
         <label for="description">Description</label>

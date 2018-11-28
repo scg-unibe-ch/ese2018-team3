@@ -22,6 +22,8 @@ export class MyJobsPanelComponent implements OnInit {
     }
 
     private loadMyJobs() {
+      //TODO Actually Show Jobs, It seems to be not getting the jobs correctly via job.serve.ts
+      // Above To-Do inserted by Brian
         this.jobService.getFromCurrentUser().subscribe(jobs => {
             this.jobs = jobs;
         })

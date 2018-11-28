@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Job } from 'src/app/_models';
-import { AdminService, AlertService } from 'src/app/_services';
+import {Job, User} from 'src/app/_models';
+import { AlertService, JobService} from 'src/app/_services';
 
 @Component({
 	selector: 'app-job-detail',
@@ -10,23 +10,27 @@ import { AdminService, AlertService } from 'src/app/_services';
 })
 export class JobDetailComponent implements OnInit {
 
-	router: Router;
 	job: Job;
 	private returnUrl: string;
 
 	constructor(
-		private adminService: AdminService,
+		private jobService: JobService,
 		private alert: AlertService,
 		private route: ActivatedRoute,
-		router: Router
+		private router: Router
 	) {
-		this.router = router;
 	}
 
 	ngOnInit() {
 		this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/jobs';
-		//TODO:
-		this.adminService;
+        this.jobService.getById(this.route.snapshot.params.id).subscribe(
+            (job: Job) => {
+                this.job = job;
+            },
+            err => {
+                this.alert.error(err, true);
+                this.router.navigate([this.returnUrl]);
+            });
 	}
 
 }

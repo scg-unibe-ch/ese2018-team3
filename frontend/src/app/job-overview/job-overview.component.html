@@ -4,8 +4,6 @@
     <ul *ngFor="let job of jobs">
         <li routerLink="/jobs/{{job.id}}">
             <h3>{{job.name}}</h3>
-
-            <h4>Description</h4>
             <div>{{shortenDescription(job)}}...</div>
         </li>
     </ul>

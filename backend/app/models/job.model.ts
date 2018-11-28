@@ -23,6 +23,12 @@ export class JobModel extends Model<JobModel> {
     @Column
     qualifications!: string;
 
+    @Column
+    isApproved!: boolean;
+
+    @Column
+    hasChanged!: boolean;
+
     toSimplification(): any {
         return {
             'id': this.id,
@@ -31,7 +37,9 @@ export class JobModel extends Model<JobModel> {
             'createdAt': this.createdAt,
             'updatedAt': this.updatedAt,
             'endDate': this.endDate,
-            'qualifications': this.qualifications
+            'qualifications': this.qualifications,
+            'isApproved': this.isApproved,
+            'hasChanged': this.hasChanged
         };
     }
 
@@ -42,5 +50,7 @@ export class JobModel extends Model<JobModel> {
         this.updatedAt = simplification['updatedAt'];
         this.endDate = simplification['endDate'];
         this.qualifications = simplification['qualifications'];
+        this.isApproved = simplification['isApproved'];
+        this.hasChanged = simplification['hasChanged'];
     }
 }

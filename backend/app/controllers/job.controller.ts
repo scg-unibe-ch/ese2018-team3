@@ -67,7 +67,7 @@ router.post('/', async (req: Request, res: Response) => {
         });
 });
 
-router.get('id/:id', async (req: Request, res: Response) => {
+router.get('/id/:id', async (req: Request, res: Response) => {
     console.log(genLog() + `retrieving ${req.params.id}`);
     const id = parseInt(req.params.id);
     const instance = await JobModel.findById(id);

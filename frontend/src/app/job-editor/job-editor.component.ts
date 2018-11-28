@@ -15,9 +15,11 @@ export class JobEditorComponent implements OnInit {
 
     baseUrl;
 
+    private jobsUrl = 'http://localhost:3000//jobs/';
+
     registerForm: FormGroup;
     returnUrl: string;
-    jobItem: Job;
+    job: Job;
 
     submitted = false;
     loading = false;
@@ -57,7 +59,7 @@ export class JobEditorComponent implements OnInit {
 
         this.loading = true;
 
-        this.httpClient.put(this.baseUrl + '/jobitem/' + this.jobItem.id, {
+        this.httpClient.put(this.jobsUrl + this.job.id, {
             'name': this.f.name.value,
             'endDate': this.f.endDate.value,
             'description': this.f.description.value,
@@ -77,8 +79,8 @@ export class JobEditorComponent implements OnInit {
     }
 
     onDelete() {
-        this.httpClient.delete(this.baseUrl + '/jobitem/' + this.jobItem.id).subscribe(() => {
-            this.alert.success(`Successfully deleted job with ID ${this.jobItem.id}`, true);
+        this.httpClient.delete(this.baseUrl + '/jobitem/' + this.job.id).subscribe(() => {
+            this.alert.success(`Successfully deleted job with ID ${this.job.id}`, true);
             this.router.navigate([this.returnUrl]);
         });
     }

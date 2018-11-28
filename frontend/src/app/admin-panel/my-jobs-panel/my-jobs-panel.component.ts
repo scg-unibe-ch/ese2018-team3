@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Job } from '../../_models';
-import {JobService } from '../../_services';
+import { Job, User } from '../../_models';
+import {JobService, UserService } from '../../_services';
 
 @Component({
   selector: 'app-my-jobs',
@@ -22,7 +22,7 @@ export class MyJobsPanelComponent implements OnInit {
   }
 
   private loadAllJobs() {
-    this.jobService.getAll().subscribe(jobs => {
+    this.jobService.getFromCurrentUser().subscribe(jobs => {
       this.jobs = jobs;
     })
   }

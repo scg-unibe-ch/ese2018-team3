@@ -17,6 +17,8 @@ router.post('/', async (req: Request, res: Response) => {
         .then(async user => {
             const instance = new JobModel();
             instance.fromSimplification(req.body);
+            instance.isApproved = false;
+            instance.hasChanged = false;
             await instance.save();
 
             const link = new UserToJobModel();
@@ -123,6 +125,7 @@ router.put('/:id', async (req: Request, res: Response) => {
     }
 
     instance.fromSimplification(req.body);
+    instance.hasChanged = true;
     await instance.save();
 
     res.statusCode = 200;

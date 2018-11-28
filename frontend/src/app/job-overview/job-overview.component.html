@@ -1,11 +1,18 @@
+
 <h2>{{"List of Job Offers"}}</h2>
-<div>
-    <div>Found {{jobs.length}} job postings.</div>
-    <ul *ngFor="let job of jobs">
-        <li routerLink="/jobs/{{job.id}}">
-            <h3>{{job.name}}</h3>
-            <div>{{shortenDescription(job)}}...</div>
-        </li>
-    </ul>
-</div>
+	<div>Found {{jobs.length}} job postings.</div>
+	<div>
+		<ul *ngFor="let job of jobs">
+			<li>
+				<h3>{{job.name}}</h3>
+				<div>{{shortenDescription(job)}}...</div>
+			</li>
+			<div>
+				<p style="float:left" routerLink="/jobs/{{job.id}}" class="text-warning">Details</p>
+			</div>
+			<br/>
+		</ul>
+	</div>
+
+
 

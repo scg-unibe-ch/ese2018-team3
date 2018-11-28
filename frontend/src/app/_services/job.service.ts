@@ -28,7 +28,7 @@ export class JobService implements OnInit {
     }
 
     getById(id: number) {
-        return this.http.get(this.jobsUrl + `id/${{id}}`);
+        return this.http.get(this.jobsUrl + `id/${id}`);
     }
 
     getFromCurrentUser() {
@@ -36,10 +36,10 @@ export class JobService implements OnInit {
     }
 
     getByUserId(id: number) {
-        return this.http.get<Job[]>(this.jobsUrl + `user/${{id}}`);
+        return this.http.get<Job[]>(this.jobsUrl + `user/${id}`);
     }
 
     getByCompany(company: string) {
-        return this.http.get(this.jobsUrl + `company/${{company}}`);
+        return this.http.get(this.jobsUrl + `company/${company}`);
     }
 }

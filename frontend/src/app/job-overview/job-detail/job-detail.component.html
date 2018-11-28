@@ -6,9 +6,11 @@
     <div>
         {{job.description}}
     </div>
-    <br>
-    <h3>Qualifications</h3>
-    <div>
-        {{job.qualifications}}
+
+    <div *ngIf="job.qualifications" >
+        <h3>Qualifications</h3>
+        <div>
+            {{job.qualifications}}
+        </div>
     </div>
 </div>

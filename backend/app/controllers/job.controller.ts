@@ -27,13 +27,6 @@ router.post('/', async (req: Request, res: Response) => {
             instance.hasChanged = false;
             await instance.save();
 
-            const link = new UserToJobModel();
-            link.fromSimplification({
-                'userId':user.id,
-                'jobId': instance.id
-            });
-            await link.save();
-
             res.statusCode = 201;
             res.send(instance.toSimplification());
         })
@@ -125,7 +118,7 @@ router.get('/company/:company', async (req: Request, res: Response) => {
     res.send(instances.map(e => e.toSimplification()));
 });
 
-router.get('/current-user/', async (req: Request, res: Response) => {
+router.get('/current-user', async (req: Request, res: Response) => {
     UserServices.authenticate(req.headers.authorization)
         .then(async user => {
             const instances = await JobModel.findAll({

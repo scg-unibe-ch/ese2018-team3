@@ -15,8 +15,8 @@ import {AuthGuard} from './_guards';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 import {UserEditComponent, UsersPanelComponent} from './admin-panel/users-panel';
 import {UserDetailComponent} from './admin-panel/users-panel/';
-import {JobCreatorComponent} from './job-overview/job-creator/job-creator.component';
-import {UsersUnapprovedComponent} from './admin-panel/users-panel/users-unapproved/users-unapproved.component';
+import {JobCreatorComponent} from './job-overview/job-creator';
+import {UsersUnapprovedComponent} from './admin-panel/users-panel/users-unapproved';
 import {MyJobsPanelComponent} from './admin-panel/my-jobs-panel/my-jobs-panel.component';
 
 const routes: Routes = [

@@ -25,6 +25,7 @@ router.post('/', async (req: Request, res: Response) => {
             instance.fromSimplification(req.body);
             instance.isApproved = false;
             instance.hasChanged = false;
+            instance.userId = user.id;
             await instance.save();
 
             res.statusCode = 201;

@@ -1,6 +1,5 @@
 import {Request, Response, Router} from 'express';
-import {JobModel, UserModel, UserToJobModel} from '../models';
-import {Sequelize} from 'sequelize-typescript';
+import {JobModel, UserModel} from '../models';
 import {UserServices} from '../_services';
 import {InvalidTokenError, UserNotFoundError, UserNotLoggedInError} from '../errors';
 

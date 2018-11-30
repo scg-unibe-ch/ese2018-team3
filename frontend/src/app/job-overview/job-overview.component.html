@@ -2,7 +2,7 @@
 <div>Found {{jobs.length}} job postings.</div>
 <br>
 <div>
-	<ul *ngFor="let job of jobs">
+	<ul class="w3-panel w3-border w3-hover-border-blue" *ngFor="let job of jobs">
 		<li>
 			<h3>{{job.name}}</h3>
 			<div>{{shortenDescription(job)}}...</div>

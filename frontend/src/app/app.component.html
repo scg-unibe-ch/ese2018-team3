@@ -1,4 +1,15 @@
 <!-- navigation bar -->
+<div id="topnav" class="w3-bar w3-blue">
+    <div class="w3-bar w3-left">
+
+    </div>
+    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
+    <a class="w3-bar-item w3-button" routerLink="/jobs">Job Overview</a>
+    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
+    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
+    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
+    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
+</div>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="nav-item"><h2>{{shortTitle}}</h2></div>
     <div class="navbar-nav">
@@ -14,26 +25,20 @@
 </nav>
 
 <!-- main app container -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 offset-sm-3">
-                <alert></alert>
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </div>
+<div class="w3-container w3-light-grey">
+    <article class="col-sm-4">
+        <alert></alert>
+        <router-outlet></router-outlet>
+    </article>
 </div>
 <!-- <google-ad></google-ad> -->
 
 <!-- footer-->
-<div class="footer" id="footer">
-    <div class="container">
-        <div class="about">
-            <a routerLink="/about">About us</a>
-        </div>
-        <div class="copyright">
-            &copy; Job-For-You: <a href="https://job-for-you.com/">job-for-you.com</a>
-        </div>
+<div class="w3-container w3-teal" id="footer">
+    <div class="about">
+        <a routerLink="/about">About us</a>
+    </div>
+    <div class="copyright">
+        &copy; Job-For-You: <a href="https://job-for-you.com/">job-for-you.com</a>
     </div>
 </div>

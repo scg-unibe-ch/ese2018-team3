@@ -35,7 +35,9 @@ export class HomeComponent implements OnInit {
         this.jobService.getAll().subscribe(jobs => {
 
           //use jobs.length due to new jobs being added at the end of the array
-          this.jobs = jobs.slice( Math.max(jobs.length, (jobs.length-4)),jobs.length-1);
+          if (jobs.length > 3) {
+            this.jobs = jobs.slice(Math.max(jobs.length - 4), jobs.length - 1);
+          }
       })
     }
 

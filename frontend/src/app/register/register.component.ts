@@ -9,9 +9,9 @@ import {AlertService, UserService} from '../_services';
  * The register component vreates a new user with the user service when the register form is submitted.
  * If the user is alredy logged in they are automatically redirected to the home page.
  *
- * The loginForm: FormGroup object defines the form controls and validators, and is used to access data entered
+ * The userEditForm: FormGroup object defines the form controls and validators, and is used to access data entered
  * into the form. The FormGroup is part of the Angular Reactive Forms module and is bound to the login template
- * above with the [formGroup]="loginForm" directive.
+ * above with the [formGroup]="userEditForm" directive.
  */
 @Component({
     selector: 'app-register',

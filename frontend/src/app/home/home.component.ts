@@ -1,9 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
-
-import {User} from '../_models';
-import {UserService} from '../_services';
-
+import {Component, OnInit} from '@angular/core';
+import {Job} from '../_models';
+import {JobService} from '../_services';
 
 /**
  * The home component ets the current user from the authentication service by subscribing to the
@@ -15,41 +12,35 @@ import {UserService} from '../_services';
  * via the _users_ property.
  */
 @Component({
-	selector: 'app-home',
-	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
-	currentUser: User;
-	currentUserSubscription: Subscription;
-	users: User[] = [];
+export class HomeComponent implements OnInit {
 
-	constructor(
-		private userService: UserService
-	) {
-		this.currentUserSubscription = this.userService.currentUser.subscribe(user => {
-			this.currentUser = user;
-		});
-	}
+    jobs: Job[];
 
-	ngOnInit() {
-		this.loadAllUsers();
-	}
 
-	ngOnDestroy() {
-		// unsubscribe to ensure no memory leaks
-		this.currentUserSubscription.unsubscribe();
-	}
+    constructor(
+        private jobService: JobService
+    ) {
+    }
 
-	deleteUser(id: number) {
-		this.userService.delete(id).subscribe(() => {
-			this.loadAllUsers()
-		});
-	}
+    ngOnInit() {
+        this.jobs = [];
+        this.loadAllJobs();
+    }
 
-	private loadAllUsers() {
-		this.userService.getAll().subscribe(users => {
-			this.users = users;
-		});
-	}
+    private loadAllJobs() {
+        this.jobService.getAll().subscribe(jobs => {
+
+          //use jobs.length due to new jobs being added at the end of the array
+          this.jobs = jobs.slice( Math.max(jobs.length, (jobs.length-4)),jobs.length-1);
+      })
+    }
+
+    shortenDescription(job: Job) {
+      const length = Math.min(job.description.length-1, 100);
+      return job.description.substr(0, length);
+    }
 }

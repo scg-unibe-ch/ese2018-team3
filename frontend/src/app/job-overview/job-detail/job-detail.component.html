@@ -1,0 +1,19 @@
+<div>
+    <h2>{{job.name}}</h2>
+    Created: {{job.createdAt}}<br>
+    Until: {{job.endDate}}
+    <h3>Description</h3>
+    <div>
+        {{job.description}}
+    </div>
+
+    <div *ngIf="job.qualifications" >
+        <h3>Qualifications</h3>
+        <div>
+            {{job.qualifications}}
+        </div>
+      <br>
+      <button (click)="goBack()" class="btn btn- btn-sm" >Go Back</button>
+    </div>
+</div>
+

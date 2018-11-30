@@ -1,68 +1,67 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
-// Add css components from angular material
-import {
-	MatButtonModule,
-	MatCardModule,
-	MatCheckboxModule,
-	MatDatepickerModule,
-	MatInputModule,
-	MatListModule,
-	MatMenuModule,
-	MatNativeDateModule
-} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { JobItemComponent } from './job-item/job-item.component';
-import { AboutComponent} from './about/about.component';
-import { JobListComponent } from './job-list/job-list.component';
-import { AppRoutingModule } from './app-routing.module';
-import { JobOverviewComponent } from './job-overview/job-overview.component';
+import {JobEditorComponent} from './job-editor';
+import {AboutComponent} from './about/about.component';
+import {AppRoutingModule} from './app-routing.module';
+import {JobOverviewComponent} from './job-overview';
 import {RegisterComponent} from './register';
 import {LoginComponent} from './login';
 import {HomeComponent} from './home';
 import {AlertComponent} from './_components';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
+import {AdComponent} from './ad/ad.component';
+import {AdminPanelComponent} from './admin-panel/admin-panel.component';
+import {UsersPanelComponent} from './admin-panel/users-panel';
+import {JobsPanelComponent} from './admin-panel/jobs-panel/jobs-panel.component';
+import {UserDetailComponent} from './admin-panel/users-panel/user-detail';
+import {UserEditComponent} from './admin-panel/users-panel/user-edit';
+import {JobDetailComponent} from './job-overview/job-detail';
+import { JobCreatorComponent } from './job-overview/job-creator/job-creator.component';
+import { UsersUnapprovedComponent } from './admin-panel/users-panel/users-unapproved/users-unapproved.component';
+import { MyJobsPanelComponent } from './job-overview/my-jobs-panel/my-jobs-panel.component';
 
 // @ts-ignore
 @NgModule({
-	declarations: [
-		AlertComponent,
+    declarations: [
+        AlertComponent,
         AboutComponent,
-		AppComponent,
+        AppComponent,
         AlertComponent,
         HomeComponent,
-        JobItemComponent,
-        JobListComponent,
+        JobEditorComponent,
         JobOverviewComponent,
         LoginComponent,
-        RegisterComponent
-	],
-	imports: [
-		MatDatepickerModule,
-        MatNativeDateModule,
-        MatMenuModule,
-		BrowserModule,
-		BrowserAnimationsModule,
-		FormsModule,
-		HttpClientModule,
+        RegisterComponent,
+        AdComponent,
+        AdminPanelComponent,
+        UsersPanelComponent,
+        JobsPanelComponent,
+        UserDetailComponent,
+        UserEditComponent,
+        JobDetailComponent,
+        JobCreatorComponent,
+        UsersUnapprovedComponent,
+        MyJobsPanelComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientModule,
         ReactiveFormsModule,
-		MatButtonModule,
-		MatListModule,
-		MatInputModule,
-		MatCheckboxModule,
-		MatCardModule,
-		AppRoutingModule
-	],
-	providers: [
-		{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        AppRoutingModule
+    ],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-	],
-	bootstrap: [AppComponent]
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

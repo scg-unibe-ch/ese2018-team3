@@ -1,55 +1,102 @@
-import {Admin, User} from '../models';
+import {AdminModel, UserModel} from '../models';
 import {
-	InvalidPasswordError,
-	InvalidTokenError,
-	UserNotAdminError,
-	UserNotApprovedError,
-	UserNotFoundError,
-	UserNotLoggedInError
+    InvalidPasswordError,
+    InvalidTokenError,
+    UserNotApprovedError,
+    UserNotFoundError, UserUnauthorizedError,
 } from '../errors';
-import {TokenGenerator} from './token-generator';
+import jwt from 'jwt-simple';
+import moment from 'moment';
+
 
 export class UserServices {
 
-	constructor() {
-	}
+	private static TOKEN_SECRET: string = '%Bw[HNtju_lo:N{o&mKEcKc\"Qf5d1NH$w$EWz>UY;aS&$-wnNXx1&zqTVE8tWR&';
 
-	/**
-	 * Tries to authenticate the specified user as an admin.
-	 * @param user the user to be authenticated
-	 */
-	static async authAdmin(user: any): Promise<Admin> {
-		const admin = await Admin.findOne({
+	constructor() {}
+
+	static async authAdmin(auth_header: string | undefined) {
+        if (!auth_header) throw Error.prototype;
+        // Ommit leading 'Bearer'
+        const tok = auth_header.split(" ")[1];
+
+        const payload = jwt.decode(tok, this.TOKEN_SECRET);
+        const now = moment().unix();
+        if (now > payload.exp) throw new InvalidTokenError();
+
+        const userId = payload.sub;
+        const admin = await AdminModel.findOne({
 			where: {
-				userId: user.id
+				userId: userId
 			}
-		});
-
-		if (!admin) throw new UserNotAdminError();
+        });
+        if (!admin) throw new UserUnauthorizedError();
 		return admin;
 	}
 
-	/**
-	 * Tries to authenticate the specified user by comparing tokens.
-	 * @param user the user to be authenticated
-	 */
-	static async authenticate(user: any): Promise<User> {
-		const u = await User.findById(user.id);
+    /**
+     * Tries to authenticate the specified user by comparing tokens.
+     * @param auth_header the token to be authenticated
+     * @param asAdmin if the token should be validated as admin
+     */
+	static async authenticate(auth_header: string | undefined, asAdmin: boolean = false): Promise<UserModel> {
+		if (!auth_header) throw Error.prototype;
+		// Ommit leading 'Bearer'
+		const tok = auth_header.split(" ")[1];
 
+        const payload = jwt.decode(tok, this.TOKEN_SECRET);
+        const now = moment().unix();
+        if (now > payload.exp) throw new InvalidTokenError();
+
+        const userId = payload.sub;
+
+		if (asAdmin) {
+            const admin = await AdminModel.findOne({
+                where: {
+                    userId: userId
+                }
+            });
+            if (!admin) throw new UserUnauthorizedError();
+		}
+
+		const u = await UserModel.findById(userId);
 		if (!u) throw new UserNotFoundError();
-		if (u.token === null) throw new UserNotLoggedInError();
-		if (!(user.token === u.token)) throw new InvalidTokenError();
+		if (u.token != tok) throw new InvalidTokenError();
 
 		return u;
 	}
+
+	static async authenticateSameUser(auth_header: string | undefined, id: number): Promise<UserModel> {
+        if (!auth_header) throw Error.prototype;
+        // Ommit leading 'Bearer'
+        const tok = auth_header.split(" ")[1];
+
+        const payload = jwt.decode(tok, this.TOKEN_SECRET);
+        const now = moment().unix();
+        if (now > payload.exp) throw new InvalidTokenError();
+
+        const userId = payload.sub;
+        const u = await UserModel.findById(id);
+        if (!u) throw new UserNotFoundError();
+
+        const admin = await AdminModel.findOne({
+            where: {
+                userId: userId
+            }
+        });
+
+        if (admin) return u;
+        else if (userId !== id) throw new UserUnauthorizedError();
+        return u;
+    }
 
 	/**
 	 * Tries to authenticate the specified user by comparing passwords.
 	 * On successful authentication, a token will be generated for the user.
 	 * @param user the user to be logged in
 	 */
-	static async login(user: any): Promise<User> {
-		const u = await User.findOne({
+	static async login(user: any): Promise<UserModel> {
+		const u = await UserModel.findOne({
 			where: {
 				username: user.username
 			}
@@ -59,7 +106,12 @@ export class UserServices {
 		if (!(u.password === user.password)) throw new InvalidPasswordError();
 		if (!u.isApproved) throw new UserNotApprovedError();
 
-		u.token = TokenGenerator.gen(user.id);
+		const payload = {
+			exp: moment().add(30, 'm').unix(),	// expires on
+			sub: u.id				// subject
+		};
+
+		u.token = jwt.encode(payload, this.TOKEN_SECRET);
 		await u.save();
 
 		return u;
@@ -67,13 +119,17 @@ export class UserServices {
 
 	/**
 	 * Tries to logout the specified user. The user's token will be nullified.
-	 * @param user the user to be logged out
+	 * @param auth_header the user to be logged out
 	 */
-	static async logout(user: any): Promise<User> {
-		const u = await User.findById(user.id);
+	static async logout(auth_header: string): Promise<UserModel> {
+		// Ommit leading 'Bearer'
+        const tok = auth_header.split(" ")[1];
 
+        const payload = jwt.decode(tok, this.TOKEN_SECRET);
+        const userId = payload.sub;
+
+		const u = await UserModel.findById(userId);
 		if (!u) throw new UserNotFoundError();
-		if (u.token === null) throw new UserNotLoggedInError();
 
 		u.token = '';
 		await u.save();
@@ -85,8 +141,8 @@ export class UserServices {
 	 * Tries to update the specified user's information in the database.
 	 * @param user the user to be updated
 	 */
-	static async updateUser(user: any): Promise<User> {
-		const u = await User.findOne({
+	static async updateUser(user: any): Promise<UserModel> {
+		const u = await UserModel.findOne({
 			where: {
 				username: user.username
 			}
@@ -103,8 +159,8 @@ export class UserServices {
 	 * Tries to register the specified user into the database.
 	 * @param user the user to be registered
 	 */
-	static async register(user: any): Promise<User> {
-		const u = new User();
+	static async register(user: any): Promise<UserModel> {
+		const u = new UserModel();
 		u.fromSimplification({
 			'company': user.company,
 			'email': user.email,

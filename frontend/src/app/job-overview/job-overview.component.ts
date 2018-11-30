@@ -1,42 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import {environment} from '../../environments/environment';
-import {JobList} from '../job-list';
-
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {Job} from '../_models';
+import {JobService} from '../_services';
 
 @Component({
-  selector: 'app-job-overview',
-  templateUrl: './job-overview.component.html',
-  styleUrls: ['./job-overview.component.css']
+    selector: 'app-job-overview',
+    templateUrl: './job-overview.component.html',
+    styleUrls: ['./job-overview.component.css']
 })
 export class JobOverviewComponent implements OnInit {
-  baseUrl = environment.baseUrl;
 
-  jobList: JobList = new JobList(null, '');
-  jobLists: JobList[] = [];
+    jobs: Job[];
 
-  constructor(private httpClient: HttpClient) {
-    // this.baseUrl = environment.baseUrl;
-  }
+    constructor(
+        private jobService: JobService
+    ) {
+    }
 
-  ngOnInit() {
-    this.httpClient.get(this.baseUrl + '/joblist').subscribe((instances: any) => {
-      this.jobLists = instances.map((instance) => new JobList(instance.id, instance.name));
-    });
-  }
+    ngOnInit() {
+        this.jobs = [];
+        this.loadAllJobs();
+    }
 
-  onJobListCreate() {
-    this.httpClient.post(this.baseUrl + '/joblist', {
-      'name': this.jobList.name
-    }).subscribe((instance: any) => {
-      this.jobList.id = instance.id;
-      this.jobLists.push(this.jobList);
-      this.jobList = new JobList(null, '');
-    });
-  }
+    private loadAllJobs() {
+        this.jobService.getAll().subscribe(jobs => {
+            this.jobs = jobs;
+        })
+    }
 
-  onJobListDestroy(jobList: JobList) {
-    this.jobLists.splice(this.jobLists.indexOf(jobList), 1);
-  }
-
+    shortenDescription(job: Job) {
+        const length = Math.min(job.description.length-1, 100);
+        return job.description.substr(0, length);
+    }
 }

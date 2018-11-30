@@ -1,14 +1,15 @@
-<h1>{{title}}</h1>
-
 <!-- navigation bar -->
 <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="nav-item"><h2>{{shortTitle}}</h2></div>
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/home">Home</a>
-        <a class="nav-item nav-link" routerLink="/jobOverview">Job Overview</a>
-        <a class="nav-item nav-link" routerLink="/about">About</a>
-        <a class="nav-item nav-link" routerLink="/login"    *ngIf="!currentUser">Login</a>
-        <a class="nav-item nav-link" routerLink="/register" *ngIf="!currentUser">Register</a>
-        <a class="nav-item nav-link" (click)="logout()"     *ngIf="currentUser">Logout</a>
+        <a class="nav-item nav-link" routerLink="/jobs">Job Overview</a>
+        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/job-creator">Job Creator</a>
+        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/my-jobs-panel">My Jobs</a>
+        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/admin-panel">Admin-Panel</a>
+        <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/login">Login</a>
+        <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/register">Register</a>
+        <a (click)="logout()" *ngIf="currentUser" class="nav-item nav-link">Logout</a>
     </div>
 </nav>
 
@@ -23,35 +24,16 @@
         </div>
     </div>
 </div>
-
-<!-- DEPRECATED ? -->
-<!--<header id="header">
-  <div class="inner">
-    &lt;!&ndash; <a href="javascript:void(0)" *ngIf="loginStatus" class="greeting">Hallo {{user.name}}</a>&ndash;&gt;
-    &lt;!&ndash; TODO: Logo? <a routerLink="/" class="logo">Job For You</a> &ndash;&gt;
-    <nav id="nav">
-
-      <a routerLink="/home">Home</a>
-      <a routerLink="/jobOverview">Job Overview</a>
-      <a routerLink="/about">About</a>
-      <a routerLink="/login" *ngIf="!loginStatus">Login</a>
-      &lt;!&ndash;<a routerLink="/profile" *ngIf="loginStatus">Profile</a>&ndash;&gt;
-      &lt;!&ndash; TO DO  <a (click)="this.userService.logout()" *ngIf="loginStatus">Logout</a> &ndash;&gt;
-     </nav>
-   </div>
- </header>
-
-<br>
-<router-outlet></router-outlet>
-<br>
-<br>-->
-
+<!-- <google-ad></google-ad> -->
 
 <!-- footer-->
-<section id="footer">
-  <div class="inner">
-    <div class="copyright">
-      &copy; Job For You: <a href="https://job-for-you.com/">job-for-you.com</a>
+<div class="footer" id="footer">
+    <div class="container">
+        <div class="about">
+            <a routerLink="/about">About us</a>
+        </div>
+        <div class="copyright">
+            &copy; Job-For-You: <a href="https://job-for-you.com/">job-for-you.com</a>
+        </div>
     </div>
-  </div>
-</section>
+</div>

@@ -1,0 +1,15 @@
+<table id="unapproved-users" style="width:90%">
+  <tr>
+    <th>ID</th>
+    <th>Username</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{user.id}}</td>
+    <td>{{user.username}}</td>
+    <td ><a routerLink="/admin-panel/users/{{user.id}}">Details</a></td>
+  </tr>
+</table>
+<br>
+<button (click)="goBack()" class="btn btn- btn-sm" >Go Back</button>
+

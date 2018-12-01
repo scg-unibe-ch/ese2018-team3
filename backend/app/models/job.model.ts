@@ -26,6 +26,9 @@ export class JobModel extends Model<JobModel> {
     endDate!: Date;
 
     @Column
+    occupation!: string
+
+    @Column
     qualifications!: string;
 
     @Column
@@ -46,6 +49,7 @@ export class JobModel extends Model<JobModel> {
             'createdAt': this.createdAt,
             'updatedAt': this.updatedAt,
             'endDate': this.endDate,
+            'occupation': this.occupation,
             'qualifications': this.qualifications,
             'contact': this.contact,
             'isApproved': this.isApproved,
@@ -60,6 +64,7 @@ export class JobModel extends Model<JobModel> {
         this.createdAt = simplification['createdAt'];
         this.updatedAt = simplification['updatedAt'];
         this.endDate = simplification['endDate'];
+        this.occupation = simplification['occupation'];
         this.qualifications = simplification['qualifications'];
         this.contact = simplification['contact'];
         this.isApproved = simplification['isApproved'];

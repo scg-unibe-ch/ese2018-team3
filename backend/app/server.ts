@@ -9,7 +9,7 @@ import {
     UserServicesController
 } from './controllers';
 import {Sequelize} from 'sequelize-typescript';
-import {AdminModel, JobModel, UserModel, UserToJobModel} from './models';
+import {AdminModel, JobModel, UserModel} from './models';
 
 const sequelize = new Sequelize({
     database: 'development',
@@ -19,7 +19,7 @@ const sequelize = new Sequelize({
     storage: 'db.sqlite'
 });
 
-sequelize.addModels([AdminModel, JobModel, UserModel, UserToJobModel]);
+sequelize.addModels([AdminModel, JobModel, UserModel]);
 
 // create a new express application instance
 const app: express.Application = express();

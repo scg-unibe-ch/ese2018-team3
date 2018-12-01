@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AdminService, AlertService} from '../../../_services';
 import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-user-edit',
@@ -11,25 +11,19 @@ import {ActivatedRoute} from '@angular/router';
 export class UserEditComponent implements OnInit {
 
     user: any;
-    userEditForm: FormGroup;
     loading = false;
     submitted = false;
 
     constructor(
-        private formBuilder: FormBuilder,
         private adminService: AdminService,
         private route: ActivatedRoute,
-        private alert: AlertService
+        private alert: AlertService,
+        private location: Location
     ) {
     }
 
-    // convenience getter for easy access to form fields
-    get f() {
-        return this.userEditForm.controls;
-    }
-
     ngOnInit() {
-        if (!this.user) this.adminService.getUser(this.route.snapshot.params.id).subscribe(
+        this.adminService.getUser(this.route.snapshot.params.id).subscribe(
             user => {
                 if (!user) this.alert.error('Backend error');
                 this.user = user;
@@ -38,26 +32,25 @@ export class UserEditComponent implements OnInit {
                 this.alert.error(err, true);
             });
 
-        this.userEditForm = this.formBuilder.group({
-            company: ['', Validators.required],
-            email: ['', Validators.required],
-            username: ['', Validators.required],
-            isApproved: ['']
-        });
         this.onReset();
+    }
+
+    // helper method
+    private getElementById(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
     }
 
     onSubmit() {
         this.submitted = true;
 
-        if (this.userEditForm.invalid) return;
+        if (this.invalidForm()) return;
 
         this.loading = true;
 
-        this.user.company = this.f.company.value;
-        this.user.email = this.f.email.value;
-        this.user.username = this.f.username.value;
-        this.user.isApproved = this.f.isApproved.value;
+        this.user.username = this.getElementById('username').value;
+        this.user.email = this.getElementById('email').value;
+        this.user.company = this.getElementById('company').value;
+        this.user.isApproved = this.getElementById('isApproved').checked;
 
         this.adminService.updateUser(this.user).subscribe(
             (user: any) => {
@@ -72,11 +65,30 @@ export class UserEditComponent implements OnInit {
     }
 
     onReset() {
-        this.userEditForm.reset({
-            company: this.user.company,
-            email: this.user.email,
-            username: this.user.username,
-            isApproved: this.user.isApproved
-        });
+        this.getElementById('username').value = this.user.username;
+        this.getElementById('email').value = this.user.email;
+        this.getElementById('company').value = this.user.company;
+        this.getElementById('isApproved').checked = this.user.isApproved;
+    }
+
+
+    goBack(): void {
+        this.location.back();
+    }
+
+    private invalidForm(): boolean {
+        return this.invalidUsername() || this.invalidEmail() || this.invalidCompany();
+    }
+
+    invalidUsername(): boolean {
+        return this.getElementById('username').value.length === 0;
+    }
+
+    invalidEmail(): boolean {
+        return this.getElementById('email').value.length === 0;
+    }
+
+    invalidCompany(): boolean {
+        return this.getElementById('company').value.length === 0;
     }
 }

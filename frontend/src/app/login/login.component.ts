@@ -40,10 +40,15 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
 
+    // helper method
+    private getElementById(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
+    }
+
     onSubmit() {
         this.submitted = true;
 
-        if (this.invalidUsername() || this.invalidPassword()) return;
+        if (this.invalidForm()) return;
 
         this.loading = true;
 
@@ -65,11 +70,16 @@ export class LoginComponent implements OnInit {
                 });
     }
 
+    private invalidForm(): boolean {
+        return this.invalidUsername() || this.invalidPassword();
+    }
+
+
     invalidUsername(): boolean {
-        return (<HTMLInputElement>document.getElementById('username')).value.length == 0;
+        return this.getElementById('username').value.length === 0;
     }
 
     invalidPassword(): boolean {
-        return (<HTMLInputElement>document.getElementById('password')).value.length == 0;
+        return this.getElementById('password').value.length === 0;
     }
 }

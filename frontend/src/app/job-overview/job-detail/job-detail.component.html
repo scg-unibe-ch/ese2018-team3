@@ -1,14 +1,17 @@
 <div>
-    <h2>{{job.name}}</h2>
-    Created: {{job.createdAt}}<br>
-    Until: {{job.endDate}}
-    <h3>Description</h3>
+	<h2>{{job.name}}</h2>
+	<div>
+		Created: {{job.createdAt | date:"dd.MM.yy"}}<br>
+		Until: {{job.endDate | date:"dd.MM.yy"}}
+	</div>
+<br>
+    <h4>Description</h4>
     <div>
         {{job.description}}
     </div>
-
+<br>
     <div *ngIf="job.qualifications" >
-        <h3>Qualifications</h3>
+        <h4>Qualifications</h4>
         <div>
             {{job.qualifications}}
         </div>

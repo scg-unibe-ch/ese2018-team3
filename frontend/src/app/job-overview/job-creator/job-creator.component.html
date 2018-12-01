@@ -1,61 +1,23 @@
 <h2>Job Creator</h2>
-<form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
-	<div class="form-group">
-        <label for="name">Title</label>
-        <input type="text" formControlName="name" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
-        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-            <div *ngIf="f.name.errors.required">Title</div>
-        </div>
-	</div>
-	
-	<div class="form-group">
-        <label for="endDate">End Date</label>
-        <input type="date" formControlName="endDate" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }"/>
-        <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
-            <div *ngIf="f.endDate.errors.required">End Date</div>
-        </div>
-	</div>
-	
-	<div class="form-group">
-        <label for="description">Description</label>
-        <textarea type="text" formControlName="description" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
-        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-            <div *ngIf="f.description.errors.required">Title</div>
-        </div>
-	</div>
 
-    <div class="form-group">
-        <label for="qualifications">Qualifications</label>
-        <textarea type="text" formControlName="qualifications" class="form-control"
-                  [ngClass]="{ 'is-invalid': submitted && f.qualifications.errors }"></textarea>
-        <div *ngIf="submitted && f.qualifications.errors" class="invalid-feedback">
-            <div *ngIf="f.qualifications.errors.required">Title</div>
-        </div>
-    </div>
-	
-	
-    <div class="form-group">
-		<button [disabled]="loading" class="btn btn-primary">Save</button>
-    </div>
+<form onsubmit="onSubmit()">
+    <label>Job Title:</label>
+    <input id="title" class="w3-input w3-border" type="text" placeholder="A catchy title">
+
+    <label>Until:</label>
+    <input id="endDate" class="w3-input w3-border" type="date">
+
+    <label>Occupation:</label>
+    <input id="occupation" class="w3-input w3-border" type="text" placeholder="0 - 100% | 1x / week">
+
+    <label>Description</label>
+    <textarea id="description" class="w3-input w3-border" style="resize: none;" placeholder="Tell us about the job"></textarea>
+
+    <label>Qualifications</label>
+    <textarea id="qualifications" class="w3-input w3-border" style="resize: none;" placeholder="The needed profile"></textarea>
+
+    <label>Contact</label>
+    <textarea id="contact" class="w3-input w3-border" style="resize: none;" placeholder="How to contact you"></textarea>
+
+    <button class="w3-btn w3-blue-grey" (click)="onSubmit()">Submit</button>
 </form>
-<!--
-	<form>
-		<div>
-			<h4><label for="title">Title </label></h4>
-			<input id="title" type="text"/>
-		</div>
-		<br>
-		<div>
-			<h4><label for="endDate">End Date </label></h4>
-			<input id="endDate" type="date"/>
-		</div>
-		<br>
-		<div>
-			<h4><label for="description">Description </label></h4>
-			<textarea id="description" maxlength="1024"></textarea>
-		</div>
-	</form>
--->

@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AlertService} from './alert.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {User} from '../_models';
 import {UserService} from './user.service';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AdminService {
@@ -19,19 +20,8 @@ export class AdminService {
     ) {
     }
 
-    isAdmin() {
-        this.auth().subscribe(
-            () => {
-                return true;
-            },
-            err => {
-                return false;
-            }
-        );
-    }
-
-    auth() {
-        return this.http.get(this.adminsUrl + `auth/`);
+    auth(): Observable<HttpResponse<Object>> {
+        return this.http.get(this.adminsUrl + `auth/`, { observe: 'response' });
     }
 
     getAllUsers() {

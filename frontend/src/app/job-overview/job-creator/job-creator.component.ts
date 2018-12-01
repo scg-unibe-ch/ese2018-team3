@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import {JobService, AlertService} from '../../_services';
@@ -10,42 +9,30 @@ import {JobService, AlertService} from '../../_services';
   styleUrls: ['./job-creator.component.css']
 })
 export class JobCreatorComponent implements OnInit {
-  
-	jobForm: FormGroup;
+
 	loading = false;
 	saving = false;
 
 	constructor(
-		private formBuilder: FormBuilder,
 		private router: Router,
 		private jobService: JobService,
 		private alert: AlertService
 	) { }
 
-	get f() {
-		return this.jobForm.controls;
-	}
-
 	ngOnInit() {
-		this.jobForm = this.formBuilder.group({
-			name: ['', Validators.required],
-			endDate: ['', Validators.required],
-			description: ['', Validators.required],
-            qualifications: ['', Validators.required]
-		})
 	}
 
 	onSubmit() {
 		this.saving = true;
 
-		if(this.jobForm.invalid) return;
-
 		this.loading = true;
-		let job = {
-            'name': this.f.name.value,
-            'endDate': this.f.endDate.value,
-            'description': this.f.description.value,
-			'qualifications': this.f.qualifications.value
+        let job = {
+            'name': (<HTMLInputElement>document.getElementById('title')).value,
+            'endDate': (<HTMLInputElement>document.getElementById('endDate')).value,
+            'occupation': (<HTMLInputElement>document.getElementById('occupation')).value,
+            'description': (<HTMLInputElement>document.getElementById('description')).value,
+			'qualifications': (<HTMLInputElement>document.getElementById('qualifications')).value,
+            'contact': (<HTMLInputElement>document.getElementById('contact')).value
         };
 		
 		this.jobService.save(job).subscribe(
@@ -61,7 +48,4 @@ export class JobCreatorComponent implements OnInit {
 			}
 		)
 	}
-
-  
-
 }

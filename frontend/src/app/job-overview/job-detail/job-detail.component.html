@@ -1,19 +1,23 @@
-<div>
-    <h2>{{job.name}}</h2>
-    Created: {{job.createdAt}}<br>
-    Until: {{job.endDate}}
-    <h3>Description</h3>
-    <div>
-        {{job.description}}
-    </div>
+<div class="w3-row w3-margin-top w3-margin-bottom">
+    <div class="w3-card-4">
+        <div class="w3-container">
+            <h2>{{job.name}}</h2>
+            Created: {{job.createdAt}}<br>
+            Until: {{job.endDate}}
+            Occupation: {{job.occupation}}
+            <hr>
+            <h3>Description</h3>
+            {{job.description}}
+            <hr>
 
-    <div *ngIf="job.qualifications" >
-        <h3>Qualifications</h3>
-        <div>
+            <h3>Qualifications</h3>
             {{job.qualifications}}
+            <hr>
+            <h3>Contact</h3>
+            {{job.contact}}
+            <hr>
+            <button (click)="goBack()" class="w3-btn">Go Back</button>
         </div>
-      <br>
-      <button (click)="goBack()" class="btn btn- btn-sm" >Go Back</button>
     </div>
 </div>
 

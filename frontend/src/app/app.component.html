@@ -1,35 +1,16 @@
 <!-- navigation bar -->
-<div id="topnav" class="w3-bar w3-blue">
-    <div class="w3-bar w3-left">
-
-    </div>
-    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
-    <a class="w3-bar-item w3-button" routerLink="/jobs">Job Overview</a>
-    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
-    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
-    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
-    <a class="w3-bar-item w3-button" routerLink="/home">Home</a>
-</div>
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="nav-item"><h2>{{shortTitle}}</h2></div>
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/home">Home</a>
-        <a class="nav-item nav-link" routerLink="/jobs">Job Overview</a>
-        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/job-creator">Job Creator</a>
-        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/my-jobs-panel">My Jobs</a>
-        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/admin-panel">Admin-Panel</a>
-        <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/login">Login</a>
-        <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/register">Register</a>
-        <a (click)="logout()" *ngIf="currentUser" class="nav-item nav-link">Logout</a>
-    </div>
-</nav>
+<app-navbar></app-navbar>
 
 <!-- main app container -->
-<div class="w3-container w3-light-grey">
-    <article class="col-sm-4">
-        <alert></alert>
-        <router-outlet></router-outlet>
-    </article>
+<div id="belowtopnav" class="w3-main w3-light-grey" style="margin-left: 220px; padding-top: 44px;">
+    <div class="w3-row w3-white">
+        <div id="main" class="w3-col l2 m12">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+
+
+    </div>
 </div>
 <!-- <google-ad></google-ad> -->
 

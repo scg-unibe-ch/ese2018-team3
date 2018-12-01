@@ -1,7 +1,5 @@
 <!-- The alert component template contains the html for displaying alert messages at the top of the page. -->
-
-<div *ngIf="message"
-     [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+<div *ngIf="message" class="w3-panel {{message.type === 'success' ? 'w3-green' : 'w3-red'}}">
     {{message.text}}
     <a (click)="alertService.clear()" style="float:right">X</a>
 </div>

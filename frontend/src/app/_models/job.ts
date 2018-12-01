@@ -2,12 +2,17 @@ export class Job {
 
     constructor(
         public id: number,
+        public userId: number,
         public name: string,
-        public createdAt: Date,
-        public updatedOn: Date,
-        public endDate: Date,
         public description: string,
-        public qualifications: string
+        public createdAt: Date,
+        public updatedAt: Date,
+        public endDate: Date,
+        public occupation: string,
+        public qualifications: string,
+        public contact: string,
+        public isApproved: boolean,
+        public hasChanged: boolean
     ) {
     }
 }

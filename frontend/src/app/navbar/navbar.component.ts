@@ -21,13 +21,13 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        const header = document.getElementById("topnav");
-        const btns = header.getElementsByClassName("w3-button");
+        const header = document.getElementById('topnav');
+        const btns = header.getElementsByClassName('w3-button');
         for (let i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function() {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
+            btns[i].addEventListener('click', function () {
+                var current = document.getElementsByClassName('active');
+                current[0].className = current[0].className.replace(' active', '');
+                this.className += ' active';
             });
         }
     }

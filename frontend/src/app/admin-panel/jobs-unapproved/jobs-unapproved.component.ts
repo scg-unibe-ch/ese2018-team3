@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {Job} from '../_models';
-import {JobService} from '../_services';
+import {Job} from '../../_models';
+import {AdminService} from '../../_services';
 
 @Component({
-    selector: 'app-job-overview',
-    templateUrl: './job-overview.component.html',
-    styleUrls: ['./job-overview.component.css']
+    selector: 'app-jobs-unapproved',
+    templateUrl: './jobs-unapproved.component.html',
+    styleUrls: ['./jobs-unapproved.component.css']
 })
-export class JobOverviewComponent implements OnInit {
+export class JobsUnapprovedComponent implements OnInit {
 
     jobs: Job[];
 
     constructor(
-        private jobService: JobService
+        private adminService: AdminService
     ) {
     }
 
@@ -29,8 +29,6 @@ export class JobOverviewComponent implements OnInit {
     }
 
     private loadAllJobs() {
-        this.jobService.getAll().subscribe(jobs => {
-            this.jobs = jobs;
-        })
+        this.adminService.getAllUnapprovedJobs().subscribe( jobs => this.jobs = jobs);
     }
 }

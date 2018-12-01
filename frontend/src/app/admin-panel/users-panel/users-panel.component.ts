@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../_models';
 import {AdminService} from '../../_services';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-users-panel',
@@ -23,13 +23,13 @@ export class UsersPanelComponent implements OnInit {
         this.loadAllUsers()
     }
 
+    goBack(): void {
+        this.location.back();
+    }
+
     private loadAllUsers() {
         this.adminService.getAllUsers().subscribe(users => {
             this.users = users;
         });
-    }
-
-    goBack(): void {
-      this.location.back();
     }
 }

@@ -23,13 +23,13 @@ export class UsersUnapprovedComponent implements OnInit {
         this.loadAllUnapproved()
     }
 
-    private loadAllUnapproved() {
-        this.adminService.getAllUnapproved().subscribe(users => {
-            this.users = users;
-        });
+    goBack(): void {
+        this.location.back();
     }
 
-    goBack(): void {
-      this.location.back();
+    private loadAllUnapproved() {
+        this.adminService.getAllUnapprovedUsers().subscribe(users => {
+            this.users = users;
+        });
     }
 }

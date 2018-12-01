@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 
-import {AlertService, UserService} from '../_services';
-import {AdminService} from '../_services';
+import {AdminService, AlertService, UserService} from '../_services';
 
 
 /**
@@ -31,12 +30,12 @@ export class AdminAuthGuard implements CanActivate {
         this.adminService.auth().subscribe(
             () => {
                 isAdmin = true;
-                this.alert.success("Authenticated as admin", true);
+                this.alert.success('Authenticated as admin', true);
             },
             err => {
                 isAdmin = false;
-                console.log("Failed to authenticate as admin");
-                this.alert.error("Failed to authenticate as admin", true)
+                console.log('Failed to authenticate as admin');
+                this.alert.error('Failed to authenticate as admin', true)
             }
         );
 

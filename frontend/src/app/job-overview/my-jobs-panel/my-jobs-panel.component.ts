@@ -21,17 +21,17 @@ export class MyJobsPanelComponent implements OnInit {
         this.loadMyJobs();
     }
 
-    private loadMyJobs() {
-      //TODO Actually Show Jobs, It seems to be not getting the jobs correctly via job.serve.ts
-      // Above To-Do inserted by Brian
-        this.jobService.getFromCurrentUser().subscribe(jobs => {
-            this.jobs = jobs;
-        })
-    }
-
     shortenDescription(job: Job) {
         const length = Math.min(job.description.length - 1, 100);
         return job.description.substr(0, length);
+    }
+
+    private loadMyJobs() {
+        //TODO Actually Show Jobs, It seems to be not getting the jobs correctly via job.serve.ts
+        // Above To-Do inserted by Brian
+        this.jobService.getFromCurrentUser().subscribe(jobs => {
+            this.jobs = jobs;
+        })
     }
 
 }

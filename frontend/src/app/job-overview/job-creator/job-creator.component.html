@@ -3,23 +3,26 @@
 
     <form>
         <label>Job Title:</label>
-        <input id="title" class="w3-input w3-border" type="text" placeholder="A catchy title">
+        <input class="w3-input w3-border" id="title" placeholder="A catchy title" type="text">
         <hr>
         <label>Until:</label>
-        <input id="endDate" class="w3-input w3-border" type="date">
+        <input class="w3-input w3-border" id="endDate" type="date">
         <hr>
         <label>Occupation:</label>
-        <input id="occupation" class="w3-input w3-border" type="text" placeholder="0 - 100% | 1x / week">
+        <input class="w3-input w3-border" id="occupation" placeholder="0 - 100% | 1x / week" type="text">
         <hr>
         <label>Description</label>
-        <textarea id="description" class="w3-input w3-border" style="resize: none;" placeholder="Tell us about the job"></textarea>
+        <textarea class="w3-input w3-border" id="description" placeholder="Tell us about the job"
+                  style="resize: none;"></textarea>
         <hr>
         <label>Qualifications</label>
-        <textarea id="qualifications" class="w3-input w3-border" style="resize: none;" placeholder="The needed profile"></textarea>
+        <textarea class="w3-input w3-border" id="qualifications" placeholder="The needed profile"
+                  style="resize: none;"></textarea>
         <hr>
         <label>Contact</label>
-        <textarea id="contact" class="w3-input w3-border" style="resize: none;" placeholder="How to contact you"></textarea>
+        <textarea class="w3-input w3-border" id="contact" placeholder="How to contact you"
+                  style="resize: none;"></textarea>
         <hr>
-        <button class="w3-button w3-dark-grey" (click)="onSubmit()">Submit</button>
+        <button (click)="onSubmit()" class="w3-button w3-blue">Submit</button>
     </form>
 </div>

@@ -3,14 +3,14 @@
 
 <div><h2>Latest Job Postings</h2></div>
 <div>
-  <ul *ngFor="let job of jobs">
-    <li>
-      <h3>{{job.name}}</h3>
-      <div>{{shortenDescription(job)}}...</div>
-    </li>
-    <div>
-      <a routerLink="/jobs/{{job.id}}">Details</a>
-    </div>
-    <br/>
-  </ul>
+    <ul *ngFor="let job of jobs">
+        <li>
+            <h3>{{job.name}}</h3>
+            <div>{{shortenDescription(job)}}...</div>
+        </li>
+        <div>
+            <a routerLink="/jobs/{{job.id}}">Details</a>
+        </div>
+        <br/>
+    </ul>
 </div>

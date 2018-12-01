@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AlertService} from './alert.service';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {User} from '../_models';
+import {Job, User} from '../_models';
 import {UserService} from './user.service';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AdminService {
@@ -21,14 +21,18 @@ export class AdminService {
     }
 
     auth(): Observable<HttpResponse<Object>> {
-        return this.http.get(this.adminsUrl + `auth/`, { observe: 'response' });
+        return this.http.get(this.adminsUrl + `auth/`, {observe: 'response'});
+    }
+
+    getAllUnapprovedJobs() {
+        return this.http.get<Job[]>(this.jobsUrl + 'unapproved');
     }
 
     getAllUsers() {
         return this.http.get<User[]>(this.usersUrl);
     }
 
-    getAllUnapproved() {
+    getAllUnapprovedUsers() {
         return this.http.get<User[]>(this.usersUrl + 'unapproved');
     }
 

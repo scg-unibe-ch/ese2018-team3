@@ -8,15 +8,15 @@ import {Job} from '../_models';
  */
 @Injectable({providedIn: 'root'})
 export class JobService implements OnInit {
-    
+
     private jobsUrl: string = 'http://localhost:3000/jobs/';
 
     constructor(
         private http: HttpClient
     ) {
-	}
-	
-	save(job: any) {
+    }
+
+    save(job: any) {
         return this.http.post(this.jobsUrl, job);
     }
 
@@ -31,10 +31,10 @@ export class JobService implements OnInit {
         return this.http.get(this.jobsUrl + `id/${id}`);
     }
 
-  //TODO Check if this is a correct call, it seems to not match any jobs the way we're searching
-  // Above To-Do inserted by Brian
+    //TODO Check if this is a correct call, it seems to not match any jobs the way we're searching
+    // Above To-Do inserted by Brian
     getFromCurrentUser() {
-      return this.http.get<Job[]>(this.jobsUrl + `current-user`);
+        return this.http.get<Job[]>(this.jobsUrl + `current-user`);
     }
 
     getByUserId(id: number) {

@@ -18,16 +18,15 @@ import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {AdComponent} from './ad/ad.component';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 import {UsersPanelComponent} from './admin-panel/users-panel';
-import {JobsPanelComponent} from './admin-panel/jobs-panel/jobs-panel.component';
-import {UserDetailComponent} from './admin-panel/users-panel/user-detail';
 import {UserEditComponent} from './admin-panel/users-panel/user-edit';
 import {JobDetailComponent} from './job-overview/job-detail';
-import { JobCreatorComponent } from './job-overview/job-creator/job-creator.component';
-import { UsersUnapprovedComponent } from './admin-panel/users-panel/users-unapproved/users-unapproved.component';
-import { MyJobsPanelComponent } from './job-overview/my-jobs-panel/my-jobs-panel.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
+import {JobCreatorComponent} from './job-overview/job-creator';
+import {UsersUnapprovedComponent} from './admin-panel/users-panel/users-unapproved';
+import {MyJobsPanelComponent} from './job-overview/my-jobs-panel/my-jobs-panel.component';
+import {NavbarComponent} from './navbar';
+import {SidebarComponent} from './sidebar';
+import {FooterComponent} from './footer/footer.component';
+import { JobsUnapprovedComponent } from './admin-panel/jobs-unapproved';
 
 // @ts-ignore
 @NgModule({
@@ -44,8 +43,6 @@ import { FooterComponent } from './footer/footer.component';
         AdComponent,
         AdminPanelComponent,
         UsersPanelComponent,
-        JobsPanelComponent,
-        UserDetailComponent,
         UserEditComponent,
         JobDetailComponent,
         JobCreatorComponent,
@@ -53,7 +50,8 @@ import { FooterComponent } from './footer/footer.component';
         MyJobsPanelComponent,
         NavbarComponent,
         SidebarComponent,
-        FooterComponent
+        FooterComponent,
+        JobsUnapprovedComponent
     ],
     imports: [
         BrowserModule,

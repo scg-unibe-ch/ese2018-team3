@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Job} from '../_models';
-import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AlertService, JobService} from '../_services';
@@ -14,15 +13,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class JobEditorComponent implements OnInit {
 
     baseUrl;
-
-    private jobsUrl = 'http://localhost:3000//jobs/';
-
     jobEditForm: FormGroup;
     returnUrl: string;
     job: Job;
-
     submitted = false;
     loading = false;
+    private jobsUrl = 'http://localhost:3000//jobs/';
 
     constructor(
         private alert: AlertService,

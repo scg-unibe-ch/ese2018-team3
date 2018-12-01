@@ -23,6 +23,11 @@ export class UserEditComponent implements OnInit {
     ) {
     }
 
+    // convenience getter for easy access to form fields
+    get f() {
+        return this.userEditForm.controls;
+    }
+
     ngOnInit() {
         if (!this.user) this.adminService.getUser(this.route.snapshot.params.id).subscribe(
             user => {
@@ -40,11 +45,6 @@ export class UserEditComponent implements OnInit {
             isApproved: ['']
         });
         this.onReset();
-    }
-
-    // convenience getter for easy access to form fields
-    get f() {
-        return this.userEditForm.controls;
     }
 
     onSubmit() {

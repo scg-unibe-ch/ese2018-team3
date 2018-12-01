@@ -1,8 +1,8 @@
 <div class="w3-margin">
     <h2>{{job.name}}</h2>
-    Created: {{job.createdAt}}
+    Created: {{job.createdAt | date: "dd.MM.yy"}}
     <br>
-    Until: {{job.endDate}}
+    Until: {{job.endDate | date: "dd.MM.yy"}}
     <br>
     Occupation: {{job.occupation}}
     <hr>

@@ -70,7 +70,7 @@ router.post('/login', async (req: Request, res: Response) => {
 
 				case InvalidPasswordError.name:
 					console.log(lg + 'invalid password for: \'' + req.body.username + '\'');
-					res.statusCode = 401;
+					res.statusCode = 418;
 					res.json({'message': 'wrong password'});
 					return;
 

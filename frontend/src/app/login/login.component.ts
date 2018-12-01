@@ -60,9 +60,10 @@ export class LoginComponent implements OnInit {
         this.userService.login(user)
             .subscribe(
                 (user: any) => {
-                    this.userService.save(user.token);
+                    this.userService.save(user);
                     this.alertService.success('Successfully logged in.', true);
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate([this.returnUrl])
+                        .then(() => this.router.navigate([this.returnUrl]));
                 },
                 error => {
                     this.alertService.error(error);

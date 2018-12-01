@@ -5,7 +5,7 @@
             <a class="w3-button" routerLink="/job-creator" target="_top">Create a Job</a>
         </div>
 
-        <div *ngIf="loggedIn">
+        <div *ngIf="isAdmin">
             <br>
             <h2 class="left">Admin Panel</h2>
             <a class="w3-button" routerLink="/admin-panel/users" target="_top">Users</a>

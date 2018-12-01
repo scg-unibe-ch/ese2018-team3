@@ -7,6 +7,7 @@ import {
 	UserNotFoundError,
 	UserNotLoggedInError
 } from '../errors';
+import {AdminModel} from '../models';
 
 const router: Router = Router();
 
@@ -56,8 +57,17 @@ router.post('/login', async (req: Request, res: Response) => {
 	UserServices.login(req.body)
 		.then(async user => {
 			console.log(genLog() + 'Successfully logged in \'' + req.body.username + '\'');
+            let simplification = user.toSimplification();
+
+			const isAdmin = AdminModel.findOne({
+				where: {
+					userId: user.id
+				}
+			});
+			if (isAdmin) simplification.isAdmin = true;
+
 			res.statusCode = 200;
-			res.send(user.toSimplification());
+			res.send(simplification);
 		})
 		.catch(err => {
 			const lg = genLog() + 'login: ';

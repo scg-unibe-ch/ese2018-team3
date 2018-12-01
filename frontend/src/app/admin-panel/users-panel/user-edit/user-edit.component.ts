@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdminService, AlertService} from '../../../_services';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {User} from '../../../_models';
 
 @Component({
     selector: 'app-user-edit',
@@ -10,7 +11,7 @@ import {Location} from '@angular/common';
 })
 export class UserEditComponent implements OnInit {
 
-    user: any;
+    user: User;
     loading = false;
     submitted = false;
 
@@ -24,15 +25,15 @@ export class UserEditComponent implements OnInit {
 
     ngOnInit() {
         this.adminService.getUser(this.route.snapshot.params.id).subscribe(
-            user => {
+            (user: User) => {
                 if (!user) this.alert.error('Backend error');
                 this.user = user;
+
+                this.onReset();
             },
             err => {
                 this.alert.error(err, true);
             });
-
-        this.onReset();
     }
 
     // helper method

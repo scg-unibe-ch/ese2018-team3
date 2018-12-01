@@ -26,13 +26,15 @@ export class UserService {
         return this.currentUserSubject.value;
     }
 
-    save(token: string) {
-        localStorage.setItem('currentUser', token);
+    save(user: any) {
+        localStorage.setItem('currentUser', user.token);
+        if (user.isAdmin) localStorage.setItem('isA', user.isAdmin);
         this.currentUserSubject.next(localStorage.getItem('currentUser'));
     }
 
     clearLogin() {
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('isA');
         this.currentUserSubject.next(null);
     }
 

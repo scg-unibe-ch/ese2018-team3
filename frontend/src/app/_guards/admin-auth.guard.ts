@@ -21,24 +21,18 @@ export class AdminAuthGuard implements CanActivate {
         private alert: AlertService,
         private router: Router,
         private adminService: AdminService,
-        private userService: UserService,
+        private userService: UserService
     ) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        let isAdmin = false;
-        this.adminService.auth().subscribe(
-            () => {
-                isAdmin = true;
-                this.alert.success('Authenticated as admin', true);
-            },
-            err => {
-                isAdmin = false;
-                console.log('Failed to authenticate as admin');
-                this.alert.error('Failed to authenticate as admin', true)
-            }
-        );
+        let isAdmin = this.adminService.isAdminValue;
+        if (isAdmin) return true;
 
-        return isAdmin;
+        // not admin in so force logout
+        this.userService.clearLogin();
+        this.alert.error('Failed to authenticate as admin', true);
+        this.router.navigate(['/login']);
+        return false;
     }
 }

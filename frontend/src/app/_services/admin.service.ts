@@ -3,7 +3,7 @@ import {AlertService} from './alert.service';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Job, User} from '../_models';
 import {UserService} from './user.service';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AdminService {
@@ -13,11 +13,21 @@ export class AdminService {
     private adminsUrl: string = 'http://localhost:3000/admins/';
     private jobsUrl: string = 'http://localhost:3000/jobs/';
 
+
+    private isAdminSubject: BehaviorSubject<string>;
+    public isAdmin: Observable<string>;
+
     constructor(
         private alert: AlertService,
         private userService: UserService,
         private http: HttpClient
     ) {
+        this.isAdminSubject = new BehaviorSubject<string>(localStorage.getItem('isA'));
+        this.isAdmin = this.isAdminSubject.asObservable();
+    }
+
+    public get isAdminValue(): string {
+        return this.isAdminSubject.value;
     }
 
     auth(): Observable<HttpResponse<Object>> {

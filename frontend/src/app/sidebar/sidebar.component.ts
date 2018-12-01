@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../_services';
+import {AdminService, UserService} from '../_services';
 
 @Component({
     selector: 'app-sidebar',
@@ -9,14 +9,17 @@ import {UserService} from '../_services';
 export class SidebarComponent implements OnInit {
 
     loggedIn: string;
+    isAdmin: string;
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private adminService: AdminService
     ) {
-        this.userService.currentUser.subscribe(x => this.loggedIn = x);
     }
 
     ngOnInit() {
+        this.userService.currentUser.subscribe(x => this.loggedIn = x);
+        this.adminService.isAdmin.subscribe(x => this.isAdmin = x);
     }
 
 }

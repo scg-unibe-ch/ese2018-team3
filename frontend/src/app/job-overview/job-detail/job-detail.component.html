@@ -1,7 +1,9 @@
 <div class="w3-margin">
     <h2>{{job.name}}</h2>
-    Created: {{job.createdAt}}<br>
+    Created: {{job.createdAt}}
+    <br>
     Until: {{job.endDate}}
+    <br>
     Occupation: {{job.occupation}}
     <hr>
     <h3>Description</h3>
@@ -14,5 +16,5 @@
     <h3>Contact</h3>
     {{job.contact}}
     <hr>
-    <button (click)="goBack()" class="w3-btn">Go Back</button>
+    <button (click)="goBack()" class="w3-button w3-dark-grey">Go Back</button>
 </div>

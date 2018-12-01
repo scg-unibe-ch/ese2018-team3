@@ -18,16 +18,18 @@ export class NavbarComponent implements OnInit {
         private router: Router,
     ) {
         this.userService.currentUser.subscribe(x => this.loggedIn = x);
-        this.loadAdmin();
-    }
-
-    async loadAdmin() {
-        await this.adminService.auth().subscribe(response => {
-            this.isAdmin = response.ok;
-        });
     }
 
     ngOnInit() {
+        const header = document.getElementById("topnav");
+        const btns = header.getElementsByClassName("w3-button");
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
     }
 
     logout() {

@@ -39,5 +39,4 @@ export class JobDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }

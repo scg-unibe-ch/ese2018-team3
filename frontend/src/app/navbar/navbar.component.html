@@ -1,7 +1,7 @@
 <div id="topnav" class="w3-card-2 topnav w3-dark-grey" style="position: fixed; top: 0px; width:100%;">
     <div style="overflow: auto;">
         <div class="w3-bar w3-left" style="width: 100%; overflow: hidden; height: 44px">
-            <a class="w3-bar-item w3-button" routerLink="/home"><i class="fa fa-home fa-2x"></i></a>
+            <a class="w3-bar-item w3-button active" routerLink="/home"><i class="fa fa-home fa-2x"></i></a>
             <a class="w3-bar-item w3-button" routerLink="/jobs"><i class="fa fa-clipboard-list"></i> Job Overview</a>
             <a *ngIf="loggedIn" class="w3-bar-item w3-button" routerLink="/my-jobs-panel">My Jobs</a>
             <a *ngIf="loggedIn" class="w3-bar-item w3-button" routerLink="/admin-panel">Admin-Panel</a>

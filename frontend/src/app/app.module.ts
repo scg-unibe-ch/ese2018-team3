@@ -27,6 +27,7 @@ import { UsersUnapprovedComponent } from './admin-panel/users-panel/users-unappr
 import { MyJobsPanelComponent } from './job-overview/my-jobs-panel/my-jobs-panel.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { FooterComponent } from './footer/footer.component';
 
 // @ts-ignore
 @NgModule({
@@ -51,7 +52,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
         UsersUnapprovedComponent,
         MyJobsPanelComponent,
         NavbarComponent,
-        SidebarComponent
+        SidebarComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,

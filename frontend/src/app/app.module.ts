@@ -26,6 +26,7 @@ import { JobCreatorComponent } from './job-overview/job-creator/job-creator.comp
 import { UsersUnapprovedComponent } from './admin-panel/users-panel/users-unapproved/users-unapproved.component';
 import { MyJobsPanelComponent } from './job-overview/my-jobs-panel/my-jobs-panel.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 // @ts-ignore
 @NgModule({
@@ -49,7 +50,8 @@ import { NavbarComponent } from './navbar/navbar.component';
         JobCreatorComponent,
         UsersUnapprovedComponent,
         MyJobsPanelComponent,
-        NavbarComponent
+        NavbarComponent,
+        SidebarComponent
     ],
     imports: [
         BrowserModule,

@@ -1,23 +1,25 @@
-<h2>Job Creator</h2>
+<div class="w3-margin">
+    <h2>Job Creator</h2>
 
-<form onsubmit="onSubmit()">
-    <label>Job Title:</label>
-    <input id="title" class="w3-input w3-border" type="text" placeholder="A catchy title">
+    <form>
+        <label>Job Title:</label>
+        <input id="title" class="w3-input w3-border" type="text" placeholder="A catchy title">
 
-    <label>Until:</label>
-    <input id="endDate" class="w3-input w3-border" type="date">
+        <label>Until:</label>
+        <input id="endDate" class="w3-input w3-border" type="date">
 
-    <label>Occupation:</label>
-    <input id="occupation" class="w3-input w3-border" type="text" placeholder="0 - 100% | 1x / week">
+        <label>Occupation:</label>
+        <input id="occupation" class="w3-input w3-border" type="text" placeholder="0 - 100% | 1x / week">
 
-    <label>Description</label>
-    <textarea id="description" class="w3-input w3-border" style="resize: none;" placeholder="Tell us about the job"></textarea>
+        <label>Description</label>
+        <textarea id="description" class="w3-input w3-border" style="resize: none;" placeholder="Tell us about the job"></textarea>
 
-    <label>Qualifications</label>
-    <textarea id="qualifications" class="w3-input w3-border" style="resize: none;" placeholder="The needed profile"></textarea>
+        <label>Qualifications</label>
+        <textarea id="qualifications" class="w3-input w3-border" style="resize: none;" placeholder="The needed profile"></textarea>
 
-    <label>Contact</label>
-    <textarea id="contact" class="w3-input w3-border" style="resize: none;" placeholder="How to contact you"></textarea>
+        <label>Contact</label>
+        <textarea id="contact" class="w3-input w3-border" style="resize: none;" placeholder="How to contact you"></textarea>
 
-    <button class="w3-btn w3-blue-grey" (click)="onSubmit()">Submit</button>
-</form>
+        <button class="w3-margin-top w3-btn w3-dark-grey" (click)="onSubmit()">Submit</button>
+    </form>
+</div>

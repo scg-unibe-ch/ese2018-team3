@@ -1,23 +1,18 @@
-<div class="w3-row w3-margin-top w3-margin-bottom">
-    <div class="w3-card-4">
-        <div class="w3-container">
-            <h2>{{job.name}}</h2>
-            Created: {{job.createdAt}}<br>
-            Until: {{job.endDate}}
-            Occupation: {{job.occupation}}
-            <hr>
-            <h3>Description</h3>
-            {{job.description}}
-            <hr>
+<div class="w3-margin">
+    <h2>{{job.name}}</h2>
+    Created: {{job.createdAt}}<br>
+    Until: {{job.endDate}}
+    Occupation: {{job.occupation}}
+    <hr>
+    <h3>Description</h3>
+    {{job.description}}
+    <hr>
 
-            <h3>Qualifications</h3>
-            {{job.qualifications}}
-            <hr>
-            <h3>Contact</h3>
-            {{job.contact}}
-            <hr>
-            <button (click)="goBack()" class="w3-btn">Go Back</button>
-        </div>
-    </div>
+    <h3>Qualifications</h3>
+    {{job.qualifications}}
+    <hr>
+    <h3>Contact</h3>
+    {{job.contact}}
+    <hr>
+    <button (click)="goBack()" class="w3-btn">Go Back</button>
 </div>
-

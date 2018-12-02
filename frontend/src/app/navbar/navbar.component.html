@@ -4,7 +4,6 @@
             <a class="w3-bar-item w3-button active" routerLink="/home"><i class="fa fa-home fa-2x"></i></a>
             <a class="w3-bar-item w3-button" routerLink="/jobs"><i class="fa fa-clipboard-list"></i> Job Offers</a>
             <a *ngIf="loggedIn" class="w3-bar-item w3-button" routerLink="/my-jobs-panel">My Jobs</a>
-            <a *ngIf="loggedIn" class="w3-bar-item w3-button" routerLink="/admin-panel">Admin-Panel</a>
             <a *ngIf="!loggedIn" class="w3-bar-item w3-button w3-right" routerLink="/register">Register</a>
             <a *ngIf="!loggedIn" class="w3-bar-item w3-button w3-right" routerLink="/login">Login</a>
             <a (click)="logout()" *ngIf="loggedIn" class="w3-bar-item w3-button w3-right">Logout</a>

@@ -3,11 +3,11 @@ import {Job} from '../_models';
 import {JobService} from '../_services';
 
 @Component({
-    selector: 'app-job-overview',
-    templateUrl: './job-overview.component.html',
-    styleUrls: ['./job-overview.component.css']
+    selector: 'app-job-offers',
+    templateUrl: './job-offers.component.html',
+    styleUrls: ['./job-offers.component.css']
 })
-export class JobOverviewComponent implements OnInit {
+export class JobOffersComponent implements OnInit {
 
     jobs: Job[];
 
@@ -24,7 +24,7 @@ export class JobOverviewComponent implements OnInit {
     shortenDescription(job: Job) {
         const length = Math.min(job.description.length - 1, 100);
         let desc = job.description.substr(0, length);
-        if (job.description.length > 100) desc += "...";
+        if (job.description.length > 100) desc += '...';
         return desc;
     }
 

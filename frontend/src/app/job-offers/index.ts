@@ -1,1 +1,1 @@
-export * from './job-overview.component';
+export * from './job-offers.component';

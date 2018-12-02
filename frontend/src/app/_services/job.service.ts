@@ -19,11 +19,11 @@ export class JobService implements OnInit {
     ngOnInit(): void {
     }
 
-    save(job: Job) {
+    save(job: any) {
         return this.http.post(this.jobsUrl, job);
     }
 
-    update(job: Job) {
+    update(job: any) {
         return this.http.put(this.jobsUrl + `${job.id}`, job);
     }
 

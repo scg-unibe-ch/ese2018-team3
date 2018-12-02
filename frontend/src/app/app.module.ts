@@ -8,7 +8,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AboutComponent} from './about/about.component';
 import {AppRoutingModule} from './app-routing.module';
-import {JobOverviewComponent} from './job-overview';
+import {JobOffersComponent} from './job-offers';
 import {RegisterComponent} from './register';
 import {LoginComponent} from './login';
 import {HomeComponent} from './home';
@@ -18,14 +18,14 @@ import {AdComponent} from './ad/ad.component';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 import {UsersPanelComponent} from './admin-panel/users-panel';
 import {UserEditComponent} from './admin-panel/users-panel/user-editor';
-import {JobDetailComponent} from './job-overview/job-detail';
-import {JobCreatorComponent} from './job-overview/job-creator';
+import {JobDetailComponent} from './job-offers/job-detail';
+import {JobCreatorComponent} from './job-offers/job-creator';
 import {UsersUnapprovedComponent} from './admin-panel/users-panel/users-unapproved';
-import {MyJobsPanelComponent} from './job-overview/my-jobs-panel/my-jobs-panel.component';
+import {MyJobsPanelComponent} from './job-offers/my-jobs-panel/my-jobs-panel.component';
 import {NavbarComponent} from './navbar';
 import {SidebarComponent} from './sidebar';
 import {FooterComponent} from './footer/footer.component';
-import { JobsUnapprovedComponent } from './admin-panel/jobs-unapproved';
+import {JobsUnapprovedComponent} from './admin-panel/jobs-unapproved';
 
 // @ts-ignore
 @NgModule({
@@ -35,7 +35,7 @@ import { JobsUnapprovedComponent } from './admin-panel/jobs-unapproved';
         AppComponent,
         AlertComponent,
         HomeComponent,
-        JobOverviewComponent,
+        JobOffersComponent,
         LoginComponent,
         RegisterComponent,
         AdComponent,

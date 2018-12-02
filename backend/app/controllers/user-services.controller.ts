@@ -1,11 +1,11 @@
 import {Request, Response, Router} from 'express';
 import {UserServices} from '../_services';
 import {
-	InvalidPasswordError,
-	InvalidTokenError,
-	UserNotApprovedError,
-	UserNotFoundError,
-	UserNotLoggedInError
+    InvalidPasswordError,
+    InvalidTokenError, UsernameAlreadyTakenError,
+    UserNotApprovedError,
+    UserNotFoundError,
+    UserNotLoggedInError
 } from '../errors';
 import {AdminModel} from '../models';
 
@@ -139,14 +139,21 @@ router.post('/register', async (req: Request, res: Response) => {
 			res.statusCode = 200;
 			res.send(newUser);
 		})
-		.catch(() => {
-			console.log(genLog() + 'Failure while registering \'' + req.body.username + '\' : username already taken');
+		.catch(err => {
+			const lg = genLog() + 'update: ';
+            switch (err.name) {
+                case UsernameAlreadyTakenError.name:
+                    console.log(lg + 'Failure while registering \'' + req.body.username + '\' : username already taken');
+                    res.statusCode = 405;
+                    res.json({'message': 'username already in use'});
+                    return;
 
-			res.statusCode = 405;
-			res.json({
-				'message': 'method not allowed'
-			});
-			return;
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
 		});
 });
 

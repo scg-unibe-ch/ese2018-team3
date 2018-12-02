@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
 
             //use jobs.length due to new jobs being added at the end of the array
           if (jobs.length > 3) {
-            this.jobs = jobs.slice(jobs.length - 4, jobs.length - 1);
+            this.jobs = jobs.slice(0, 3);
           }
 
         })

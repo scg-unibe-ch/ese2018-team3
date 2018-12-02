@@ -35,13 +35,14 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/']);
         }
     }
+
     ngOnInit() {
         // get return url from route parameters or default to '/home'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
 
     // helper method
-    private getElementById(id: string) {
+    private get(id: string) {
         return (<HTMLInputElement>document.getElementById(id));
     }
 
@@ -53,8 +54,8 @@ export class LoginComponent implements OnInit {
         this.loading = true;
 
         let user = {
-            'username': (<HTMLInputElement>document.getElementById('username')).value,
-            'password': sha256((<HTMLInputElement>document.getElementById('password')).value)
+            'username': this.get('username').value,
+            'password': sha256(this.get('password').value)
         };
 
         this.userService.login(user)
@@ -72,15 +73,16 @@ export class LoginComponent implements OnInit {
     }
 
     private invalidForm(): boolean {
-        return this.invalidUsername() || this.invalidPassword();
+        return this.invalidUsername()
+            || this.invalidPassword();
     }
 
 
     invalidUsername(): boolean {
-        return this.getElementById('username').value.length === 0;
+        return this.get('username').value.length === 0;
     }
 
     invalidPassword(): boolean {
-        return this.getElementById('password').value.length === 0;
+        return this.get('password').value.length === 0;
     }
 }

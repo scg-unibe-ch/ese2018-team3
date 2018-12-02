@@ -35,6 +35,9 @@ export class RegisterComponent implements OnInit {
             this.router.navigate(['/home']);
         }
     }
+    
+    ngOnInit(): void {
+    }
 
     // helper method
     private get(id: string) {
@@ -102,4 +105,5 @@ export class RegisterComponent implements OnInit {
     invalidPasswordMatch(): boolean {
         return this.get('password2').value !== this.get('password').value;
     }
+
 }

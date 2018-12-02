@@ -59,6 +59,6 @@ export class AdminService {
     }
 
     deleteUser(user: number | string) {
-        return this.http.delete(this.usersUrl + `delete/id/${user}`);
+        return this.http.delete(this.usersUrl + `id/${user}`);
     }
 }

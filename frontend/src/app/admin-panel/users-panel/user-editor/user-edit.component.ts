@@ -72,6 +72,11 @@ export class UserEditComponent implements OnInit {
         this.getElementById('isApproved').checked = this.user.isApproved;
     }
 
+    onDelete() {
+        if (confirm('Are you really sure to delete this user?')) {
+            this.adminService.deleteUser(this.user.id);
+        }
+    }
 
     goBack(): void {
         this.location.back();

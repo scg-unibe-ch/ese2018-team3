@@ -29,7 +29,6 @@ const routes: Routes = [
 
     {path: 'jobs', component: JobOverviewComponent},
     {path: 'jobs/:id', component: JobDetailComponent},
-    {path: 'jobs/:id/edit', component: JobEditorComponent, canActivate: [AuthGuard]},
     {path: 'job-creator', component: JobCreatorComponent, canActivate: [AuthGuard]},
     {path: 'my-jobs-panel', component: MyJobsPanelComponent, canActivate: [AuthGuard]},
 

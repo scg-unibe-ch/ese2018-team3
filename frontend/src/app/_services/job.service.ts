@@ -16,11 +16,15 @@ export class JobService implements OnInit {
     ) {
     }
 
-    save(job: any) {
+    ngOnInit(): void {
+    }
+
+    save(job: Job) {
         return this.http.post(this.jobsUrl, job);
     }
 
-    ngOnInit(): void {
+    update(job: Job) {
+        return this.http.put(this.jobsUrl + `${job.id}`, job);
     }
 
     getAll() {

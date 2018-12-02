@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:watch": "jest --watch",
-    "publishheroku": "cd .. && git subtree push --prefix frontend ese2018-team8-frontend  master || true"
+    "publishheroku": "cd .. && git subtree push --prefix frontend ese2018-team3-frontend  master || true"
   },
   "private": true,
   "dependencies": {

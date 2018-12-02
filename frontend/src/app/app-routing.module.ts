@@ -5,7 +5,7 @@ import {AboutComponent} from './about/about.component';
 
 import {JobOverviewComponent} from './job-overview';
 import {JobDetailComponent} from './job-overview/job-detail';
-import {JobEditorComponent} from './job-editor';
+import {JobEditorComponent} from './admin-panel/job-editor';
 
 import {LoginComponent} from './login';
 import {RegisterComponent} from './register';

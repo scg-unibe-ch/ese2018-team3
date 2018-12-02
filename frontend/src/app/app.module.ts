@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {JobEditorComponent} from './job-editor';
+import {JobEditorComponent} from './admin-panel/job-editor';
 import {AboutComponent} from './about/about.component';
 import {AppRoutingModule} from './app-routing.module';
 import {JobOverviewComponent} from './job-overview';
@@ -18,7 +18,7 @@ import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {AdComponent} from './ad/ad.component';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 import {UsersPanelComponent} from './admin-panel/users-panel';
-import {UserEditComponent} from './admin-panel/users-panel/user-edit';
+import {UserEditComponent} from './admin-panel/users-panel/user-editor';
 import {JobDetailComponent} from './job-overview/job-detail';
 import {JobCreatorComponent} from './job-overview/job-creator';
 import {UsersUnapprovedComponent} from './admin-panel/users-panel/users-unapproved';

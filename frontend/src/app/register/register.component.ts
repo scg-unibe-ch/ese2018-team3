@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
             this.router.navigate(['/home']);
         }
     }
-    
+
     ngOnInit(): void {
     }
 
@@ -59,21 +59,19 @@ export class RegisterComponent implements OnInit {
         };
 
         this.userService.register(user).subscribe(
-            () => {
-                // check for failed registration
+            newUser => {
+                console.log('register\t' + 'Successfully registered \'' + user.username + '\'');
+                this.alertService.success('Registration successful. Please wait for your account to be approved.', true);
+                this.router.navigate(['/home']);
+            },
+            error => {
                 if (status === '405') {
                     console.log('register\t' + 'Failed registering \'' + user.username + '\'');
                     this.alertService.error('Registration unsuccessful. Please choose another username.');
-                    this.loading = false;
                 } else {
-                    console.log('register\t' + 'Successfully registered \'' + user.username + '\'');
-                    this.alertService.success('Registration successful. Please wait for your account to be approved.', true);
-                    this.router.navigate(['/home']);
+                    console.log('register\t' + 'error \'' + error + '\'');
+                    this.alertService.error(error);
                 }
-            },
-            error => {
-                console.log('register\t' + 'error \'' + error + '\'');
-                this.alertService.error(error);
                 this.loading = false;
             });
     }

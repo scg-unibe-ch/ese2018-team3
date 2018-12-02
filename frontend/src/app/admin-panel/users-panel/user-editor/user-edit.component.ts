@@ -74,7 +74,14 @@ export class UserEditComponent implements OnInit {
 
     onDelete() {
         if (confirm('Are you really sure to delete this user?')) {
-            this.adminService.deleteUser(this.user.id);
+            this.adminService.deleteUser(this.user.id)
+                .subscribe(() => {
+                    this.alert.success('Successfully deleted user', true);
+                    this.goBack();
+                },
+                err => {
+                    this.alert.error(err);
+                });
         }
     }
 

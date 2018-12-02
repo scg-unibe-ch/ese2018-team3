@@ -5,7 +5,6 @@ import {AboutComponent} from './about/about.component';
 
 import {JobOverviewComponent} from './job-overview';
 import {JobDetailComponent} from './job-overview/job-detail';
-import {JobEditorComponent} from './admin-panel/job-editor';
 
 import {LoginComponent} from './login';
 import {RegisterComponent} from './register';
@@ -42,8 +41,6 @@ const routes: Routes = [
 
     //{path: 'job/new', component: ProfilNewJobComponent},
     //{path: 'profil', component: JobManagementComponent},
-
-    {path: 'job-editor/:id', component: JobEditorComponent, canActivate: [AuthGuard]},
 
     // otherwise redirect to home
     {path: '**', redirectTo: '/home'}

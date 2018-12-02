@@ -6,7 +6,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {JobEditorComponent} from './admin-panel/job-editor';
 import {AboutComponent} from './about/about.component';
 import {AppRoutingModule} from './app-routing.module';
 import {JobOverviewComponent} from './job-overview';
@@ -36,7 +35,6 @@ import { JobsUnapprovedComponent } from './admin-panel/jobs-unapproved';
         AppComponent,
         AlertComponent,
         HomeComponent,
-        JobEditorComponent,
         JobOverviewComponent,
         LoginComponent,
         RegisterComponent,

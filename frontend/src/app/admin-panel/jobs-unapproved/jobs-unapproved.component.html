@@ -1,6 +1,6 @@
 <div class="w3-margin">
     <h2>Unapproved Job Offers</h2>
-    <span class="w3-opacity">Found {{jobs.length}} unapproved job postings</span>
+    <p class="w3-opacity">Found {{jobs.length}} unapproved job postings</p>
     <br>
     <ul *ngFor="let job of jobs" class="w3-ul">
         <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">

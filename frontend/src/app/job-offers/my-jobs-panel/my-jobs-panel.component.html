@@ -2,13 +2,15 @@
     <h2>My Job Postings</h2>
     <span class="w3-opacity">Found {{jobs.length}} job postings</span>
     <br>
-    <ul *ngFor="let job of jobs" class="w3-ul">
-        <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">
-            <div class="w3-bar-item">
-                <span class="w3-large w3-left">{{job.name}}</span>
-                <br>
-                <span class="w3-left">{{shortenDescription(job)}}</span>
-            </div>
-        </li>
-    </ul>
+    <div *ngIf="jobs.length > 0">
+        <ul  *ngFor="let job of jobs" class="w3-ul">
+            <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">
+                <div class="w3-bar-item">
+                    <span class="w3-large w3-left">{{job.name}}</span>
+                    <br>
+                    <span class="w3-left">{{shortenDescription(job)}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

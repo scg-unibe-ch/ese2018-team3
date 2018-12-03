@@ -1,7 +1,10 @@
 <div class="w3-margin">
     <h2>All registered Users</h2>
-    <p class="w3-opacity">Found {{users.length}} unapproved users</p>
-    <div class="w3-responsive">
+    <p class="w3-opacity">
+        Found {{users.length}} unapproved users.
+        <span *ngIf="users.length == 0">Good job!</span>
+    </p>
+    <div *ngIf="users.length > 0" class="w3-responsive">
         <table class="w3-table w3-striped w3-table-all w3-hoverable">
             <tr>
                 <th width="5%">ID</th>

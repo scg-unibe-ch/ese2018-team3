@@ -63,8 +63,7 @@ export class LoginComponent implements OnInit {
                 (user: any) => {
                     this.userService.save(user);
                     this.alertService.success('Successfully logged in.', true);
-                    this.router.navigate([this.returnUrl])
-                        .then(() => this.router.navigate([this.returnUrl]));
+                    this.router.navigate([this.returnUrl]);
                 },
                 error => {
                     this.alertService.error(error);

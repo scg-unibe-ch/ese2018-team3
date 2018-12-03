@@ -12,7 +12,7 @@ export async function jobExamples() {
 		email: 'tom@tom.com',
 		company: 'Tom',
 		isApproved: false
-	})
+	});
 
 	const user2 = new UserModel();
 
@@ -22,7 +22,7 @@ export async function jobExamples() {
 		email: 'bob@bob.com',
 		company: 'Bob',
 		isApproved: true
-	})
+	});
 
 	
 	await user1.save();
@@ -43,7 +43,7 @@ export async function jobExamples() {
 		endDate: '2018-12-23 00:00:00.000 +00:00',
 		description: 'We are looking for Junior Technical Support to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
 		qualifications: 'Bachelors Degree'
-	})
+	});
 
 	job2.fromSimplification({
 		userId: 3,
@@ -52,7 +52,7 @@ export async function jobExamples() {
 		endDate: '2018-12-23 00:00:00.000 +00:00',
 		description: 'We are looking for HR Assistant to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
 		qualifications: 'Bachelors Degree'
-	})
+	});
 
 	job3.fromSimplification({
 		userId: 3,
@@ -61,7 +61,7 @@ export async function jobExamples() {
 		endDate: '2018-12-23 00:00:00.000 +00:00',
 		description: 'We are looking for Senior Project Manager to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
 		qualifications: 'Bachelors Degree'
-	})
+	});
 
 	job4.fromSimplification({
 		userId: 3,
@@ -70,7 +70,7 @@ export async function jobExamples() {
 		endDate: '2018-12-23 00:00:00.000 +00:00',
 		description: 'We are looking for Software Developer to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
 		qualifications: 'Bachelors Degree'
-	})
+	});
 
 	job5.fromSimplification({
 		userId: 3,
@@ -79,7 +79,7 @@ export async function jobExamples() {
 		endDate: '2018-12-23 00:00:00.000 +00:00',
 		description: 'We are looking for Internship Front-End Dev to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
 		qualifications: 'Bachelors Degree'
-	})
+	});
 
 	job6.fromSimplification({
 		userId: 3,
@@ -88,7 +88,7 @@ export async function jobExamples() {
 		endDate: '2018-12-23 00:00:00.000 +00:00',
 		description: 'UniCom is a fast growing small company, which specializes in communication and supporting customers psychologically. We are currently recruiting several new supporters to help our customers be more productive by throwing in ideas, solving small disputes and keeping a warm atmosphere.',
 		qualifications: 'Experience in programming is preferred (C/C++, C#, Java, Javascript, Perl, ...) - Being a very open, honest person willing to share ideas, wther they are helpful or not.'
-	})
+	});
 
 	await job1.save();
 	await job2.save();

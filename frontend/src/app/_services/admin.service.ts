@@ -34,6 +34,14 @@ export class AdminService {
         return this.http.get(this.adminsUrl + `auth/`, {observe: 'response'});
     }
 
+    getAllJobs() {
+        return this.http.get<Job[]>(this.jobsUrl);
+    }
+
+    getJobById(id) {
+        return this.http.get(this.jobsUrl + `id/${id}`);
+    }
+
     getAllUnapprovedJobs() {
         return this.http.get<Job[]>(this.jobsUrl + 'unapproved');
     }
@@ -60,5 +68,9 @@ export class AdminService {
 
     deleteUser(user: number | string) {
         return this.http.delete(this.usersUrl + `id/${user}`);
+    }
+
+    deleteJob(job: number | string) {
+        return this.http.delete(this.jobsUrl + `id/${job}`);
     }
 }

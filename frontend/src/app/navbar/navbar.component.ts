@@ -12,9 +12,6 @@ export class NavbarComponent implements OnInit {
     loggedIn: string;
     isAdmin: boolean;
 
-    hasUnapprovedJobs = false;
-    hasUnapprovedUsers = false;
-
     constructor(
         private adminService: AdminService,
         private userService: UserService,
@@ -24,7 +21,6 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadUnapproved();
         const header = document.getElementById('topnav');
         const btns = header.getElementsByClassName('w3-button');
         for (let i = 0; i < btns.length; i++) {
@@ -39,14 +35,5 @@ export class NavbarComponent implements OnInit {
     logout() {
         this.userService.logout();
         this.router.navigate(['/home']);
-    }
-
-    async loadUnapproved() {
-        this.adminService.getAllUnapprovedJobs().subscribe( jobs => {
-            if (jobs.length > 0) this.hasUnapprovedJobs = true;
-        });
-        this.adminService.getAllUnapprovedUsers().subscribe( users => {
-            if (users.length > 0) this.hasUnapprovedUsers = true;
-        });
     }
 }

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AlertService} from './alert.service';
+import {UserService} from './user.service';
 
 
 const KEY_WORD = 'lastAction';
@@ -7,9 +8,9 @@ const CHECK_INTERVAL = 1000; // ms
 const AUTO_LOGOUT = 20; //min
 
 @Injectable({providedIn: 'root'})
-export class UserService {
+export class AutoLogoutService {
 
-    loggedIn: boolean;
+    loggedIn: string;
 
     get lastAction() {
         return parseInt(localStorage.get(KEY_WORD));
@@ -34,7 +35,7 @@ export class UserService {
     }
 
     reset() {
-        this.lastAction(Date.now);
+        this.lastAction = Date.now();
     }
 
     initInterval() {

@@ -12,7 +12,7 @@ export async function jobExamples() {
 		email: 'tom@tom.com',
 		company: 'Tom',
 		isApproved: false
-	});
+	})
 
 	const user2 = new UserModel();
 
@@ -22,7 +22,7 @@ export async function jobExamples() {
 		email: 'bob@bob.com',
 		company: 'Bob',
 		isApproved: true
-	});
+	})
 
 	
 	await user1.save();
@@ -97,5 +97,3 @@ export async function jobExamples() {
 	await job5.save();
 	await job6.save();
 }
-
-jobExamples();

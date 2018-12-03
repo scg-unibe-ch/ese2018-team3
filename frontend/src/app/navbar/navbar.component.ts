@@ -12,8 +12,8 @@ export class NavbarComponent implements OnInit {
     loggedIn: string;
     isAdmin: boolean;
 
-    hasUnapprovedUsers = false;
     hasUnapprovedJobs = false;
+    hasUnapprovedUsers = false;
 
     constructor(
         private adminService: AdminService,
@@ -44,6 +44,9 @@ export class NavbarComponent implements OnInit {
     async loadUnapproved() {
         this.adminService.getAllUnapprovedJobs().subscribe( jobs => {
             if (jobs.length > 0) this.hasUnapprovedJobs = true;
+        });
+        this.adminService.getAllUnapprovedUsers().subscribe( users => {
+            if (users.length > 0) this.hasUnapprovedUsers = true;
         });
     }
 }

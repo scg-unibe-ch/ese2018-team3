@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Job} from '../_models';
 
 /**
- * The user service contains a standard set of CRUD methods for managing users.
+ * The job service contains a standard set of CRUD methods for managing users.
  * It acts as the interface between the Angular application and the backend api.
  */
 @Injectable({providedIn: 'root'})

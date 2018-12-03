@@ -67,13 +67,13 @@ sequelize.sync().then(async () => {
         console.log('AdminModel user already present\n');
 	}
 	
-	//from test
-	console.log('Creating examples...');
-	try{
-		jobExamples();
-	} catch (e) {
-		console.log('Examples already inserted.');
-	}
+	// //from test
+	// console.log('Creating examples...');
+	// try{
+	// 	jobExamples();
+	// } catch (e) {
+	// 	console.log('Examples already inserted.');
+	// }
 
     // start serving the application on the given port
     app.listen(port, () => {

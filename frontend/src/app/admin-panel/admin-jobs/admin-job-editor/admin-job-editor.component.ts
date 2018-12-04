@@ -1,3 +1,8 @@
+
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { Job } from 'src/app/_models';
 import { AdminService, AlertService } from 'src/app/_services';
@@ -47,7 +52,7 @@ export class AdminJobEditorComponent implements OnInit {
     this.job.isApproved = this.getElementById('isApproved').checked;
     this.job.contact = this.getElementById('contact').value
 
-    this.aService.updateUser(this.job).subscribe(
+    this.aService.updateJob(this.job).subscribe(
         (job: any) => {
             this.alert.success('Successfully updated job.');
             this.loading = false;
@@ -73,8 +78,8 @@ export class AdminJobEditorComponent implements OnInit {
   }
 
   onDelete() {
-    if (confirm('Are you really sure to delete this job?')) {
-        this.aService.deleteUser(this.job.id)
+    if (confirm('Are you really sure you want to delete this job?')) {
+        this.aService.deleteJob(this.job.id)
             .subscribe(() => {
                 this.alert.success('Successfully deleted job', true);
                 this.goBack();
@@ -88,6 +93,4 @@ export class AdminJobEditorComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
-  //TODO invalid form.
 }

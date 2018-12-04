@@ -66,6 +66,10 @@ export class AdminService {
         return this.http.put(this.usersUrl + `id/${user.id}`, user);
     }
 
+    updateJob(job: any) {
+        return this.http.put(this.jobsUrl + `id/${job.id}`, job);
+    }
+
     deleteUser(user: number | string) {
         return this.http.delete(this.usersUrl + `id/${user}`);
     }

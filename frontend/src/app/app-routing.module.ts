@@ -18,6 +18,8 @@ import {UsersUnapprovedComponent} from './admin-panel/users-panel/users-unapprov
 import {MyJobsPanelComponent} from './job-offers/my-jobs-panel/my-jobs-panel.component';
 import {JobsUnapprovedComponent} from './admin-panel/jobs-unapproved';
 import {AdminAuthGuard} from './_guards/admin-auth.guard';
+import {AdminJobsComponent} from './admin-panel/admin-jobs/admin-jobs.component';
+import { AdminJobEditorComponent } from './admin-panel/admin-jobs/admin-job-editor/admin-job-editor.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -37,6 +39,8 @@ const routes: Routes = [
     {path: 'admin-panel/users-unapproved', component: UsersUnapprovedComponent, canActivate: [AuthGuard, AdminAuthGuard]},
     {path: 'admin-panel/users/edit/:id', component: UserEditComponent, canActivate: [AuthGuard, AdminAuthGuard]},
     {path: 'admin-panel/jobs-unapproved', component: JobsUnapprovedComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+    {path: 'admin-panel/jobs', component: AdminJobsComponent, canActivate: [AuthGuard]},
+    {path: 'admin-panel/jobs/edit/:id', component: AdminJobEditorComponent, canActivate: [AuthGuard, AdminAuthGuard]},
 
     //{path: 'job/new', component: ProfilNewJobComponent},
     //{path: 'profil', component: JobManagementComponent},

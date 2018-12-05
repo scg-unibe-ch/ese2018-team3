@@ -70,11 +70,11 @@ export class AdminService {
         return this.http.put(this.jobsUrl + `id/${job.id}`, job);
     }
 
-    deleteUser(user: number | string) {
-        return this.http.delete(this.usersUrl + `id/${user}`);
+    deleteUser(user: number) {
+        return this.http.delete(this.usersUrl + user);
     }
 
-    deleteJob(job: number | string) {
-        return this.http.delete(this.jobsUrl + `id/${job}`);
+    deleteJob(job: number) {
+        return this.http.delete(this.jobsUrl + job);
     }
 }

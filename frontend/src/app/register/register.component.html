@@ -1,7 +1,7 @@
 <div class="w3-margin">
     <h2>Register</h2>
 
-    <form id="register" (ngSubmit)="onSubmit()">
+    <form id="register">
         <label>Username</label>
         <input class="w3-input w3-border" id="username" placeholder="username" type="text">
         <div *ngIf="submitted && invalidUsername()" class="w3-panel w3-red">

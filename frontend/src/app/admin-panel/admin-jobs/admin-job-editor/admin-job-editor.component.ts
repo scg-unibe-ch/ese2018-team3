@@ -36,7 +36,8 @@ export class AdminJobEditorComponent implements OnInit {
       },
       err => {
         this.alert.error(err, true);
-      })
+      });
+      this.onReset(); 
   }
 
   onSubmit() {
@@ -46,11 +47,12 @@ export class AdminJobEditorComponent implements OnInit {
 
     this.loading = true;
 
-    this.job.name = this.getElementById('name').value;
+    this.job.name = this.getElementById('title').value;
     this.job.description = this.getElementById('description').value;
     this.job.endDate = this.getElementById('endDate').valueAsDate;
     this.job.isApproved = this.getElementById('isApproved').checked;
     this.job.contact = this.getElementById('contact').value
+    this.job.qualifications = this.getElementById('qualifications').value;
 
     this.aService.updateJob(this.job).subscribe(
         (job: any) => {
@@ -70,11 +72,12 @@ export class AdminJobEditorComponent implements OnInit {
   }
 
   onReset() {
-    this.getElementById('name').value = this.job.name;
-    this.getElementById('description').value = this.job.description;
+    this.getElementById('title').value = this.job.name;
     this.getElementById('endDate').valueAsDate = this.job.endDate;
+    this.getElementById('description').value = this.job.description;
     this.getElementById('isApproved').checked = this.job.isApproved;
-    this.getElementById('contact').value = this.job.contact
+    this.getElementById('qualifications').value = this.job.qualifications;
+    this.getElementById('contact').value = this.job.contact;
   }
 
   onDelete() {

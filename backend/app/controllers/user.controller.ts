@@ -239,7 +239,7 @@ router.put('/approve/id/:id', async (req: Request, res: Response) => {
         });
 });
 
-router.delete('/id/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response) => {
     UserServices.authenticate(req.headers.authorization, true)
         .then(async () => {
             const id = parseInt(req.params.id);

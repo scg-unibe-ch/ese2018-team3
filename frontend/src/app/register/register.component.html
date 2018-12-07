@@ -7,25 +7,25 @@
         <div *ngIf="submitted && invalidUsername()" class="w3-panel w3-red">
             Username is required!
         </div>
-
+        <br>
         <label>Email</label>
         <input class="w3-input w3-border" id="email" placeholder="email" type="email">
         <div *ngIf="submitted && invalidEmail()" class="w3-panel w3-red">
             Email is required!
         </div>
-
+        <br>
         <label>Company</label>
         <input class="w3-input w3-border" id="company" placeholder="company" type="text">
         <div *ngIf="submitted && invalidCompany()" class="w3-panel w3-red">
             Company is required!
         </div>
-
+        <br>
         <label>Password</label>
         <input class="w3-input w3-border" id="password" placeholder="password" type="password">
         <div *ngIf="submitted && invalidPassword()" class="w3-panel w3-red">
             Password length must of of 6 characters or more!
         </div>
-
+        <br>
         <label>Reenter Password</label>
         <input class="w3-input w3-border" id="password2" placeholder="company" type="password">
         <div *ngIf="submitted && invalidPasswordMatch()" class="w3-panel w3-red">

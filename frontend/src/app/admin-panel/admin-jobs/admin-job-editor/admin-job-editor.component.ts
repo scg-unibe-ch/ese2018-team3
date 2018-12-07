@@ -36,6 +36,11 @@ export class AdminJobEditorComponent implements OnInit {
         this.onReset();
     }
 
+    // helper method
+    private get(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
+    }
+
     onSubmit() {
         this.submitted = true;
 
@@ -64,7 +69,8 @@ export class AdminJobEditorComponent implements OnInit {
 
     onReset() {
         this.get('title').value = this.job.name;
-        this.get('endDate').defaultValue = this.job.endDate.toString();
+        this.get('endDate').valueAsDate = new Date(this.job.endDate);
+        this.get('occupation').value = this.job.occupation;
         this.get('description').value = this.job.description;
         this.get('isApproved').checked = this.job.isApproved;
         this.get('qualifications').value = this.job.qualifications;
@@ -86,10 +92,5 @@ export class AdminJobEditorComponent implements OnInit {
 
     goBack(): void {
         this.location.back();
-    }
-
-    // helper method
-    private get(id: string) {
-        return (<HTMLInputElement>document.getElementById(id));
     }
 }

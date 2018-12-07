@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {AlertService, UserService} from '../_services';
 import {sha256} from 'js-sha256';
@@ -21,13 +20,11 @@ import {sha256} from 'js-sha256';
 })
 export class LoginComponent implements OnInit {
 
-    loginForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
 
     constructor(
-        private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private userService: UserService,
@@ -39,40 +36,32 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    // convenience getter for easy access to form fields
-    get f() {
-        return this.loginForm.controls;
-    }
-
     ngOnInit() {
-        this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
-        });
-
         // get return url from route parameters or default to '/home'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    }
+
+    // helper method
+    private get(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
     }
 
     onSubmit() {
         this.submitted = true;
 
-        // stop here if form is invalid
-        if (this.loginForm.invalid) {
-            return;
-        }
+        if (this.invalidForm()) return;
 
         this.loading = true;
 
         let user = {
-            'username': this.f.username.value,
-            'password': sha256(this.f.password.value)
+            'username': this.get('username').value,
+            'password': sha256(this.get('password').value)
         };
 
         this.userService.login(user)
             .subscribe(
                 (user: any) => {
-                    this.userService.save(user.token);
+                    this.userService.save(user);
                     this.alertService.success('Successfully logged in.', true);
                     this.router.navigate([this.returnUrl]);
                 },
@@ -80,5 +69,19 @@ export class LoginComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
                 });
+    }
+
+    private invalidForm(): boolean {
+        return this.invalidUsername()
+            || this.invalidPassword();
+    }
+
+
+    invalidUsername(): boolean {
+        return this.get('username').value.length === 0;
+    }
+
+    invalidPassword(): boolean {
+        return this.get('password').value.length === 0;
     }
 }

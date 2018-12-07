@@ -3,24 +3,28 @@ import {HttpClient} from '@angular/common/http';
 import {Job} from '../_models';
 
 /**
- * The user service contains a standard set of CRUD methods for managing users.
+ * The job service contains a standard set of CRUD methods for managing users.
  * It acts as the interface between the Angular application and the backend api.
  */
 @Injectable({providedIn: 'root'})
 export class JobService implements OnInit {
-    
+
     private jobsUrl: string = 'http://localhost:3000/jobs/';
 
     constructor(
         private http: HttpClient
     ) {
-	}
-	
-	save(job: any) {
-        return this.http.post(this.jobsUrl, job);
     }
 
     ngOnInit(): void {
+    }
+
+    save(job: any) {
+        return this.http.post(this.jobsUrl, job);
+    }
+
+    update(job: any) {
+        return this.http.put(this.jobsUrl + `${job.id}`, job);
     }
 
     getAll() {
@@ -31,10 +35,10 @@ export class JobService implements OnInit {
         return this.http.get(this.jobsUrl + `id/${id}`);
     }
 
-  //TODO Check if this is a correct call, it seems to not match any jobs the way we're searching
-  // Above To-Do inserted by Brian
+    //TODO Check if this is a correct call, it seems to not match any jobs the way we're searching
+    // Above To-Do inserted by Brian
     getFromCurrentUser() {
-      return this.http.get<Job[]>(this.jobsUrl + `current-user`);
+        return this.http.get<Job[]>(this.jobsUrl + `current-user`);
     }
 
     getByUserId(id: number) {

@@ -1,16 +1,18 @@
-<h1><b>Welcome to Job-For-You!</b></h1>
-<p>Find your dream job or post a job!</p>
+<div class="w3-margin">
+    <h1>Welcome to Job-For-You!</h1>
+    <p>Find your dream job or post a job!</p>
 
-<div><h2>Latest Job Postings</h2></div>
-<div>
-  <ul *ngFor="let job of jobs">
-    <li>
-      <h3>{{job.name}}</h3>
-      <div>{{shortenDescription(job)}}...</div>
-    </li>
-    <div>
-      <a routerLink="/jobs/{{job.id}}">Details</a>
-    </div>
-    <br/>
-  </ul>
+    <div><h2>Latest Job Postings</h2></div>
+    <p class="w3-opacity">Showing {{jobs.length}} job postings</p>
+
+    <ul *ngFor="let job of jobs" class="w3-ul">
+        <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">
+            <div class="w3-bar-item">
+                <span class="w3-large w3-left">{{job.name}}</span>
+                <br>
+                <span class="w3-left">{{shortenDescription(job)}}</span>
+            </div>
+        </li>
+    </ul>
 </div>
+

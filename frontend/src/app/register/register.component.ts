@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {sha256} from 'js-sha256';
 
 import {AlertService, UserService} from '../_services';
+import {invalid} from '@angular/compiler/src/render3/view/util';
 
 /**
  * The register component vreates a new user with the user service when the register form is submitted.
@@ -20,15 +21,14 @@ import {AlertService, UserService} from '../_services';
 })
 export class RegisterComponent implements OnInit {
 
-    registerForm: FormGroup;
     loading = false;
     submitted = false;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
         private router: Router,
-        private alertService: AlertService,
-        private userService: UserService
+        private userService: UserService,
+        private alertService: AlertService
     ) {
         // redirect to home if already logged in
         if (this.userService.currentUserValue) {
@@ -36,51 +36,72 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    // convenience getter for easy access to form fields
-    get f() {
-        return this.registerForm.controls;
+    ngOnInit(): void {
     }
 
-    ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            company: ['', Validators.required],
-            email: ['', Validators.required],
-            username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
-        });
+    // helper method
+    private get(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
     }
 
     onSubmit() {
         this.submitted = true;
 
-        // stop here if form is invalid
-        if (this.registerForm.invalid) return;
+        if (this.invalidForm()) return;
 
         this.loading = true;
+
         let user = {
-            'company': this.f.company.value,
-            'email': this.f.email.value,
-            'username': this.f.username.value,
-            'password': sha256(this.f.password.value)
+            'username': this.get('username').value,
+            'email': this.get('email').value,
+            'company': this.get('company').value,
+            'password': sha256(this.get('password').value)
         };
 
         this.userService.register(user).subscribe(
-            () => {
-                // check for failed registration
+            newUser => {
+                console.log('register\t' + 'Successfully registered \'' + user.username + '\'');
+                this.alertService.success('Registration successful. Please wait for your account to be approved.', true);
+                this.router.navigate(['/home']);
+            },
+            error => {
                 if (status === '405') {
                     console.log('register\t' + 'Failed registering \'' + user.username + '\'');
                     this.alertService.error('Registration unsuccessful. Please choose another username.');
-                    this.loading = false;
                 } else {
-                    console.log('register\t' + 'Successfully registered \'' + user.username + '\'');
-                    this.alertService.success('Registration successful. Please wait for your account to be approved.', true);
-                    this.router.navigate(['/home']);
+                    console.log('register\t' + 'error \'' + error + '\'');
+                    this.alertService.error(error);
                 }
-            },
-            error => {
-                console.log('register\t' + 'error \'' + error + '\'');
-                this.alertService.error(error);
                 this.loading = false;
             });
     }
+
+    private invalidForm(): boolean {
+        return this.invalidUsername()
+            || this.invalidEmail()
+            || this.invalidCompany()
+            || this.invalidPassword()
+            || this.invalidPasswordMatch();
+    }
+
+    invalidUsername(): boolean {
+        return this.get('username').value.length === 0;
+    }
+
+    invalidEmail(): boolean {
+        return this.get('email').value.length === 0;
+    }
+
+    invalidCompany(): boolean {
+        return this.get('company').value.length === 0;
+    }
+
+    invalidPassword(): boolean {
+        return this.get('password').value.length === 0;
+    }
+
+    invalidPasswordMatch(): boolean {
+        return this.get('password2').value !== this.get('password').value;
+    }
+
 }

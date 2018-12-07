@@ -6,10 +6,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {JobEditorComponent} from './job-editor';
 import {AboutComponent} from './about/about.component';
 import {AppRoutingModule} from './app-routing.module';
-import {JobOverviewComponent} from './job-overview';
+import {JobOffersComponent} from './job-offers';
 import {RegisterComponent} from './register';
 import {LoginComponent} from './login';
 import {HomeComponent} from './home';
@@ -18,13 +17,17 @@ import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {AdComponent} from './ad/ad.component';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 import {UsersPanelComponent} from './admin-panel/users-panel';
-import {JobsPanelComponent} from './admin-panel/jobs-panel/jobs-panel.component';
-import {UserDetailComponent} from './admin-panel/users-panel/user-detail';
-import {UserEditComponent} from './admin-panel/users-panel/user-edit';
-import {JobDetailComponent} from './job-overview/job-detail';
-import { JobCreatorComponent } from './job-overview/job-creator/job-creator.component';
-import { UsersUnapprovedComponent } from './admin-panel/users-panel/users-unapproved/users-unapproved.component';
-import { MyJobsPanelComponent } from './job-overview/my-jobs-panel/my-jobs-panel.component';
+import {UserEditComponent} from './admin-panel/users-panel/user-editor';
+import {JobDetailComponent} from './job-offers/job-detail';
+import {JobCreatorComponent} from './job-offers/job-creator';
+import {UsersUnapprovedComponent} from './admin-panel/users-panel/users-unapproved';
+import {MyJobsPanelComponent} from './job-offers/my-jobs-panel/my-jobs-panel.component';
+import {NavbarComponent} from './navbar';
+import {SidebarComponent} from './sidebar';
+import {FooterComponent} from './footer/footer.component';
+import {JobsUnapprovedComponent} from './admin-panel/jobs-unapproved';
+import {AdminJobsComponent} from './admin-panel/admin-jobs/admin-jobs.component';
+import {AdminJobEditorComponent} from './admin-panel/admin-jobs/admin-job-editor/admin-job-editor.component'
 
 // @ts-ignore
 @NgModule({
@@ -34,20 +37,23 @@ import { MyJobsPanelComponent } from './job-overview/my-jobs-panel/my-jobs-panel
         AppComponent,
         AlertComponent,
         HomeComponent,
-        JobEditorComponent,
-        JobOverviewComponent,
+        JobOffersComponent,
         LoginComponent,
         RegisterComponent,
         AdComponent,
         AdminPanelComponent,
         UsersPanelComponent,
-        JobsPanelComponent,
-        UserDetailComponent,
         UserEditComponent,
         JobDetailComponent,
         JobCreatorComponent,
         UsersUnapprovedComponent,
-        MyJobsPanelComponent
+        MyJobsPanelComponent,
+        NavbarComponent,
+        SidebarComponent,
+        FooterComponent,
+        JobsUnapprovedComponent,
+        AdminJobsComponent,
+        AdminJobEditorComponent
     ],
     imports: [
         BrowserModule,

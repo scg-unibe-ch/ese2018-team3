@@ -1,15 +1,30 @@
-<table id="unapproved-users" style="width:90%">
-  <tr>
-    <th>ID</th>
-    <th>Username</th>
-    <th></th>
-  </tr>
-  <tr *ngFor="let user of users">
-    <td>{{user.id}}</td>
-    <td>{{user.username}}</td>
-    <td ><a routerLink="/admin-panel/users/{{user.id}}">Details</a></td>
-  </tr>
-</table>
-<br>
-<button (click)="goBack()" class="btn btn- btn-sm" >Go Back</button>
+<div class="w3-margin">
+    <h2>All unapproved Users</h2>
+    <p class="w3-opacity">
+        Found {{users.length}} unapproved users.
+        <span *ngIf="users.length == 0">Good job!</span>
+    </p>
+    <div *ngIf="users.length > 0" class="w3-responsive">
+        <table class="w3-table w3-striped w3-table-all w3-hoverable">
+            <tr>
+                <th width="5%">ID</th>
+                <th width="20%">Username</th>
+                <th width="25%">Email</th>
+                <th width="25%">Company</th>
+                <th width="5%">Approval</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.company}}</td>
+                <td><i class="fa {{user.isApproved ? 'fa-check-square' : 'fa-square-o'}}"></i></td>
+                <td><a routerLink="/admin-panel/users/edit/{{user.id}}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
 
+    <hr>
+    <button (click)="goBack()" class="w3-button w3-dark-grey">Go Back</button>
+</div>

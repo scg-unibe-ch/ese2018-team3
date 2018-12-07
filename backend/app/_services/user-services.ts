@@ -1,7 +1,7 @@
 import {AdminModel, UserModel} from '../models';
 import {
     InvalidPasswordError,
-    InvalidTokenError,
+    InvalidTokenError, UsernameAlreadyTakenError,
     UserNotApprovedError,
     UserNotFoundError, UserUnauthorizedError,
 } from '../errors';
@@ -160,6 +160,13 @@ export class UserServices {
 	 * @param user the user to be registered
 	 */
 	static async register(user: any): Promise<UserModel> {
+		const double = await UserModel.findOne({
+			where: {
+				username: user.username
+			}
+		});
+		if (double) throw new UsernameAlreadyTakenError();
+
 		const u = new UserModel();
 		u.fromSimplification({
 			'company': user.company,

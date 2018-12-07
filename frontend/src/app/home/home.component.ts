@@ -31,18 +31,19 @@ export class HomeComponent implements OnInit {
         this.loadAllJobs();
     }
 
+    shortenDescription(job: Job) {
+        const length = Math.min(job.description.length - 1, 100);
+        return job.description.substr(0, length);
+    }
+
     private loadAllJobs() {
         this.jobService.getAll().subscribe(jobs => {
 
-          //use jobs.length due to new jobs being added at the end of the array
+            //use jobs.length due to new jobs being added at the end of the array
           if (jobs.length > 3) {
-            this.jobs = jobs.slice(Math.max(jobs.length - 4), jobs.length - 1);
+            this.jobs = jobs.slice(0, 3);
           }
-      })
-    }
 
-    shortenDescription(job: Job) {
-      const length = Math.min(job.description.length-1, 100);
-      return job.description.substr(0, length);
+        })
     }
 }

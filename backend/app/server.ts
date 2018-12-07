@@ -9,7 +9,8 @@ import {
     UserServicesController
 } from './controllers';
 import {Sequelize} from 'sequelize-typescript';
-import {AdminModel, JobModel, UserModel, UserToJobModel} from './models';
+import {AdminModel, JobModel, UserModel} from './models';
+import { jobExamples } from '../test/test';
 
 const sequelize = new Sequelize({
     database: 'development',
@@ -19,7 +20,7 @@ const sequelize = new Sequelize({
     storage: 'db.sqlite'
 });
 
-sequelize.addModels([AdminModel, JobModel, UserModel, UserToJobModel]);
+sequelize.addModels([AdminModel, JobModel, UserModel]);
 
 // create a new express application instance
 const app: express.Application = express();
@@ -64,7 +65,15 @@ sequelize.sync().then(async () => {
         await admin.save();
     } catch (e) {
         console.log('AdminModel user already present\n');
-    }
+	}
+	
+	//from test
+	console.log('Creating examples...');
+	try{
+	 	jobExamples();
+	} catch (e) {
+	 	console.log('Examples already inserted.');
+	}
 
     // start serving the application on the given port
     app.listen(port, () => {

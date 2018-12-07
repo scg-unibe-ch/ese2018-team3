@@ -1,0 +1,20 @@
+<div class="w3-margin">
+    <h2>{{job.name}}</h2>
+    Created: {{job.createdAt | date: "dd.MM.yy"}}
+    <br>
+    Until: {{job.endDate | date: "dd.MM.yy"}}
+    <br>
+    Occupation: {{job.occupation}}
+    <hr>
+    <h3>Description</h3>
+    {{job.description}}
+    <hr>
+
+    <h3>Qualifications</h3>
+    {{job.qualifications}}
+    <hr>
+    <h3>Contact</h3>
+    {{job.contact}}
+    <hr>
+    <button (click)="goBack()" class="w3-button w3-dark-grey">Go Back</button>
+</div>

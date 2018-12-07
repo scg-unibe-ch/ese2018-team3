@@ -3,89 +3,37 @@
 
     <div class="w3-responsive">
         <form>
-                <label>Job Title:</label>
-                <input class="w3-input w3-border" id="title" value="{{job.name}}" type="text">
-                <hr>
-                
-                <!--
-                    Doesn't work
-                -->
-                <label>Until:</label>
-                <input class="w3-input w3-border" id="endDate" value="{{job.endDate | date: dd/MM/yy}}" type="date">
-                <hr>
-
-                <!--
-                    TODO
-                    <label>Occupation:</label>
-                    <input class="w3-input w3-border" id="occupation" placeholder="0 - 100% | 1x / week" type="text">
-                    <hr>
-                -->
-                
-                <label>Description</label>
-                <textarea class="w3-input w3-border" id="description" value="{{job.description}}"
-                          style="resize: none;"></textarea>
-                <hr>
-                <label>Qualifications</label>
-                <textarea class="w3-input w3-border" id="qualifications" value="{{job.qualifications}}"
-                          style="resize: none;"></textarea>
-                <hr>
-                <label>Contact</label>
-                <textarea class="w3-input w3-border" id="contact" value="{{job.contact}}"
-                          style="resize: none;"></textarea>
-                <hr>
-                <label>Approval</label>
-                <input class="w3-input w3-border" id="isApproved" type="checkbox">
-                
-            <!--
-            <table class="w3-table w3-striped w3-table-all">
-                <tr>
-                    <th class="w3-opacity" width="5%">ID</th>
-                    <th width="20%">Name</th>
-                    <th width="25%">Created</th>
-                    <th width="25%">Until</th>
-                    <th width="25%">Description</th>
-                    <th width="5%">Approval</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td class="w3-opacity">{{job.id}}</td>
-                    <td>
-                        <input class="w3-input w3-border" id="name" value="{{job.name}}" type="text">
-                    
-                        <input class="w3-input w3-border" id="endDate" value="{{job.endDate}}" type="date">
-                        <input class="w3-input w3-border" id="description" value="{{job.description}}" type="text">
-                        <input class="w3-input w3-border" id="contact" value="{{job.contact}}" type="text">
-                            <div *ngIf="submitted && invalidUsername()" class="w3-panel w3-red">
-                                invalid username
-                            </div>
-                            
-                        </td>
-                        <td>
-                            <div *ngIf="submitted && invalidEmail()" class="w3-panel w3-red">
-                                Invalid email
-                            </div>
-                        </td>
-                        <td>
-                            <div *ngIf="submitted && invalidCompany()" class="w3-panel w3-red">
-                                Invalid company
-                            </div>
-                        </td>
-                        <td>
-                            <input class="w3-input w3-border" id="isApproved" type="checkbox">
-                        </td>
-                    </td>
-                </tr>
-            </table>
-        -->
+            <label for="title">Job Title:</label>
+            <input class="w3-input w3-border" id="title" type="text" value="{{job.name}}">
+            <hr>
+            <label for="endDate">Until:</label>
+            <input class="w3-input w3-border" id="endDate" type="date" value="{{job.endDate | date: dd/MM/yy}}">
+            <hr>
+            <label for="occupation">Occupation:</label>
+            <input class="w3-input w3-border" id="occupation" placeholder="0 - 100% | 1x / week" type="text">
+            <hr>
+            <label for="description">Description</label>
+            <textarea class="w3-input w3-border" id="description" style="resize: none;"
+                      value="{{job.description}}"></textarea>
+            <hr>
+            <label for="qualifications">Qualifications</label>
+            <textarea class="w3-input w3-border" id="qualifications" style="resize: none;"
+                      value="{{job.qualifications}}"></textarea>
+            <hr>
+            <label for="contact">Contact</label>
+            <textarea class="w3-input w3-border" id="contact" style="resize: none;"
+                      value="{{job.contact}}"></textarea>
+            <hr>
+            <label for="isApproved">Approval</label>
+            <input class="w3-input w3-border" id="isApproved" type="checkbox">
+            <hr>
+            <button (click)="onSubmit()" [disabled]="loading" class="w3-button w3-blue">Submit</button>
+            <img *ngIf="loading" class="pl-3"
+                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+            <button (click)="onReset()" class="w3-margin-left w3-button w3-orange">Reset</button>
+            <button (click)="onDelete()" class="w3-right w3-button w3-red">Delete</button>
         </form>
     </div>
-
-    <br>
-    <button [disabled]="loading" (click)="onSubmit()" class="w3-button w3-blue">Submit</button>
-    <img *ngIf="loading" class="pl-3"
-        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-    <button (click)="onReset()" class="w3-margin-left w3-button w3-orange">Reset</button>
-    <button (click)="onDelete()" class="w3-right w3-button w3-red">Delete</button>
     <hr>
     <button (click)="goBack()" class="w3-button w3-dark-grey">Go Back</button>
 </div>

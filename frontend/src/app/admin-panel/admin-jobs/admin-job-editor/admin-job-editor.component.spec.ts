@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdminJobEditorComponent } from './admin-job-editor.component';
+import {AdminJobEditorComponent} from './admin-job-editor.component';
 
 describe('AdminJobEditorComponent', () => {
-  let component: AdminJobEditorComponent;
-  let fixture: ComponentFixture<AdminJobEditorComponent>;
+    let component: AdminJobEditorComponent;
+    let fixture: ComponentFixture<AdminJobEditorComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AdminJobEditorComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [AdminJobEditorComponent]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AdminJobEditorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AdminJobEditorComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

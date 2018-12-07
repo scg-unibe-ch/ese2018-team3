@@ -12,14 +12,6 @@ export class AutoLogoutService {
 
     loggedIn: string;
 
-    get lastAction() {
-        return parseInt(localStorage.get(KEY_WORD));
-    }
-
-    set lastAction(value) {
-        localStorage.setItem(KEY_WORD, value.toString());
-    }
-
     constructor(
         private alert: AlertService,
         private userService: UserService
@@ -28,6 +20,14 @@ export class AutoLogoutService {
         this.check();
         this.initListener();
         this.initInterval();
+    }
+
+    get lastAction() {
+        return parseInt(localStorage.get(KEY_WORD));
+    }
+
+    set lastAction(value) {
+        localStorage.setItem(KEY_WORD, value.toString());
     }
 
     initListener() {

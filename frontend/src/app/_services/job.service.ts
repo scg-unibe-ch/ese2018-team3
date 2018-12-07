@@ -24,7 +24,7 @@ export class JobService implements OnInit {
     }
 
     update(job: any) {
-        return this.http.put(this.jobsUrl + `${job.id}`, job);
+        return this.http.put(this.jobsUrl + job.id, job);
     }
 
     getAll() {

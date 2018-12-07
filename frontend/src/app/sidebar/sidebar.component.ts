@@ -27,10 +27,10 @@ export class SidebarComponent implements OnInit {
     }
 
     async loadUnapproved() {
-        this.adminService.getAllUnapprovedJobs().subscribe( jobs => {
+        this.adminService.getAllUnapprovedJobs().subscribe(jobs => {
             this.hasUnapprovedJobs = jobs.length > 0;
         });
-        this.adminService.getAllUnapprovedUsers().subscribe( users => {
+        this.adminService.getAllUnapprovedUsers().subscribe(users => {
             this.hasUnapprovedUsers = users.length > 0;
         });
     }

@@ -8,14 +8,12 @@ import {BehaviorSubject, Observable} from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class AdminService {
 
+    public isAdmin: Observable<string>;
     private userServiceUrl: string = 'http://localhost:3000/user-services/';
     private usersUrl: string = 'http://localhost:3000/users/';
     private adminsUrl: string = 'http://localhost:3000/admins/';
     private jobsUrl: string = 'http://localhost:3000/jobs/';
-
-
     private isAdminSubject: BehaviorSubject<string>;
-    public isAdmin: Observable<string>;
 
     constructor(
         private alert: AlertService,
@@ -67,7 +65,7 @@ export class AdminService {
     }
 
     updateJob(job: any) {
-        return this.http.put(this.jobsUrl + `id/${job.id}`, job);
+        return this.http.put(this.jobsUrl + job.id, job);
     }
 
     deleteUser(user: number) {

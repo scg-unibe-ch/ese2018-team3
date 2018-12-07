@@ -3,8 +3,9 @@
     <span class="w3-opacity">Found {{jobs.length}} job postings</span>
     <br>
     <div *ngIf="jobs.length > 0">
-        <ul  *ngFor="let job of jobs" class="w3-ul">
-            <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">
+        <ul *ngFor="let job of jobs" class="w3-ul">
+            <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button"
+                routerLink="/jobs/{{job.id}}">
                 <div class="w3-bar-item">
                     <span class="w3-large w3-left">{{job.name}}</span>
                     <br>

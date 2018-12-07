@@ -35,8 +35,6 @@ export class JobService implements OnInit {
         return this.http.get(this.jobsUrl + `id/${id}`);
     }
 
-    //TODO Check if this is a correct call, it seems to not match any jobs the way we're searching
-    // Above To-Do inserted by Brian
     getFromCurrentUser() {
         return this.http.get<Job[]>(this.jobsUrl + `current-user`);
     }

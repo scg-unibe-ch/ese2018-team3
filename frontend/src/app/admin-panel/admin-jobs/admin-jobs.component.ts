@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Job} from 'src/app/_models';
+import {Job, User} from 'src/app/_models';
 import {AdminService} from 'src/app/_services';
 import {Location} from '@angular/common';
 
@@ -11,6 +11,7 @@ import {Location} from '@angular/common';
 export class AdminJobsComponent implements OnInit {
 
     jobs: Job[];
+    user: any;
 
     constructor(
         private adminService: AdminService,
@@ -20,6 +21,7 @@ export class AdminJobsComponent implements OnInit {
 
     ngOnInit() {
         this.jobs = [];
+        this.user = null;
         this.loadAllJobs()
     }
 
@@ -32,6 +34,12 @@ export class AdminJobsComponent implements OnInit {
         let d = job.description.substr(0, length);
         if (job.description.length > 25) d += '...';
         return d;
+    }
+
+    loadUser(userId: number) {
+        this.adminService.getUser(userId).subscribe(user => {
+            this.user = user;
+        });
     }
 
     private loadAllJobs() {

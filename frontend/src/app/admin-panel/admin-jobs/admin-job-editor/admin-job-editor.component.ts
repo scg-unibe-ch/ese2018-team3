@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Job} from 'src/app/_models';
+import {Job, User} from 'src/app/_models';
 import {AdminService, AlertService} from 'src/app/_services';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
@@ -12,6 +12,7 @@ import {Location} from '@angular/common';
 export class AdminJobEditorComponent implements OnInit {
 
     job: Job;
+    user: any;
     loading = false;
     submitted = false;
 
@@ -28,6 +29,7 @@ export class AdminJobEditorComponent implements OnInit {
             (job: Job) => {
                 if (!job) this.alert.error('Backend error');
                 this.job = job;
+                this.user = this.aService.getUser(job.userId);
                 this.onReset();
             },
             err => {
@@ -48,12 +50,19 @@ export class AdminJobEditorComponent implements OnInit {
 
         this.loading = true;
 
-        this.job.name = this.get('title').value;
+        this.job.title = this.get('title').value;
         this.job.description = this.get('description').value;
+        this.job.createdAt = this.get('createdAt').valueAsDate;
+        this.job.updatedAt = new Date();
         this.job.endDate = this.get('endDate').valueAsDate;
-        this.job.isApproved = this.get('isApproved').checked;
-        this.job.contact = this.get('contact').value;
+        this.job.start = this.get('start').valueAsDate;
+        this.job.occupation = this.get('occupation').value;
         this.job.qualifications = this.get('qualifications').value;
+        this.job.remarks = this.get('remarks').value;
+        this.job.salary = this.get('salary').value;
+        this.job.contact = this.get('contact').value;
+        this.job.isApproved = this.get('isApproved').checked;
+        this.job.hasChanged = true;
 
         this.aService.updateJob(this.job).subscribe(
             () => {
@@ -68,13 +77,19 @@ export class AdminJobEditorComponent implements OnInit {
     }
 
     onReset() {
-        this.get('title').value = this.job.name;
-        this.get('endDate').valueAsDate = new Date(this.job.endDate);
-        this.get('occupation').value = this.job.occupation;
+        this.get('title').value = this.job.title;
         this.get('description').value = this.job.description;
-        this.get('isApproved').checked = this.job.isApproved;
+        this.get('createdAt').valueAsDate = new Date(this.job.createdAt);
+        this.get('updatedAt').valueAsDate = new Date(this.job.updatedAt);
+        this.get('endDate').valueAsDate = new Date(this.job.endDate);
+        this.get('start').valueAsDate = new Date(this.job.start);
+        this.get('occupation').value = this.job.occupation;
         this.get('qualifications').value = this.job.qualifications;
+        this.get('remarks').value = this.job.remarks;
+        this.get('salary').value = this.job.salary;
         this.get('contact').value = this.job.contact;
+        this.get('isApproved').checked = this.job.isApproved;
+        this.get('hasChanged').checked = this.job.hasChanged;
     }
 
     onDelete() {

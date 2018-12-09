@@ -1,8 +1,7 @@
 <div class="w3-margin">
     <h2>My Job Postings</h2>
     <p class="w3-opacity">Found {{jobs.length}} job postings</p>
-    <br>
-    <div *ngIf="jobs.length > 0">
+
         <ul *ngFor="let job of jobs" class="w3-ul">
             <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button"
                 routerLink="/jobs/{{job.id}}">
@@ -13,5 +12,4 @@
                 </div>
             </li>
         </ul>
-    </div>
 </div>

@@ -11,14 +11,12 @@ import {JobService} from '../../_services';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  input = '';
   private searchTerms = new Subject<string>();
+  job: Job[];
   job$: Observable<Job[]>;
 
   constructor(
-    private router: Router,
     private jobService: JobService) {
-    this.input = window.location.pathname.substr(8);
   }
 
   // Push a search term into the observable stream.
@@ -35,9 +33,10 @@ export class SearchBarComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.jobService.searchJobs(term)),
+      switchMap((searchTerm: string) => this.jobService.searchJobs(searchTerm)),
     );
   }
+
 
 
 }

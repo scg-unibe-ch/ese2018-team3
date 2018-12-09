@@ -21,3 +21,17 @@
 
 
 </div>
+
+<div id="search-component">
+  <h4>Job Search</h4>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li *ngFor="let job of job$ | async" >
+      <a routerLink="/jobs/{{job.id}}">
+        {{job.title}}
+      </a>
+    </li>
+  </ul>
+</div>

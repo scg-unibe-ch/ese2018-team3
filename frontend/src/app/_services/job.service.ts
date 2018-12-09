@@ -11,6 +11,8 @@ import {Observable, of} from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class JobService implements OnInit {
 
+
+
     private jobsUrl: string = 'http://localhost:3000/jobs/';
 
     constructor(
@@ -29,16 +31,7 @@ export class JobService implements OnInit {
         return this.http.put(this.jobsUrl + job.id, job);
     }
 
-    /* GET Jobs whose name contains search term */
-    searchJobs(term: string): Observable<Job[]> {
-      if (!term.trim()) {
-        // if not search term, return empty job array.
-        return of([]);
-      }
-      return this.http.get<Job[]>(`${this.jobsUrl}/?name=${term}`)
 
-      //  tap(_ => this.log(`found heroes matching "${term}"`)), catchError(this.handleError<Job[]>('searchHeroes', []))
-    }
 
     getAll() {
         return this.http.get<Job[]>(this.jobsUrl);
@@ -60,5 +53,17 @@ export class JobService implements OnInit {
         return this.http.get(this.jobsUrl + `company/${company}`);
     }
 
+    getByTitle (title: string) {
+      return this.http.get(this.jobsUrl + `title/${title}`);
+    }
+
+    /* GET Jobs whose title contains the search term */
+    searchJobs(title: string): Observable<Job[]> {
+      if (!title.trim()) {
+        // if not search term, return empty job array.
+        return of([]);
+      }
+      return this.http.get<Job[]>(this.jobsUrl + `title`);
+  }
 
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {Job} from '../../_models';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import {JobService} from '../../_services';
+import {AlertService, JobService} from '../../_services';
+import {sha256} from 'js-sha256';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,30 +12,38 @@ import {JobService} from '../../_services';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  private searchTerms = new Subject<string>();
-  job: Job[];
-  job$: Observable<Job[]>;
+  loading = false;
+  searched = false;
+  returnUrl: string;
+  jobs: Job[] = [];
 
   constructor(
-    private jobService: JobService) {
+    private route: ActivatedRoute,
+    private router: Router,
+    private jobService: JobService,
+    private alertService: AlertService) {
   }
 
-  // Push a search term into the observable stream.
-  search(searchTerm: string): void {
-    this.searchTerms.next(searchTerm);
+  onSearch() {
+    this.searched = true;
+    if (this.invalidForm()) return;
+    this.loading = true;
+    this.jobService.searchJobs(this.get('searchTerm').value)
+    console.log( 'Found \'' + this.jobs.length + '\'');
   }
 
+
+  private invalidForm(): boolean {
+    return this.invalidSearchTerm();
+  }
+  invalidSearchTerm(): boolean {
+    return this.get('searchTerm').value.length === 0;
+  }
+  // helper method
+  private get(id: string) {
+    return (<HTMLInputElement>document.getElementById(id));
+  }
   ngOnInit(): void {
-    this.job$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
-
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-
-      // switch to new search observable each time the term changes
-      switchMap((searchTerm: string) => this.jobService.searchJobs(searchTerm)),
-    );
   }
 
 

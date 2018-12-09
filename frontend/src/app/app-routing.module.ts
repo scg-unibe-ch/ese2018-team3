@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from '@angular/router';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 import {HomeComponent} from './home';
 import {AboutComponent} from './about/about.component';
@@ -46,11 +46,14 @@ const routes: Routes = [
     {path: 'admin-panel/jobs', component: AdminJobsComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/jobs/edit/:id', component: AdminJobEditorComponent, canActivate: [AuthGuard, AdminAuthGuard]},
 
-    //{path: 'job/new', component: ProfilNewJobComponent},
-    //{path: 'profil', component: JobManagementComponent},
+    //{path: 'job/new', component: ProfileNewJobComponent},
+    //{path: 'profile', component: JobManagementComponent},
 
     // otherwise redirect to home
     {path: '**', redirectTo: '/home'}
 ];
 
-export const AppRoutingModule = RouterModule.forRoot(routes);
+export const AppRoutingModule = RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules,
+    initialNavigation: 'enabled'
+});

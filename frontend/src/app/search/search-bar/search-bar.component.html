@@ -1,0 +1,15 @@
+<div>
+  <div class="search-bar">
+
+    <input
+      id="searchBox"
+      placeholder="Find what you're looking for"
+      [(ngModel)]="input"
+      (keyup.enter)="onButtonClicked()"
+      size="50">
+
+    <button id="searchButton" (click)="search()" class="w3-button w3-dark-grey" >
+    </button>
+
+  </div>
+</div>

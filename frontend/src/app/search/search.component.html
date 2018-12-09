@@ -1,0 +1,9 @@
+<p>
+  <!--<app-search-bar></app-search-bar>-->
+</p>
+
+<div *ngFor="let job of jobs">
+  <a *ngIf="job" routerLink="/jobs/{{job.id}}">
+    <!--{{job.name}}-->
+  </a>
+</div>

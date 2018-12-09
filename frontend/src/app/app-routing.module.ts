@@ -20,6 +20,9 @@ import {JobsUnapprovedComponent} from './admin-panel/jobs-unapproved';
 import {AdminAuthGuard} from './_guards/admin-auth.guard';
 import {AdminJobsComponent} from './admin-panel/admin-jobs/admin-jobs.component';
 import {AdminJobEditorComponent} from './admin-panel/admin-jobs/admin-job-editor/admin-job-editor.component';
+import {SearchComponent} from './search/search.component';
+import {SearchingComponent} from './search/searching/searching.component';
+import {SearchBarComponent} from './search/search-bar/search-bar.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -28,6 +31,9 @@ const routes: Routes = [
 
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
+
+    { path: 'search/:text', component: SearchComponent },
+    { path: 'demand/:text', component: SearchingComponent },
 
     {path: 'jobs', component: JobOffersComponent},
     {path: 'jobs/:id', component: JobDetailComponent},

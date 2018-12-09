@@ -22,10 +22,10 @@ export class JobsUnapprovedComponent implements OnInit {
     }
 
     shortenDescription(job: Job) {
-        const length = Math.min(job.description.length - 1, 100);
-        let desc = job.description.substr(0, length);
-        if (job.description.length > 100) desc += '...';
-        return desc;
+        const length = Math.min(job.description.length - 1, 50);
+        let d = job.description.substr(0, length);
+        if (job.description.length > 50) d += '...';
+        return d;
     }
 
     private loadAllJobs() {

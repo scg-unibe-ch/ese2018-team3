@@ -4,18 +4,27 @@
         Found {{jobs.length}} unapproved job postings.
         <span *ngIf="jobs.length == 0">Good job!</span>
     </p>
-    <br>
-    <div *ngIf="jobs.length > 0">
-        <ul *ngFor="let job of jobs" class="w3-ul">
-            <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button"
-                routerLink="/jobs/{{job.id}}">
-                <div class="w3-bar-item">
-                    <span class="w3-large w3-left">{{job.title}}</span>
-                    <br>
-                    <span class="w3-left">{{shortenDescription(job)}}</span>
-                </div>
-            </li>
-        </ul>
+    <div *ngIf="jobs.length > 0" class="w3-responsive">
+        <table class="w3-table w3-striped w3-table-all w3-hoverable">
+            <tr>
+                <th width="5%">ID</th>
+                <th width="20%">Title</th>
+                <th width="10%">Created</th>
+                <th width="10%">Until</th>
+                <th width="45%">Description</th>
+                <th width="5%">Approval</th>
+                <th width="5%"></th>
+            </tr>
+            <tr *ngFor="let job of jobs">
+                <td>{{job.id}}</td>
+                <td>{{job.title}}</td>
+                <td>{{job.createdAt | date: 'dd/MM/yy'}}</td>
+                <td>{{job.endDate | date: 'dd/MM/yy'}}</td>
+                <td>{{shortenDescription(job)}}</td>
+                <td><i class="fa {{job.isApproved ? 'fa-check-square' : 'fa-square-o'}}"></i></td>
+                <td><a routerLink="/admin-panel/jobs/edit/{{job.id}}">Edit</a></td>
+            </tr>
+        </table>
     </div>
 </div>
 

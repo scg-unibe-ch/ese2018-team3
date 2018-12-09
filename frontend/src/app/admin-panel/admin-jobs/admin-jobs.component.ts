@@ -30,9 +30,9 @@ export class AdminJobsComponent implements OnInit {
     }
 
     shortenDescription(job: Job) {
-        const length = Math.min(job.description.length - 1, 25);
+        const length = Math.min(job.description.length - 1, 50);
         let d = job.description.substr(0, length);
-        if (job.description.length > 25) d += '...';
+        if (job.description.length > 50) d += '...';
         return d;
     }
 

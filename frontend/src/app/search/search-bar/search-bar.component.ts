@@ -20,8 +20,7 @@ export class SearchBarComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private jobService: JobService,
-    private alertService: AlertService) {
+    private jobService: JobService) {
   }
 
   onSearch() {

@@ -20,7 +20,4 @@ export class SearchBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  onButtonClicked() {
-    //TODO Insert Actual Method (Added by Brian)
-  }
 }

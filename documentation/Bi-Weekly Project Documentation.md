@@ -28,9 +28,9 @@
 * Issues: Controllers are a hassle! And Services take a lot of reading into to understand. 
 
 # **Week #10-11**
-* Done: 
-* Tentative Tasks: 
-* Issues:
+* Done: Usability Survey, UI Overhaul, Clean-Up and Special Feature Brainstorming
+* Tentative Tasks: Implementing special feature, Search Function?, Getting rid of "double request sent" issue.
+* Issues: Double requests sent by many actions, Admin Panel only shown on reload, side-bar disappears if the window is too small -> how to get it back?
 
 # **Week #12-13**
 * Done: 

@@ -59,10 +59,6 @@ export class JobService implements OnInit {
 
     /* GET Jobs whose title contains the search term */
     searchJobs(title: string): Observable<Job[]> {
-      if (title.replace('\s', '').length == 0) {
-        // if not search term, return empty job array.
-        return of([]);
-      }
       return this.http.get<Job[]>(this.jobsUrl + `search/${title}`);
   }
 

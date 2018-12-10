@@ -1,8 +1,6 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Job} from '../_models';
-import {catchError, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
 
 /**
  * The job service contains a standard set of CRUD methods for managing users.
@@ -10,7 +8,6 @@ import {Observable, of} from 'rxjs';
  */
 @Injectable({providedIn: 'root'})
 export class JobService implements OnInit {
-
 
 
     private jobsUrl: string = 'http://localhost:3000/jobs/';
@@ -30,8 +27,6 @@ export class JobService implements OnInit {
     update(job: any) {
         return this.http.put(this.jobsUrl + job.id, job);
     }
-
-
 
     getAll() {
         return this.http.get<Job[]>(this.jobsUrl);
@@ -53,8 +48,8 @@ export class JobService implements OnInit {
         return this.http.get(this.jobsUrl + `company/${company}`);
     }
 
-    getByTitle (title: string) {
-      return this.http.get(this.jobsUrl + `title/${title}`);
+    getByTitle(title: string) {
+        return this.http.get(this.jobsUrl + `title/${title}`);
     }
 
     search(query: any) {
@@ -62,8 +57,7 @@ export class JobService implements OnInit {
     }
 
     /* GET Jobs whose title contains the search term */
-    searchJobs(title: string): Observable<Job[]> {
-      return this.http.get<Job[]>(this.jobsUrl + `search/${title}`);
-  }
-
+    searchJobs(title: string) {
+        return this.http.get<Job[]>(this.jobsUrl + `search/${title}`);
+    }
 }

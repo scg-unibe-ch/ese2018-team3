@@ -119,6 +119,47 @@ router.get('/company/:company', async (req: Request, res: Response) => {
     res.send(instances.map(e => e.toSimplification()));
 });
 
+router.post('/search', async (req: Request, res: Response) => {
+    function like(s: string | undefined) {
+        if (!s) return '%';
+        return '%' + s + '%';
+    }
+
+    const query = req.body;
+
+    const Op = Sequelize.Op;
+    const instances = await JobModel.findAll({
+        where: {
+            [Op.or]: [{
+                title: {
+                    [Op.like]: like(query.title)
+                },
+                description: {
+                    [Op.like]: like(query.description)
+                },
+                occupation: {
+                    [Op.like]: like(query.occupation)
+                },
+                qualifications: {
+                    [Op.like]: like(query.qualifications)
+                },
+                remarks: {
+                    [Op.like]: like(query.remarks)
+                },
+                salary: {
+                    [Op.like]: like(query.salary)
+                },
+                contact: {
+                    [Op.like]: like(query.contact)
+                }
+            }]
+        }
+    });
+
+    res.statusCode = 200;
+    res.send(instances.map(e => e.toSimplification()));
+});
+
 router.get('/search/:title', async (req: Request, res: Response) => {
     const Op = Sequelize.Op;
     const instances = await JobModel.findAll({

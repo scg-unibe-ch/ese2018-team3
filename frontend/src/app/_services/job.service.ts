@@ -57,6 +57,10 @@ export class JobService implements OnInit {
       return this.http.get(this.jobsUrl + `title/${title}`);
     }
 
+    search(query: any) {
+        return this.http.post<Job[]>(this.jobsUrl + 'search', query);
+    }
+
     /* GET Jobs whose title contains the search term */
     searchJobs(title: string): Observable<Job[]> {
       return this.http.get<Job[]>(this.jobsUrl + `search/${title}`);

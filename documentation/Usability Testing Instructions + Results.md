@@ -9,9 +9,9 @@ Methods used to support the Usability Test
 Think-Aloud (voice recording) and the above mentioned short surveys (via Google Surveys)
 
 *Review of Usability Survey:
-Tom Survey Result:
-Company Survey Result:
-Admin Survey Result:
+Tom Survey Result: can be viewed above on the 'responses' tab or as PDF in another file
+Company Survey Result: can be viewed above on the 'responses' tab or as PDF in another file
+Admin Survey Result: can be viewed above on the 'responses' tab or as PDF in another file
 
 Generally Think-Aloud was a lot less useful than we imagined. Too much background noise to be usable (other Rooms were full so we stayed in the lecture room)
 Surveys were short, but could have been a little shorter - the best feedback was given orally when asking direct questions, so this may be a better approach when only having a few testees.

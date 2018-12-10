@@ -2,6 +2,7 @@ import {Request, Response, Router} from 'express';
 import {JobModel, UserModel} from '../models';
 import {UserServices} from '../_services';
 import {InvalidTokenError, UserNotFoundError, UserNotLoggedInError, UserUnauthorizedError} from '../errors';
+import {Sequelize} from 'sequelize-typescript';
 
 const router: Router = Router();
 
@@ -111,6 +112,20 @@ router.get('/company/:company', async (req: Request, res: Response) => {
     const instances = await JobModel.findAll({
         where: {
             userId: users.map(e => e.id)
+        }
+    });
+
+    res.statusCode = 200;
+    res.send(instances.map(e => e.toSimplification()));
+});
+
+router.get('/search/:title', async (req: Request, res: Response) => {
+    const Op = Sequelize.Op;
+    const instances = await JobModel.findAll({
+        where: {
+            title: {
+                [Op.like] : '%' + req.params.title + '%'
+            }
         }
     });
 

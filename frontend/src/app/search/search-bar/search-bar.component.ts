@@ -39,7 +39,6 @@ export class SearchBarComponent implements OnInit {
   invalidSearchTerm(): boolean {
     const search = this.get('searchTerm').value;
     const s = search.trim();
-    console.log(search.length + '\t' + s.length);;
     return search.length == 0 || s.length == 0;
   }
   // helper method

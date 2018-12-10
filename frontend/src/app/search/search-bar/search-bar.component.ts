@@ -35,8 +35,12 @@ export class SearchBarComponent implements OnInit {
   private invalidForm(): boolean {
     return this.invalidSearchTerm();
   }
+
   invalidSearchTerm(): boolean {
-    return this.get('searchTerm').value.length === 0;
+    const search = this.get('searchTerm').value;
+    const s = search.trim();
+    console.log(search.length + '\t' + s.length);;
+    return search.length == 0 || s.length == 0;
   }
   // helper method
   private get(id: string) {

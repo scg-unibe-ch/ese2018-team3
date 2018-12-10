@@ -32,7 +32,7 @@ router.post('/', async (req: Request, res: Response) => {
             res.send(instance.toSimplification());
         })
         .catch(err => {
-            const lg = genLog() + 'auth: ';
+            const lg = genLog() + 'auth (post): ';
             switch (err.name) {
                 case UserNotFoundError.name:
                     console.log(lg + 'user not found: \'' + req.body.username + '\'');
@@ -161,6 +161,7 @@ router.post('/search', async (req: Request, res: Response) => {
 });
 
 router.get('/search/:title', async (req: Request, res: Response) => {
+    console.log('Retrieving jobs with title: ' + req.params.title);
     const Op = Sequelize.Op;
     const instances = await JobModel.findAll({
         where: {
@@ -187,7 +188,7 @@ router.get('/current-user', async (req: Request, res: Response) => {
             res.send(instances.map(e => e.toSimplification()));
         })
         .catch(err => {
-            const lg = genLog() + 'auth: ';
+            const lg = genLog() + 'auth (current-user): ';
             switch (err.name) {
                 case UserNotFoundError.name:
                     console.log(lg + 'user not found: \'' + req.body.username + '\'');
@@ -229,7 +230,7 @@ router.get('/unapproved', async (req: Request, res: Response) => {
             res.send(instances.map(e => e.toSimplification()));
         })
         .catch(err => {
-            const lg = genLog() + 'auth: ';
+            const lg = genLog() + 'auth (unapproved): ';
             switch (err.name) {
                 case UserNotFoundError.name:
                     console.log(lg + 'user not found: \'' + req.body.username + '\'');
@@ -286,7 +287,7 @@ router.put('/:id', async (req: Request, res: Response) => {
             res.send(instance.toSimplification());
         })
         .catch(err => {
-            const lg = genLog() + 'auth: ';
+            const lg = genLog() + 'auth (put): ';
             switch (err.name) {
                 case UserNotFoundError.name:
                     console.log(lg + 'user not found: \'' + req.body.username + '\'');
@@ -330,7 +331,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
             res.send();
         })
         .catch(err => {
-            const lg = genLog() + 'auth: ';
+            const lg = genLog() + 'auth (delete): ';
             switch (err.name) {
                 case UserNotFoundError.name:
                     console.log(lg + 'user not found: \'' + req.body.username + '\'');

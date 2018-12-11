@@ -16,7 +16,9 @@ export class SearchBarComponent implements OnInit {
   loading = false;
   searched = false;
   returnUrl: string;
+  searchTerm: string;
   jobsId: Job[] = [];
+
 
   constructor(
     private route: ActivatedRoute,
@@ -52,7 +54,5 @@ export class SearchBarComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
-
 
 }

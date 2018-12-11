@@ -36,11 +36,6 @@ export class UserEditComponent implements OnInit {
             });
     }
 
-    // helper method
-    private getElementById(id: string) {
-        return (<HTMLInputElement>document.getElementById(id));
-    }
-
     onSubmit() {
         this.submitted = true;
 
@@ -76,21 +71,17 @@ export class UserEditComponent implements OnInit {
         if (confirm('Are you really sure to delete this user?')) {
             this.adminService.deleteUser(this.user.id)
                 .subscribe(() => {
-                    this.alert.success('Successfully deleted user', true);
-                    this.goBack();
-                },
-                err => {
-                    this.alert.error(err);
-                });
+                        this.alert.success('Successfully deleted user', true);
+                        this.goBack();
+                    },
+                    err => {
+                        this.alert.error(err);
+                    });
         }
     }
 
     goBack(): void {
         this.location.back();
-    }
-
-    private invalidForm(): boolean {
-        return this.invalidUsername() || this.invalidEmail() || this.invalidCompany();
     }
 
     invalidUsername(): boolean {
@@ -103,5 +94,14 @@ export class UserEditComponent implements OnInit {
 
     invalidCompany(): boolean {
         return this.getElementById('company').value.length === 0;
+    }
+
+    // helper method
+    private getElementById(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
+    }
+
+    private invalidForm(): boolean {
+        return this.invalidUsername() || this.invalidEmail() || this.invalidCompany();
     }
 }

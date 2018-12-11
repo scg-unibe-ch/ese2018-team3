@@ -15,45 +15,60 @@ import {HomeComponent} from './home';
 import {AlertComponent} from './_components';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {AdComponent} from './ad/ad.component';
-import {AdminPanelComponent} from './admin-panel/admin-panel.component';
-import {UsersPanelComponent} from './admin-panel/users-panel';
-import {UserEditComponent} from './admin-panel/users-panel/user-editor';
+import {
+    AdminJobEditorComponent,
+    AdminJobsComponent,
+    AdminPanelComponent,
+    JobsChangedComponent,
+    JobsUnapprovedComponent,
+    UsersPanelComponent,
+    UsersUnapprovedComponent
+} from './admin-panel';
+import {UserEditComponent} from './admin-panel/admin-users-panel/user-editor';
 import {JobDetailComponent} from './job-offers/job-detail';
 import {JobCreatorComponent} from './job-offers/job-creator';
-import {UsersUnapprovedComponent} from './admin-panel/users-panel/users-unapproved';
 import {MyJobsPanelComponent} from './job-offers/my-jobs-panel/my-jobs-panel.component';
 import {NavbarComponent} from './navbar';
 import {SidebarComponent} from './sidebar';
 import {FooterComponent} from './footer/footer.component';
-import {JobsUnapprovedComponent} from './admin-panel/jobs-unapproved';
-import {AdminJobsComponent} from './admin-panel/admin-jobs/admin-jobs.component';
-import {AdminJobEditorComponent} from './admin-panel/admin-jobs/admin-job-editor/admin-job-editor.component'
+import {ErrorsComponent} from './_errors/errors.component';
+import { SearchComponent } from './search/search.component';
+import { SearchBarComponent } from './search/search-bar/search-bar.component';
+
 
 // @ts-ignore
 @NgModule({
     declarations: [
-        AlertComponent,
         AboutComponent,
-        AppComponent,
-        AlertComponent,
-        HomeComponent,
-        JobOffersComponent,
-        LoginComponent,
-        RegisterComponent,
         AdComponent,
+        AdminJobEditorComponent,
+        AdminJobsComponent,
         AdminPanelComponent,
-        UsersPanelComponent,
-        UserEditComponent,
-        JobDetailComponent,
+        AlertComponent,
+        AlertComponent,
+        AppComponent,
+        ErrorsComponent,
+        FooterComponent,
+        HomeComponent,
         JobCreatorComponent,
-        UsersUnapprovedComponent,
+        JobDetailComponent,
+        JobOffersComponent,
+        JobsChangedComponent,
+        JobsUnapprovedComponent,
+        LoginComponent,
         MyJobsPanelComponent,
         NavbarComponent,
+        RegisterComponent,
         SidebarComponent,
+        UserEditComponent,
+        UsersPanelComponent,
+        UsersUnapprovedComponent,
         FooterComponent,
         JobsUnapprovedComponent,
         AdminJobsComponent,
-        AdminJobEditorComponent
+        AdminJobEditorComponent,
+        SearchComponent,
+        SearchBarComponent
     ],
     imports: [
         BrowserModule,

@@ -9,6 +9,7 @@ import {Job} from '../_models';
 @Injectable({providedIn: 'root'})
 export class JobService implements OnInit {
 
+
     private jobsUrl: string = 'http://localhost:3000/jobs/';
 
     constructor(
@@ -24,7 +25,7 @@ export class JobService implements OnInit {
     }
 
     update(job: any) {
-        return this.http.put(this.jobsUrl + `${job.id}`, job);
+        return this.http.put(this.jobsUrl + job.id, job);
     }
 
     getAll() {
@@ -35,8 +36,6 @@ export class JobService implements OnInit {
         return this.http.get(this.jobsUrl + `id/${id}`);
     }
 
-    //TODO Check if this is a correct call, it seems to not match any jobs the way we're searching
-    // Above To-Do inserted by Brian
     getFromCurrentUser() {
         return this.http.get<Job[]>(this.jobsUrl + `current-user`);
     }
@@ -47,5 +46,18 @@ export class JobService implements OnInit {
 
     getByCompany(company: string) {
         return this.http.get(this.jobsUrl + `company/${company}`);
+    }
+
+    getByTitle(title: string) {
+        return this.http.get(this.jobsUrl + `title/${title}`);
+    }
+
+    search(query: any) {
+        return this.http.post<Job[]>(this.jobsUrl + 'search', query);
+    }
+
+    /* GET Jobs whose title contains the search term */
+    searchJobs(title: string) {
+        return this.http.get<Job[]>(this.jobsUrl + `search/${title}`);
     }
 }

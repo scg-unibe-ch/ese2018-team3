@@ -12,7 +12,6 @@ import {ThemeService} from '../_services/theme.service';
 export class NavbarComponent implements OnInit {
 
     loggedIn: string;
-    isAdmin: boolean;
 
     constructor(
         private adminService: AdminService,

@@ -28,12 +28,15 @@ export class JobCreatorComponent implements OnInit {
 
         this.loading = true;
         let job = {
-            'name': (<HTMLInputElement>document.getElementById('title')).value,
+            'title': (<HTMLInputElement>document.getElementById('title')).value,
+            'description': (<HTMLInputElement>document.getElementById('description')).value,
+            'start': (<HTMLInputElement>document.getElementById('start')).value,
             'endDate': (<HTMLInputElement>document.getElementById('endDate')).value,
             'occupation': (<HTMLInputElement>document.getElementById('occupation')).value,
-            'description': (<HTMLInputElement>document.getElementById('description')).value,
             'qualifications': (<HTMLInputElement>document.getElementById('qualifications')).value,
-            'contact': (<HTMLInputElement>document.getElementById('contact')).value
+            'remarks': (<HTMLInputElement>document.getElementById('remarks')).value,
+            'salary': (<HTMLInputElement>document.getElementById('salary')).value,
+            'contact': (<HTMLInputElement>document.getElementById('contact')).value,
         };
 
         this.jobService.save(job).subscribe(

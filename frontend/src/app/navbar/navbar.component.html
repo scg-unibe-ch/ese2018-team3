@@ -3,12 +3,14 @@
         <div class="w3-bar w3-left" style="width: 100%; overflow: hidden; height: 44px">
             <a class="w3-bar-item w3-button active" routerLink="/home"><i class="fa fa-home fa-2x"></i></a>
             <a class="w3-bar-item w3-button" routerLink="/jobs"><i class="fa fa-clipboard-list"></i> Job Offers</a>
+            <a class="w3-bar-item w3-button" routerLink="/search"><i class="fa fa-clipboard-list"></i> Find a Job</a>
             <a *ngIf="loggedIn" class="w3-bar-item w3-button" routerLink="/my-jobs-panel">My Jobs</a>
             <a (click)="switchTheme()" class="w3-bar-item w3-button w3-right " id="nightThemeButton"><i class="fa fa-lightbulb-o fa-2x"></i>
             </a>
             <a *ngIf="!loggedIn" class="w3-bar-item w3-button w3-right" routerLink="/register">Register</a>
             <a *ngIf="!loggedIn" class="w3-bar-item w3-button w3-right" routerLink="/login">Login</a>
             <a (click)="logout()" *ngIf="loggedIn" class="w3-bar-item w3-button w3-right">Logout</a>
+            <a class="w3-bar-item w3-right"><app-search-bar></app-search-bar></a>
         </div>
     </div>
 </div>

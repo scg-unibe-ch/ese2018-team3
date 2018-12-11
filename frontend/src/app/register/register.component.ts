@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {sha256} from 'js-sha256';
 
 import {AlertService, UserService} from '../_services';
-import {invalid} from '@angular/compiler/src/render3/view/util';
 
 /**
  * The register component vreates a new user with the user service when the register form is submitted.
@@ -39,11 +37,6 @@ export class RegisterComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    // helper method
-    private get(id: string) {
-        return (<HTMLInputElement>document.getElementById(id));
-    }
-
     onSubmit() {
         this.submitted = true;
 
@@ -76,14 +69,6 @@ export class RegisterComponent implements OnInit {
             });
     }
 
-    private invalidForm(): boolean {
-        return this.invalidUsername()
-            || this.invalidEmail()
-            || this.invalidCompany()
-            || this.invalidPassword()
-            || this.invalidPasswordMatch();
-    }
-
     invalidUsername(): boolean {
         return this.get('username').value.length === 0;
     }
@@ -102,6 +87,19 @@ export class RegisterComponent implements OnInit {
 
     invalidPasswordMatch(): boolean {
         return this.get('password2').value !== this.get('password').value;
+    }
+
+    // helper method
+    private get(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
+    }
+
+    private invalidForm(): boolean {
+        return this.invalidUsername()
+            || this.invalidEmail()
+            || this.invalidCompany()
+            || this.invalidPassword()
+            || this.invalidPasswordMatch();
     }
 
 }

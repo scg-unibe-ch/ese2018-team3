@@ -15,23 +15,23 @@
                 <tr>
                     <td class="w3-opacity">{{user.id}}</td>
                     <td>
-                        <input class="w3-input w3-border" id="username" value="{{user.username}}" type="text">
+                        <input class="w3-input w3-border" id="username" type="text" value="{{user.username}}">
                         <div *ngIf="submitted && invalidUsername()" class="w3-panel w3-red">
                             invalid username
                         </div>
                     </td>
                     <td>
-                        <input class="w3-input w3-border" id="email" value="{{user.email}}" type="email">
+                        <input class="w3-input w3-border" id="email" type="email" value="{{user.email}}">
                         <div *ngIf="submitted && invalidEmail()" class="w3-panel w3-red">
                             Invalid email
                         </div>
-                     </td>
+                    </td>
                     <td>
-                        <input class="w3-input w3-border" id="company" value="{{user.company}}" type="email">
+                        <input class="w3-input w3-border" id="company" type="email" value="{{user.company}}">
                         <div *ngIf="submitted && invalidCompany()" class="w3-panel w3-red">
                             Invalid company
                         </div>
-                     </td>
+                    </td>
                     <td>
                         <input class="w3-input w3-border" id="isApproved" type="checkbox">
                     </td>
@@ -42,7 +42,7 @@
     </div>
 
     <br>
-    <button [disabled]="loading" (click)="onSubmit()" class="w3-button w3-blue">Submit</button>
+    <button (click)="onSubmit()" [disabled]="loading" class="w3-button w3-blue">Submit</button>
     <img *ngIf="loading" class="pl-3"
          src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
     <button (click)="onReset()" class="w3-margin-left w3-button w3-orange">Reset</button>

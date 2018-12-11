@@ -13,7 +13,6 @@ export class AppComponent {
 
     currentUser: string;
     title = 'Job For You';
-    shortTitle = 'J4Y';
     baseUrl = environment.baseUrl;
 
     constructor(
@@ -21,7 +20,7 @@ export class AppComponent {
         private userService: UserService
     ) {
         this.userService.currentUser.subscribe(x => this.currentUser = x);
-        // this.baseUrl = environment.baseUrl;
+        // this.baseUrl = environment.baseUrl; used for HerokuDeployment -> change to HerokuURL
     }
 
     logout() {

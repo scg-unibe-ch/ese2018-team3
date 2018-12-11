@@ -33,9 +33,6 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
 
-    { path: 'search/:text', component: SearchComponent },
-    { path: 'demand/:text', component: SearchingComponent },
-
     {path: 'jobs', component: JobOffersComponent},
     {path: 'jobs/:id', component: JobDetailComponent},
     {path: 'job-creator', component: JobCreatorComponent, canActivate: [AuthGuard]},

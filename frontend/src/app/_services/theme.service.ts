@@ -25,6 +25,26 @@ export class ThemeService {
     const body = document.getElementById("body");
     const footer = document.getElementById("footer");
     const sidebar = document.getElementById("sidenav");
+    var buttons = document.getElementsByClassName("w3-button");
+
+    for (let i=0; i< buttons.length; i++) {
+      if (buttons[i].classList.contains("w3-black")) {
+        buttons[i].classList.remove("w3-black")
+        buttons[i].classList.add("w3-dark-gray");
+      }
+      else if (buttons[i].classList.contains("w3-highway-red")) {
+        buttons[i].classList.remove("w3-highway-red")
+        buttons[i].classList.add("w3-red");
+      }
+      else if (buttons[i].classList.contains("w3-highway-blue")) {
+        buttons[i].classList.remove("w3-highway-blue")
+        buttons[i].classList.add("w3-blue");
+      }
+      else if (buttons[i].classList.contains("w3-highway-orange")) {
+        buttons[i].classList.remove("w3-highway-orange")
+        buttons[i].classList.add("w3-orange");
+      }
+    }
 
     document.body.style.backgroundColor = "white";
 
@@ -46,6 +66,26 @@ export class ThemeService {
     const body = document.getElementById("body");
     const footer = document.getElementById("footer");
     const sidebar = document.getElementById("sidenav");
+    var buttons = document.getElementsByClassName("w3-button");
+
+    for (let i=0; i< buttons.length; i++) {
+      if (buttons[i].classList.contains("w3-dark-gray")) {
+        buttons[i].classList.remove("w3-dark-gray")
+        buttons[i].classList.add("w3-black");
+      }
+      else if (buttons[i].classList.contains("w3-red")) {
+        buttons[i].classList.remove("w3-red")
+        buttons[i].classList.add("w3-highway-red");
+      }
+      else if (buttons[i].classList.contains("w3-blue")) {
+        buttons[i].classList.remove("w3-blue")
+        buttons[i].classList.add("w3-highway-blue");
+      }
+      else if (buttons[i].classList.contains("w3-orange")) {
+        buttons[i].classList.remove("w3-orange")
+        buttons[i].classList.add("w3-highway-orange");
+      }
+    }
 
     document.body.style.backgroundColor = "#626262";
 

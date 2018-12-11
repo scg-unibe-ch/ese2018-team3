@@ -25,9 +25,6 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         const header = document.getElementById('topnav');
         const btns = header.getElementsByClassName('w3-button');
-        if (this.themeService.getIsNight() == 'true'){
-          this.themeService.changeDesignToNightTheme();
-        }
         for (let i = 0; i < btns.length; i++) {
             btns[i].addEventListener('click', function () {
                 var current = document.getElementsByClassName('active');
@@ -35,6 +32,9 @@ export class NavbarComponent implements OnInit {
                 this.className += ' active';
             });
         }
+      if (this.themeService.getIsNight() == 'true'){
+        this.themeService.changeDesignToNightTheme();
+      }
     }
 
     logout() {

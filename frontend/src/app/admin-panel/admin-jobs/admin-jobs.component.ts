@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Job} from 'src/app/_models';
 import {AdminService} from 'src/app/_services';
 import {Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-admin-jobs',
@@ -10,19 +11,18 @@ import {Location} from '@angular/common';
 })
 export class AdminJobsComponent implements OnInit {
 
-    jobs: Job[];
+    jobs: Job[] = [];
     user: any;
 
     constructor(
         private adminService: AdminService,
-        private location: Location
+        private location: Location,
+        private route: ActivatedRoute
     ) {
     }
 
     ngOnInit() {
-        this.jobs = [];
-        this.user = null;
-        this.loadAllJobs()
+        this.loadAllJobs();
     }
 
     goBack(): void {

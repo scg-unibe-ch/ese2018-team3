@@ -5,6 +5,7 @@ import {Job} from '../../_models';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {AlertService, JobService} from '../../_services';
 import {sha256} from 'js-sha256';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-search-bar',
@@ -15,7 +16,7 @@ export class SearchBarComponent implements OnInit {
   loading = false;
   searched = false;
   returnUrl: string;
-  jobs: Job[] = [];
+  jobsId: Job[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,8 +28,12 @@ export class SearchBarComponent implements OnInit {
     this.searched = true;
     if (this.invalidForm()) return;
     this.loading = true;
-    this.jobService.searchJobs(this.get('searchTerm').value)
-    console.log( 'Found \'' + this.jobs.length + '\'');
+    this.jobService.searchJobs(this.get('searchTerm').value).subscribe(
+      (jobs: Job[]) => {
+        this.jobsId = jobs;
+      }
+    );
+    console.log(this.jobsId[0]);
   }
 
 

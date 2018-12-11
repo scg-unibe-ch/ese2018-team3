@@ -124,7 +124,7 @@ router.post('/search', async (req: Request, res: Response) => {
         if (!s) return '%';
         return '%' + s + '%';
     }
-
+    
     const query = req.body;
 
     const Op = Sequelize.Op;
@@ -157,12 +157,12 @@ router.post('/search', async (req: Request, res: Response) => {
     });
 
     res.statusCode = 200;
-    res.send(instances.map(e => e.toSimplification()));
+    res.send(instances.map(e => e.id));
 });
 
 router.get('/search/:title', async (req: Request, res: Response) => {
-    console.log('Retrieving jobs with title: ' + req.params.title);
     const Op = Sequelize.Op;
+    const title = req.params.title ? req.params.title : '';
     const instances = await JobModel.findAll({
         where: {
             title: {

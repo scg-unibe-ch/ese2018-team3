@@ -1,0 +1,38 @@
+<div class="w3-margin">
+    <h2>Unapproved Job Offers</h2>
+    <p class="w3-opacity">
+        Found {{jobs.length}} unapproved job postings.
+        <span *ngIf="jobs.length == 0">Good job!</span>
+    </p>
+
+    <div class="w3-responsive">
+        <table class="w3-table w3-striped w3-table-all w3-hoverable">
+            <tr>
+                <th width="5%">ID</th>
+                <th width="20%">Name</th>
+                <th width="10%">Created</th>
+                <th width="10%">Until</th>
+                <th width="25%">Description</th>
+                <th width="25%">Contact</th>
+                <th width="5%">Approval</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let job of jobs">
+                <td>{{job.id}}</td>
+                <td>{{job.name}}</td>
+                <td>{{job.createdAt | date: 'dd/MM/yy'}}</td>
+                <td>{{job.endDate | date: 'dd/MM/yy'}}</td>
+                <td>{{shortenDescription(job)}}</td>
+                <td>{{job.contact}}</td>
+                <td><i class="fa {{job.isApproved ? 'fa-check-square' : 'fa-square-o'}}"></i></td>
+                <td><a routerLink="/admin-panel/jobs/edit/{{job.id}}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+    <button (click)="goBack()" class="w3-button w3-dark-grey">Go Back</button>
+</div>
+
+
+

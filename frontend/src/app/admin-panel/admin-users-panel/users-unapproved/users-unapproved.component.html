@@ -1,15 +1,18 @@
 <div class="w3-margin">
-    <h2>All registered Users</h2>
-
-    <div class="w3-responsive">
+    <h2>All unapproved Users</h2>
+    <p class="w3-opacity">
+        Found {{users.length}} unapproved users.
+        <span *ngIf="users.length == 0">Good job!</span>
+    </p>
+    <div *ngIf="users.length > 0" class="w3-responsive">
         <table class="w3-table w3-striped w3-table-all w3-hoverable">
             <tr>
                 <th width="5%">ID</th>
-                <th width="25%">Username</th>
-                <th width="30%">Email</th>
-                <th width="30%">Company</th>
+                <th width="20%">Username</th>
+                <th width="25%">Email</th>
+                <th width="25%">Company</th>
                 <th width="5%">Approval</th>
-                <th width="5%"></th>
+                <th></th>
             </tr>
             <tr *ngFor="let user of users">
                 <td>{{user.id}}</td>

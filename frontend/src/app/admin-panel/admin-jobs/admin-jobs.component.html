@@ -4,7 +4,7 @@
         Found {{jobs.length}} job postings.
     </p>
     <div class="w3-responsive">
-        <table id="table" class="w3-table w3-striped w3-table-all w3-hoverable">
+        <table class="w3-table w3-striped w3-table-all w3-hoverable" id="table">
             <tr>
                 <th width="5%">ID</th>
                 <th width="20%">Title</th>
@@ -23,7 +23,7 @@
                 <td>{{shortenDescription(job)}}</td>
                 <td><i class="fa {{job.isApproved ? 'fa-check-square' : 'fa-square-o'}}"></i></td>
                 <td><a routerLink="/admin-panel/jobs/edit/{{job.id}}">Edit</a></td>
-                <td><a routerLink="/jobs/{{job.id}}">Details</a> </td>
+                <td><a routerLink="/jobs/{{job.id}}">Details</a></td>
             </tr>
         </table>
     </div>

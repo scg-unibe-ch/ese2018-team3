@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Job, User} from 'src/app/_models';
+import {Job} from 'src/app/_models';
 import {AdminService, AlertService} from 'src/app/_services';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
@@ -36,11 +36,6 @@ export class AdminJobEditorComponent implements OnInit {
                 this.alert.error(err, true);
             });
         this.onReset();
-    }
-
-    // helper method
-    private get(id: string) {
-        return (<HTMLInputElement>document.getElementById(id));
     }
 
     onSubmit() {
@@ -107,5 +102,10 @@ export class AdminJobEditorComponent implements OnInit {
 
     goBack(): void {
         this.location.back();
+    }
+
+    // helper method
+    private get(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
     }
 }

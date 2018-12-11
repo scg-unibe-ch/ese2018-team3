@@ -27,7 +27,8 @@ import {SidebarComponent} from './sidebar';
 import {FooterComponent} from './footer/footer.component';
 import {JobsUnapprovedComponent} from './admin-panel/jobs-unapproved';
 import {AdminJobsComponent} from './admin-panel/admin-jobs/admin-jobs.component';
-import {AdminJobEditorComponent} from './admin-panel/admin-jobs/admin-job-editor/admin-job-editor.component'
+import {AdminJobEditorComponent} from './admin-panel/admin-jobs/admin-job-editor/admin-job-editor.component';
+import {ErrorsComponent} from './_errors/errors.component'
 
 // @ts-ignore
 @NgModule({
@@ -53,7 +54,8 @@ import {AdminJobEditorComponent} from './admin-panel/admin-jobs/admin-job-editor
         FooterComponent,
         JobsUnapprovedComponent,
         AdminJobsComponent,
-        AdminJobEditorComponent
+        AdminJobEditorComponent,
+        ErrorsComponent
     ],
     imports: [
         BrowserModule,

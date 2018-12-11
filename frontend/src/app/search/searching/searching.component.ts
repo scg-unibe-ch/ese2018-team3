@@ -12,6 +12,8 @@ export class SearchingComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.navigateByUrl('/search/' + window.location.pathname.substr(5));
+  }
 
 }

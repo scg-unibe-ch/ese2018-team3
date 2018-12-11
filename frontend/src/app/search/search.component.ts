@@ -42,14 +42,6 @@ export class SearchComponent implements OnInit {
       }
     );
     console.log(this.jobs[0]);
-    this.loadSearchResults();
-  }
-
-
-  private loadSearchResults() {
-    this.jobService.searchJobs(this.get('searchTerm').value).subscribe(jobs => {
-      this.jobs = jobs;
-    })
   }
 
   private get(id: string) {

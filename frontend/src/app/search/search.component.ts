@@ -12,7 +12,6 @@ export class SearchComponent implements OnInit {
 
   searchTerm: string;
   jobs: Job[];
-  static searchText = '';
 
   constructor(
     private httpClient: HttpClient,

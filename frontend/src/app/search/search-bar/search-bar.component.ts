@@ -9,7 +9,7 @@ import {JobService} from '../../_services';
 })
 
 export class SearchBarComponent implements OnInit {
-  searchTerm: string;
+  searchTermFromBar: string;
   jobsId: Job[] = [];
 
   constructor(
@@ -17,7 +17,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSearch() {
-    this.jobService.searchJobs(this.get('searchTerm').value).subscribe(
+    this.jobService.searchJobs(this.get('searchTermFromBar').value).subscribe(
       (jobs: Job[]) => {
         this.jobsId = jobs;
       }

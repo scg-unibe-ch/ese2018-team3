@@ -5,7 +5,7 @@ import {UserService} from './user.service';
 
 const KEY_WORD = 'lastAction';
 const CHECK_INTERVAL = 1000; // ms
-const AUTO_LOGOUT = 20; //min
+const AUTO_LOGOUT = 5; //min
 
 @Injectable({providedIn: 'root'})
 export class AutoLogoutService {

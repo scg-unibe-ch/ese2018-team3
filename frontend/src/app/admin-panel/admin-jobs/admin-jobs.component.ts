@@ -18,8 +18,7 @@ export class AdminJobsComponent implements OnInit {
         private adminService: AdminService,
         private location: Location,
         private route: ActivatedRoute
-    ) {
-    }
+    ) {    }
 
     ngOnInit() {
         this.loadAllJobs();

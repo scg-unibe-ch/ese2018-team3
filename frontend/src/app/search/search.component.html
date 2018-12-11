@@ -1,9 +1,14 @@
-<p>
-  <app-search-bar></app-search-bar>
-</p>
 <div class="w3-margin">
-  <h2>Matching Job Offers</h2>
-  <p class="w3-opacity">Found {{jobs.length}} job postings</p>
+  <div class="search-bar">
+
+    <form class="w3-responsive" (ngSubmit)="onSearch(searchTerm)" id="search">
+      Find a Specific job: <input type="text" id="searchTerm" placeholder="Enter Search Term" size="20">
+      <button (click)="onSearch()" >Search </button>
+    </form>
+
+  </div>
+  <h2>Job Offers Matching Your Query</h2>
+  <p class="w3-opacity">Results that fit your query: {{jobs.length}}</p>
 
   <ul *ngFor="let job of jobs" class="w3-ul">
     <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">
@@ -14,4 +19,5 @@
       </div>
     </li>
   </ul>
+
 </div>

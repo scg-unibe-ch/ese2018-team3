@@ -51,9 +51,6 @@ const routes: Routes = [
 
     {path: '404', component: ErrorsComponent},
 
-    //{path: 'job/new', component: ProfileNewJobComponent},
-    //{path: 'profile', component: JobManagementComponent},
-
     // otherwise redirect to home
     {path: '**', redirectTo: '/404'}
 ];

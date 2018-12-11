@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Job} from '../_models';
 import {JobService} from '../_services';
-import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -11,24 +10,15 @@ import {filter} from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
 
+  searchTerm: string;
   jobs: Job[];
-  static searchText = '';
-
 
   constructor(
     private httpClient: HttpClient,
     private jobService: JobService
-  ) {
+  ) {  }
 
-  }
-
-  ngOnInit() {
-    this.jobs = [];
-   // this.loadAllJobs();
-    SearchComponent.searchText = window.location.pathname.substr(5);
-    //this.httpClient.get('http://localhost:3000/job').subscribe((instances: any) => {
-      //this.jobs = instances.map(this.filter);
-  }
+  ngOnInit() {  }
 
   shortenDescription(job: Job) {
     const length = Math.min(job.description.length - 1, 100);
@@ -37,27 +27,17 @@ export class SearchComponent implements OnInit {
     return desc;
   }
 
-  /*ngOnInit() {
-    SearchComponent.searchText = window.location.pathname.substr(8);
-    this.httpClient.get('http://localhost:3000/job').subscribe((instances: any) => {
-      this.jobs = instances.map(this.filter);
-    });
-  }*/
-
-  filter(job: any): Job {
-    if (SearchComponent.containsText(job)) {
-      return job;
-    }
-    else return null;
+  onSearch() {
+    this.jobService.searchJobs(this.get('searchTerm').value).subscribe(
+      (jobs: Job[]) => {
+        this.jobs = jobs;
+      }
+    );
+    console.log(this.jobs[0]);
   }
 
-  private static containsText(job: any): boolean {
-    return job.name.includes(this.searchText);
+  private get(id: string) {
+    return (<HTMLInputElement>document.getElementById(id));
   }
 
-/*  private loadAllJobs() {
-    this.jobService.getAll().subscribe(jobs => {
-      this.jobs = jobs;
-    })
-  }*/
 }

@@ -20,7 +20,7 @@ export class JobsChangedComponent implements OnInit {
 
     ngOnInit() {
         this.jobs = [];
-        this.loadALlJobs();
+        this.loadAllJobs();
     }
 
     shortenDescription(job: Job) {
@@ -30,7 +30,7 @@ export class JobsChangedComponent implements OnInit {
         return desc;
     }
 
-    private loadALlJobs() {
+    private loadAllJobs() {
         this.adminService.getAllChangedJobs().subscribe(jobs => this.jobs = jobs);
     }
 

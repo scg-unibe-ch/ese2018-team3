@@ -23,6 +23,7 @@ import {
 import {JobCreatorComponent} from './job-offers/job-creator';
 import {MyJobsPanelComponent} from './job-offers/my-jobs-panel/my-jobs-panel.component';
 import {ErrorsComponent} from './_errors/errors.component';
+import {SearchComponent} from './search/search.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -37,6 +38,7 @@ const routes: Routes = [
     {path: 'jobs/:id', component: JobDetailComponent},
     {path: 'job-creator', component: JobCreatorComponent, canActivate: [AuthGuard]},
     {path: 'my-jobs-panel', component: MyJobsPanelComponent, canActivate: [AuthGuard]},
+    {path: 'search', component: SearchComponent},
 
     {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/users', component: UsersPanelComponent, canActivate: [AuthGuard]},

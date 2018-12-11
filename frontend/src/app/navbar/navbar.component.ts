@@ -10,7 +10,6 @@ import {Router} from '@angular/router';
 export class NavbarComponent implements OnInit {
 
     loggedIn: string;
-    isAdmin: boolean;
 
     constructor(
         private adminService: AdminService,

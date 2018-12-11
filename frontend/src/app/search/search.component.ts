@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Job} from '../_models';
 import {JobService} from '../_services';
+import {Location} from '@angular/common';
+import {ThemeService} from '../_services/theme.service';
 
 @Component({
   selector: 'app-search',
@@ -15,10 +17,15 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private httpClient: HttpClient,
-    private jobService: JobService
+    private jobService: JobService,
+    private themeService: ThemeService
   ) {  }
 
-  ngOnInit() {  }
+  ngOnInit() {
+      if (this.themeService.getIsNight() == 'true'){
+        this.themeService.changeDesignToNightTheme();
+      }
+  }
 
   shortenDescription(job: Job) {
     const length = Math.min(job.description.length - 1, 100);

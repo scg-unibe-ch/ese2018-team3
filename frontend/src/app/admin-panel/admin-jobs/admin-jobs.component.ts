@@ -3,6 +3,7 @@ import {Job} from 'src/app/_models';
 import {AdminService} from 'src/app/_services';
 import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
+import {ThemeService} from '../../_services/theme.service';
 
 @Component({
     selector: 'app-admin-jobs',
@@ -17,11 +18,15 @@ export class AdminJobsComponent implements OnInit {
     constructor(
         private adminService: AdminService,
         private location: Location,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private themeService: ThemeService
     ) {    }
 
     ngOnInit() {
         this.loadAllJobs();
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+        }
     }
 
     goBack(): void {

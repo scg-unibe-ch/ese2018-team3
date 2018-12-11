@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {AlertService, JobService} from '../../_services';
+import {Location} from '@angular/common';
+import {ThemeService} from '../../_services/theme.service';
 
 @Component({
     selector: 'app-job-creator',
@@ -16,11 +18,15 @@ export class JobCreatorComponent implements OnInit {
     constructor(
         private router: Router,
         private jobService: JobService,
-        private alert: AlertService
+        private alert: AlertService,
+        private themeService: ThemeService
     ) {
     }
 
     ngOnInit() {
+      if (this.themeService.getIsNight() == 'true'){
+        this.themeService.changeDesignToNightTheme();
+      }
     }
 
     onSubmit() {

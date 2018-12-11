@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Job} from '../../../_models';
 import {AdminService} from '../../../_services';
 import {Location} from '@angular/common';
+import {ThemeService} from '../../../_services/theme.service';
 
 @Component({
     selector: 'app-jobs-unapproved',
@@ -14,13 +15,17 @@ export class JobsUnapprovedComponent implements OnInit {
 
     constructor(
         private adminService: AdminService,
-        private location: Location
+        private location: Location,
+        private themeService: ThemeService
     ) {
     }
 
     ngOnInit() {
         this.jobs = [];
         this.loadAllJobs();
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+       }
     }
 
     shortenDescription(job: Job) {

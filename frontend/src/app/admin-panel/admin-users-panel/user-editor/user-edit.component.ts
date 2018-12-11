@@ -3,6 +3,7 @@ import {AdminService, AlertService} from '../../../_services';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {User} from '../../../_models';
+import {ThemeService} from '../../../_services/theme.service';
 
 @Component({
     selector: 'app-user-edit',
@@ -19,7 +20,8 @@ export class UserEditComponent implements OnInit {
         private adminService: AdminService,
         private route: ActivatedRoute,
         private alert: AlertService,
-        private location: Location
+        private location: Location,
+        private themeService: ThemeService
     ) {
     }
 
@@ -34,6 +36,9 @@ export class UserEditComponent implements OnInit {
             err => {
                 this.alert.error(err, true);
             });
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+        }
     }
 
     onSubmit() {

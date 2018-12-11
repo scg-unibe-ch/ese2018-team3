@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {sha256} from 'js-sha256';
 
 import {AlertService, UserService} from '../_services';
+import {Location} from '@angular/common';
+import {ThemeService} from '../_services/theme.service';
 
 /**
  * The register component creates a new user with the user service when the register form is submitted.
@@ -26,7 +28,8 @@ export class RegisterComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private userService: UserService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private themeService: ThemeService
     ) {
         // redirect to home if already logged in
         if (this.userService.currentUserValue) {
@@ -34,7 +37,10 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+        }
     }
 
     onSubmit() {

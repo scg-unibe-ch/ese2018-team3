@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../../_services';
 import {Job} from '../../../_models';
 import {Location} from '@angular/common';
+import {ThemeService} from '../../../_services/theme.service';
 
 @Component({
     selector: 'app-jobs-changed',
@@ -14,13 +15,17 @@ export class JobsChangedComponent implements OnInit {
 
     constructor(
         private adminService: AdminService,
-        private location: Location
+        private location: Location,
+        private themeService: ThemeService
     ) {
     }
 
     ngOnInit() {
         this.jobs = [];
         this.loadAllJobs();
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+        }
     }
 
     shortenDescription(job: Job) {

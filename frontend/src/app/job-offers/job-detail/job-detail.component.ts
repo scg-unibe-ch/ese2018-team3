@@ -3,6 +3,7 @@ import {Location} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Job} from 'src/app/_models';
 import {AlertService, JobService} from 'src/app/_services';
+import {ThemeService} from '../../_services/theme.service';
 
 @Component({
     selector: 'app-job-detail',
@@ -19,7 +20,8 @@ export class JobDetailComponent implements OnInit {
         private alert: AlertService,
         private route: ActivatedRoute,
         private router: Router,
-        private location: Location
+        private location: Location,
+        private themeService: ThemeService
     ) {
     }
 
@@ -34,6 +36,9 @@ export class JobDetailComponent implements OnInit {
                 this.alert.error(err, true);
                 this.router.navigate([this.returnUrl]);
             });
+      if (this.themeService.getIsNight() == 'true'){
+        this.themeService.changeDesignToNightTheme();
+      }
     }
 
     goBack(): void {

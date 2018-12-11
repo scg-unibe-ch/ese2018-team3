@@ -3,6 +3,7 @@ import {Job} from 'src/app/_models';
 import {AdminService, AlertService} from 'src/app/_services';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {ThemeService} from '../../../_services/theme.service';
 
 @Component({
     selector: 'app-admin-job-editor',
@@ -20,11 +21,15 @@ export class AdminJobEditorComponent implements OnInit {
         private aService: AdminService,
         private route: ActivatedRoute,
         private alert: AlertService,
-        private location: Location
+        private location: Location,
+        private themeService: ThemeService
     ) {
     }
 
     ngOnInit() {
+        if (this.themeService.getIsNight() == 'true'){
+         this.themeService.changeDesignToNightTheme();
+        }
         this.aService.getJobById(this.route.snapshot.params.id).subscribe(
             (job: Job) => {
                 if (!job) this.alert.error('Backend error');

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ThemeService} from '../../../_services/theme.service';
 
 @Component({
     selector: 'app-user-job-editor',
@@ -7,10 +8,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UserJobEditorComponent implements OnInit {
 
-    constructor() {
+    constructor(
+      private themeService: ThemeService
+    ) {
     }
 
     ngOnInit() {
+      if (this.themeService.getIsNight() == 'true'){
+        this.themeService.changeDesignToNightTheme();
+      }
     }
 
 }

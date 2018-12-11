@@ -59,6 +59,7 @@ export class JobModel extends Model<JobModel> {
             'createdAt': this.createdAt,
             'updatedAt': this.updatedAt,
             'endDate': this.endDate,
+            'start': this.start,
             'occupation': this.occupation,
             'qualifications': this.qualifications,
             'remarks': this.remarks,
@@ -76,6 +77,7 @@ export class JobModel extends Model<JobModel> {
         this.createdAt = simplification['createdAt'];
         this.updatedAt = simplification['updatedAt'];
         this.endDate = simplification['endDate'];
+        this.start = simplification['start'];
         this.occupation = simplification['occupation'];
         this.qualifications = simplification['qualifications'];
         this.remarks = simplification['remarks'];

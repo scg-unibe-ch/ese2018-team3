@@ -10,21 +10,16 @@ import {JobService} from '../_services';
 })
 export class SearchComponent implements OnInit {
 
-  loading = false;
   searchTerm: string;
   jobs: Job[];
   static searchText = '';
 
-
   constructor(
     private httpClient: HttpClient,
     private jobService: JobService
-  ) {
-  }
+  ) {  }
 
-  ngOnInit() {
-    SearchComponent.searchText = window.location.pathname.substr(5);
-  }
+  ngOnInit() {  }
 
   shortenDescription(job: Job) {
     const length = Math.min(job.description.length - 1, 100);
@@ -34,8 +29,6 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
-    //if (this.invalidForm()) return;
-    //this.loading = true;
     this.jobService.searchJobs(this.get('searchTerm').value).subscribe(
       (jobs: Job[]) => {
         this.jobs = jobs;
@@ -47,16 +40,5 @@ export class SearchComponent implements OnInit {
   private get(id: string) {
     return (<HTMLInputElement>document.getElementById(id));
   }
-
- /* private invalidForm(): boolean {
-    return this.invalidSearchTerm();
-  }*/
-
-  /*invalidSearchTerm(): boolean {
-    const search = this.get('searchTerm').value;
-    const s = search.trim();
-    return search.length == 0 || s.length == 0;
-  }*/
-
 
 }

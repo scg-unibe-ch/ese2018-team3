@@ -11,14 +11,17 @@ import {RegisterComponent} from './register';
 
 import {AuthGuard} from './_guards';
 
-import {AdminPanelComponent} from './admin-panel';
-import {UserEditComponent, UsersPanelComponent} from './admin-panel';
+import {
+    AdminJobEditorComponent,
+    AdminJobsComponent,
+    AdminPanelComponent,
+    JobsUnapprovedComponent,
+    UserEditComponent,
+    UsersPanelComponent,
+    UsersUnapprovedComponent
+} from './admin-panel';
 import {JobCreatorComponent} from './job-offers/job-creator';
-import {UsersUnapprovedComponent} from './admin-panel';
 import {MyJobsPanelComponent} from './job-offers/my-jobs-panel/my-jobs-panel.component';
-import {JobsUnapprovedComponent} from './admin-panel';
-import {AdminJobsComponent} from './admin-panel';
-import {AdminJobEditorComponent} from './admin-panel';
 import {ErrorsComponent} from './_errors/errors.component';
 
 const routes: Routes = [

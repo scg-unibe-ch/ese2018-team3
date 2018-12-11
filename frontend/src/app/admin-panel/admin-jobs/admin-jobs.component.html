@@ -1,6 +1,8 @@
 <div class="w3-margin">
     <h2>All registered Jobs</h2>
-
+    <p class="w3-opacity">
+        Found {{jobs.length}} job postings.
+    </p>
     <div class="w3-responsive">
         <table id="table" class="w3-table w3-striped w3-table-all w3-hoverable">
             <tr>
@@ -8,8 +10,9 @@
                 <th width="20%">Title</th>
                 <th width="10%">Created</th>
                 <th width="10%">Until</th>
-                <th width="45%">Description</th>
+                <th width="40%">Description</th>
                 <th width="5%">Approval</th>
+                <th width="5%"></th>
                 <th width="5%"></th>
             </tr>
             <tr *ngFor="let job of jobs">
@@ -20,6 +23,7 @@
                 <td>{{shortenDescription(job)}}</td>
                 <td><i class="fa {{job.isApproved ? 'fa-check-square' : 'fa-square-o'}}"></i></td>
                 <td><a routerLink="/admin-panel/jobs/edit/{{job.id}}">Edit</a></td>
+                <td><a routerLink="/jobs/{{job.id}}">Details</a> </td>
             </tr>
         </table>
     </div>

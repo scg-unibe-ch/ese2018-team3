@@ -24,10 +24,17 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.jobs = [];
-    this.loadAllJobs();
+   // this.loadAllJobs();
     SearchComponent.searchText = window.location.pathname.substr(5);
     //this.httpClient.get('http://localhost:3000/job').subscribe((instances: any) => {
       //this.jobs = instances.map(this.filter);
+  }
+
+  shortenDescription(job: Job) {
+    const length = Math.min(job.description.length - 1, 100);
+    let desc = job.description.substr(0, length);
+    if (job.description.length > 100) desc += '...';
+    return desc;
   }
 
   /*ngOnInit() {
@@ -48,9 +55,9 @@ export class SearchComponent implements OnInit {
     return job.name.includes(this.searchText);
   }
 
-  private loadAllJobs() {
+/*  private loadAllJobs() {
     this.jobService.getAll().subscribe(jobs => {
       this.jobs = jobs;
     })
-  }
+  }*/
 }

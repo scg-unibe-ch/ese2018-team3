@@ -217,6 +217,54 @@ router.get('/current-user', async (req: Request, res: Response) => {
         });
 });
 
+router.get('/changed', async (req: Request, res: Response) => {
+    UserServices.authenticate(req.headers.authorization, true)
+        .then(async user => {
+            const instances = await JobModel.findAll({
+                where: {
+                    changed: true
+                }
+            });
+
+            res.statusCode = 200;
+            res.send(instances.map(e => e.toSimplification()));
+        })
+        .catch(err => {
+            const lg = genLog() + 'auth (unapproved): ';
+            switch (err.name) {
+                case UserNotFoundError.name:
+                    console.log(lg + 'user not found: \'' + req.body.username + '\'');
+                    res.statusCode = 404;
+                    res.json({'message': 'not found'});
+                    return;
+
+                case UserNotLoggedInError.name:
+                    console.log(lg + 'user not logged in: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                case InvalidTokenError.name:
+                    console.log(lg + 'invalid token: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
+});
+
 router.get('/unapproved', async (req: Request, res: Response) => {
     UserServices.authenticate(req.headers.authorization, true)
         .then(async user => {
@@ -293,6 +341,51 @@ router.put('/:id', async (req: Request, res: Response) => {
                     console.log(lg + 'user not found: \'' + req.body.username + '\'');
                     res.statusCode = 404;
                     res.json({'message': 'not found'});
+                    return;
+
+                case InvalidTokenError.name:
+                    console.log(lg + 'invalid token: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
+                    return;
+
+                default:
+                    console.log(lg + err);
+                    res.statusCode = 400;
+                    res.json({'message': 'bad request'});
+                    return;
+            }
+        });
+});
+
+router.put('/admin/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const instance = await JobModel.findById(id);
+
+    if (instance == null) {
+        res.statusCode = 404;
+        res.json({
+            'message': 'not found'
+        });
+        return;
+    }
+
+    UserServices.authAdmin(req.headers.authorization)
+        .then(async () => {
+            instance.fromSimplification(req.body);
+            instance.hasChanged = false;
+            await instance.save();
+
+            res.statusCode = 200;
+            res.send(instance.toSimplification());
+        })
+        .catch(err => {
+            const lg = genLog() + 'auth (put): ';
+            switch (err.name) {
+                case UserUnauthorizedError.name:
+                    console.log(lg + 'user unauthorized: \'' + req.body.username + '\'');
+                    res.statusCode = 401;
+                    res.json({'message': 'unauthorized'});
                     return;
 
                 case InvalidTokenError.name:

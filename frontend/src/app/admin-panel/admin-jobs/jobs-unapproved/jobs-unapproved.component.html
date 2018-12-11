@@ -4,28 +4,27 @@
         Found {{jobs.length}} unapproved job postings.
         <span *ngIf="jobs.length == 0">Good job!</span>
     </p>
-
-    <div class="w3-responsive">
+    <div *ngIf="jobs.length > 0" class="w3-responsive">
         <table class="w3-table w3-striped w3-table-all w3-hoverable">
             <tr>
                 <th width="5%">ID</th>
-                <th width="20%">Name</th>
+                <th width="20%">Title</th>
                 <th width="10%">Created</th>
                 <th width="10%">Until</th>
-                <th width="25%">Description</th>
-                <th width="25%">Contact</th>
+                <th width="40%">Description</th>
                 <th width="5%">Approval</th>
-                <th></th>
+                <th width="5%"></th>
+                <th width="5%"></th>
             </tr>
             <tr *ngFor="let job of jobs">
                 <td>{{job.id}}</td>
-                <td>{{job.name}}</td>
+                <td>{{job.title}}</td>
                 <td>{{job.createdAt | date: 'dd/MM/yy'}}</td>
                 <td>{{job.endDate | date: 'dd/MM/yy'}}</td>
                 <td>{{shortenDescription(job)}}</td>
-                <td>{{job.contact}}</td>
                 <td><i class="fa {{job.isApproved ? 'fa-check-square' : 'fa-square-o'}}"></i></td>
                 <td><a routerLink="/admin-panel/jobs/edit/{{job.id}}">Edit</a></td>
+                <td><a routerLink="/jobs/{{job.id}}">Details</a></td>
             </tr>
         </table>
     </div>

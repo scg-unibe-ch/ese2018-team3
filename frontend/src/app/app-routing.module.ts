@@ -14,7 +14,7 @@ import {AuthGuard} from './_guards';
 import {
     AdminJobEditorComponent,
     AdminJobsComponent,
-    AdminPanelComponent,
+    AdminPanelComponent, JobsChangedComponent,
     JobsUnapprovedComponent,
     UserEditComponent,
     UsersPanelComponent,
@@ -43,6 +43,7 @@ const routes: Routes = [
     {path: 'admin-panel/users-unapproved', component: UsersUnapprovedComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/users/edit/:id', component: UserEditComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/jobs-unapproved', component: JobsUnapprovedComponent, canActivate: [AuthGuard]},
+    {path: 'admin-panel/jobs-changed', component: JobsChangedComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/jobs', component: AdminJobsComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/jobs/edit/:id', component: AdminJobEditorComponent, canActivate: [AuthGuard]},
 

@@ -40,6 +40,10 @@ export class AdminService {
         return this.http.get(this.jobsUrl + `id/${id}`);
     }
 
+    getAllChangedJobs() {
+        return this.http.get<Job[]>(this.jobsUrl + 'changed');
+    }
+
     getAllUnapprovedJobs() {
         return this.http.get<Job[]>(this.jobsUrl + 'unapproved');
     }
@@ -65,7 +69,7 @@ export class AdminService {
     }
 
     updateJob(job: any) {
-        return this.http.put(this.jobsUrl + job.id, job);
+        return this.http.put(this.jobsUrl + `admin/${job.id}`, job);
     }
 
     deleteUser(user: number) {

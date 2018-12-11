@@ -11,6 +11,7 @@ export class SidebarComponent implements OnInit {
     loggedIn: string;
     isAdmin: string;
 
+    hasChangedJobs = false;
     hasUnapprovedJobs = false;
     hasUnapprovedUsers = false;
 
@@ -21,17 +22,14 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadUnapproved();
+        this.loadAll();
         this.userService.currentUser.subscribe(x => this.loggedIn = x);
         this.adminService.isAdmin.subscribe(x => this.isAdmin = x);
     }
 
-    async loadUnapproved() {
-        this.adminService.getAllUnapprovedJobs().subscribe(jobs => {
-            this.hasUnapprovedJobs = jobs.length > 0;
-        });
-        this.adminService.getAllUnapprovedUsers().subscribe(users => {
-            this.hasUnapprovedUsers = users.length > 0;
-        });
+    async loadAll() {
+        this.adminService.getAllChangedJobs().subscribe(jobs => this.hasChangedJobs = jobs.length > 0);
+        this.adminService.getAllUnapprovedJobs().subscribe(jobs => this.hasUnapprovedJobs = jobs.length > 0);
+        this.adminService.getAllUnapprovedUsers().subscribe(users => this.hasUnapprovedUsers = users.length > 0);
     }
 }

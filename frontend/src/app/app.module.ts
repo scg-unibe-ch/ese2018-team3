@@ -32,6 +32,13 @@ import {NavbarComponent} from './navbar';
 import {SidebarComponent} from './sidebar';
 import {FooterComponent} from './footer/footer.component';
 import {ErrorsComponent} from './_errors/errors.component';
+import {JobsUnapprovedComponent} from './admin-panel/jobs-unapproved';
+import {AdminJobsComponent} from './admin-panel/admin-jobs/admin-jobs.component';
+import {AdminJobEditorComponent} from './admin-panel/admin-jobs/admin-job-editor/admin-job-editor.component';
+import { SearchComponent } from './search/search.component';
+import { SearchBarComponent } from './search/search-bar/search-bar.component';
+import { SearchingComponent } from './search/searching/searching.component';
+
 
 // @ts-ignore
 @NgModule({
@@ -59,7 +66,14 @@ import {ErrorsComponent} from './_errors/errors.component';
         SidebarComponent,
         UserEditComponent,
         UsersPanelComponent,
-        UsersUnapprovedComponent
+        UsersUnapprovedComponent,
+        FooterComponent,
+        JobsUnapprovedComponent,
+        AdminJobsComponent,
+        AdminJobEditorComponent,
+        SearchComponent,
+        SearchBarComponent,
+        SearchingComponent
     ],
     imports: [
         BrowserModule,

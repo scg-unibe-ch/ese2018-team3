@@ -9,6 +9,7 @@ import {Job} from '../_models';
 @Injectable({providedIn: 'root'})
 export class JobService implements OnInit {
 
+
     private jobsUrl: string = 'http://localhost:3000/jobs/';
 
     constructor(
@@ -45,5 +46,18 @@ export class JobService implements OnInit {
 
     getByCompany(company: string) {
         return this.http.get(this.jobsUrl + `company/${company}`);
+    }
+
+    getByTitle(title: string) {
+        return this.http.get(this.jobsUrl + `title/${title}`);
+    }
+
+    search(query: any) {
+        return this.http.post<Job[]>(this.jobsUrl + 'search', query);
+    }
+
+    /* GET Jobs whose title contains the search term */
+    searchJobs(title: string) {
+        return this.http.get<Job[]>(this.jobsUrl + `search/${title}`);
     }
 }

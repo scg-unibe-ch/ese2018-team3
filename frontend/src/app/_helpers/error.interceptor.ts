@@ -3,7 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
-import {UserService} from '../_services';
+import {AlertService, UserService} from '../_services';
 import {Router} from '@angular/router';
 
 
@@ -19,15 +19,17 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     constructor(
         private userService: UserService,
+        private alert: AlertService,
         private router: Router
     ) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
-            if (err.status === 401) {
+            if (err.status === 401 || 400) {
                 this.userService.logout();
-                location.reload(true);
+                this.router.navigate(['/home']);
+                this.alert.error('Unauthorized => Automatic Logout', true);
             }
 
             const error = err.error.message || err.statusText;

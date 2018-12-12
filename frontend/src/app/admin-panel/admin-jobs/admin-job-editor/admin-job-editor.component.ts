@@ -13,7 +13,6 @@ import {ThemeService} from '../../../_services/theme.service';
 export class AdminJobEditorComponent implements OnInit {
 
     job: Job;
-    user: any;
     loading = false;
     submitted = false;
 
@@ -34,7 +33,6 @@ export class AdminJobEditorComponent implements OnInit {
             (job: Job) => {
                 if (!job) this.alert.error('Backend error');
                 this.job = job;
-                this.user = this.aService.getUser(job.userId);
                 this.onReset();
             },
             err => {
@@ -46,30 +44,44 @@ export class AdminJobEditorComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
-        //if (this.invalidForm()) return;
+        if (this.invalidForm()) return;
 
         this.loading = true;
 
         this.job.title = this.get('title').value;
+        console.log('1');
         this.job.description = this.get('description').value;
-        this.job.createdAt = this.get('createdAt').valueAsDate;
+        console.log('2');
+        console.log('3');
         this.job.updatedAt = new Date();
+        console.log('4');
         this.job.endDate = this.get('endDate').valueAsDate;
+        console.log('5');
         this.job.start = this.get('start').valueAsDate;
+        console.log('6');
         this.job.occupation = this.get('occupation').value;
+        console.log('7');
         this.job.qualifications = this.get('qualifications').value;
+        console.log('8');
         this.job.remarks = this.get('remarks').value;
+        console.log('9');
         this.job.salary = this.get('salary').value;
+        console.log('10');
         this.job.contact = this.get('contact').value;
+        console.log('11');
         this.job.isApproved = this.get('isApproved').checked;
+        console.log('12');
         this.job.hasChanged = true;
 
+        console.log('updating now...');
         this.aService.updateJob(this.job).subscribe(
             () => {
+                console.log('successfully updated');
                 this.alert.success('Successfully updated job.');
                 this.loading = false;
             },
             error => {
+                console.log('error');
                 this.alert.error(error);
                 this.loading = false;
             }
@@ -79,7 +91,6 @@ export class AdminJobEditorComponent implements OnInit {
     onReset() {
         this.get('title').value = this.job.title;
         this.get('description').value = this.job.description;
-        this.get('createdAt').valueAsDate = new Date(this.job.createdAt);
         this.get('updatedAt').valueAsDate = new Date(this.job.updatedAt);
         this.get('endDate').valueAsDate = new Date(this.job.endDate);
         this.get('start').valueAsDate = new Date(this.job.start);

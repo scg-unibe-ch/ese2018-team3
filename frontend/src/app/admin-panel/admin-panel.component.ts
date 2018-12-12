@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ThemeService} from '../_services/theme.service';
 
 @Component({
     selector: 'app-admin-panel',
@@ -7,9 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AdminPanelComponent implements OnInit {
 
-    constructor() {
+    constructor(
+        private themeService: ThemeService
+    ) {
     }
 
     ngOnInit() {
+      if (this.themeService.getIsNight() == 'true'){
+        this.themeService.changeDesignToNightTheme();
+      }
     }
 }

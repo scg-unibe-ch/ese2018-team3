@@ -1,20 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService, UserService} from '../_services';
 import {Router} from '@angular/router';
+import {ThemeService} from '../_services/theme.service';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
 
     loggedIn: string;
-    isAdmin: boolean;
 
     constructor(
         private adminService: AdminService,
         private userService: UserService,
+        private themeService: ThemeService,
         private router: Router,
     ) {
         this.userService.currentUser.subscribe(x => this.loggedIn = x);
@@ -30,10 +32,17 @@ export class NavbarComponent implements OnInit {
                 this.className += ' active';
             });
         }
+      if (this.themeService.getIsNight() == 'true'){
+        this.themeService.changeDesignToNightTheme();
+      }
     }
 
     logout() {
         this.userService.logout();
         this.router.navigate(['/home']);
+    }
+
+  switchTheme() {
+        this.themeService.switchTheme()
     }
 }

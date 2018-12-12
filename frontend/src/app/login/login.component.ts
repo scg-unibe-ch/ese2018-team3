@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 import {AlertService, UserService} from '../_services';
 import {sha256} from 'js-sha256';
+import {Location} from '@angular/common';
+import {ThemeService} from '../_services/theme.service';
 
 
 /**
@@ -28,7 +30,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private userService: UserService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private themeService: ThemeService
     ) {
         // redirect to home if already logged in
         if (this.userService.currentUserValue) {
@@ -39,11 +42,9 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // get return url from route parameters or default to '/home'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-    }
-
-    // helper method
-    private get(id: string) {
-        return (<HTMLInputElement>document.getElementById(id));
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+        }
     }
 
     onSubmit() {
@@ -71,17 +72,21 @@ export class LoginComponent implements OnInit {
                 });
     }
 
-    private invalidForm(): boolean {
-        return this.invalidUsername()
-            || this.invalidPassword();
-    }
-
-
     invalidUsername(): boolean {
         return this.get('username').value.length === 0;
     }
 
     invalidPassword(): boolean {
         return this.get('password').value.length === 0;
+    }
+
+    // helper method
+    private get(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
+    }
+
+    private invalidForm(): boolean {
+        return this.invalidUsername()
+            || this.invalidPassword();
     }
 }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {AlertService, JobService} from '../../_services';
+import {Location} from '@angular/common';
+import {ThemeService} from '../../_services/theme.service';
 
 @Component({
     selector: 'app-job-creator',
@@ -16,11 +18,15 @@ export class JobCreatorComponent implements OnInit {
     constructor(
         private router: Router,
         private jobService: JobService,
-        private alert: AlertService
+        private alert: AlertService,
+        private themeService: ThemeService
     ) {
     }
 
     ngOnInit() {
+      if (this.themeService.getIsNight() == 'true'){
+        this.themeService.changeDesignToNightTheme();
+      }
     }
 
     onSubmit() {
@@ -28,12 +34,15 @@ export class JobCreatorComponent implements OnInit {
 
         this.loading = true;
         let job = {
-            'name': (<HTMLInputElement>document.getElementById('title')).value,
+            'title': (<HTMLInputElement>document.getElementById('title')).value,
+            'description': (<HTMLInputElement>document.getElementById('description')).value,
+            'start': (<HTMLInputElement>document.getElementById('start')).value,
             'endDate': (<HTMLInputElement>document.getElementById('endDate')).value,
             'occupation': (<HTMLInputElement>document.getElementById('occupation')).value,
-            'description': (<HTMLInputElement>document.getElementById('description')).value,
             'qualifications': (<HTMLInputElement>document.getElementById('qualifications')).value,
-            'contact': (<HTMLInputElement>document.getElementById('contact')).value
+            'remarks': (<HTMLInputElement>document.getElementById('remarks')).value,
+            'salary': (<HTMLInputElement>document.getElementById('salary')).value,
+            'contact': (<HTMLInputElement>document.getElementById('contact')).value,
         };
 
         this.jobService.save(job).subscribe(

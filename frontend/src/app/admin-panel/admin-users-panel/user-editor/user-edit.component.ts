@@ -3,6 +3,7 @@ import {AdminService, AlertService} from '../../../_services';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {User} from '../../../_models';
+import {ThemeService} from '../../../_services/theme.service';
 
 @Component({
     selector: 'app-user-edit',
@@ -19,7 +20,8 @@ export class UserEditComponent implements OnInit {
         private adminService: AdminService,
         private route: ActivatedRoute,
         private alert: AlertService,
-        private location: Location
+        private location: Location,
+        private themeService: ThemeService
     ) {
     }
 
@@ -34,11 +36,9 @@ export class UserEditComponent implements OnInit {
             err => {
                 this.alert.error(err, true);
             });
-    }
-
-    // helper method
-    private getElementById(id: string) {
-        return (<HTMLInputElement>document.getElementById(id));
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+        }
     }
 
     onSubmit() {
@@ -76,21 +76,17 @@ export class UserEditComponent implements OnInit {
         if (confirm('Are you really sure to delete this user?')) {
             this.adminService.deleteUser(this.user.id)
                 .subscribe(() => {
-                    this.alert.success('Successfully deleted user', true);
-                    this.goBack();
-                },
-                err => {
-                    this.alert.error(err);
-                });
+                        this.alert.success('Successfully deleted user', true);
+                        this.goBack();
+                    },
+                    err => {
+                        this.alert.error(err);
+                    });
         }
     }
 
     goBack(): void {
         this.location.back();
-    }
-
-    private invalidForm(): boolean {
-        return this.invalidUsername() || this.invalidEmail() || this.invalidCompany();
     }
 
     invalidUsername(): boolean {
@@ -103,5 +99,14 @@ export class UserEditComponent implements OnInit {
 
     invalidCompany(): boolean {
         return this.getElementById('company').value.length === 0;
+    }
+
+    // helper method
+    private getElementById(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
+    }
+
+    private invalidForm(): boolean {
+        return this.invalidUsername() || this.invalidEmail() || this.invalidCompany();
     }
 }

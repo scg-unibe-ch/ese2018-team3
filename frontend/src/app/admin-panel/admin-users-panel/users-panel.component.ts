@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../_models';
 import {AdminService} from '../../_services';
 import {Location} from '@angular/common';
+import {ThemeService} from '../../_services/theme.service';
 
 @Component({
     selector: 'app-users-panel',
@@ -14,13 +15,17 @@ export class UsersPanelComponent implements OnInit {
 
     constructor(
         private adminService: AdminService,
-        private location: Location
+        private location: Location,
+        private themeService: ThemeService
     ) {
     }
 
     ngOnInit() {
         this.users = [];
-        this.loadAllUsers()
+        this.loadAllUsers();
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+        }
     }
 
     goBack(): void {

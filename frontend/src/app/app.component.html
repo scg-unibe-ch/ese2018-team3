@@ -2,27 +2,21 @@
 <app-navbar></app-navbar>
 <app-sidebar></app-sidebar>
 
-
 <!-- main app container -->
-
 <div id="belowtopnav" class="w3-main w3-light-grey" style="margin-left: 220px; padding-top: 44px;">
-  <div class="w3-row w3-white">
-    <div id="main" class="w3-col l2 m12">
-      <div style="width: 400%;">
-        <alert></alert>
-      </div>
-      <div class="w3-panel w3-card-2" style="width: 400%;">
-        <router-outlet></router-outlet>
-        <google-ad></google-ad>
-
-
-      </div>
+    <div id="body" class="w3-row w3-white">
+        <div id="main" class="w3-col l2 m12">
+            <div style="width: 400%;">
+                <alert></alert>
+            </div>
+            <div class="w3-panel w3-card-2" style="width: 400%;">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     </div>
 
-
-  </div>
+    <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
-
-
+<!--Due to Google's Crawler, this is only visible when deployed and indexed by Google, otherwise it will throw errors
+    Comment it out if Troubleshooting via Web Console and wanting a better overview!-->
 <google-ad></google-ad>

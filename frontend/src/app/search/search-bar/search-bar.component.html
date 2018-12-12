@@ -1,0 +1,10 @@
+<div>
+  <div class="search-bar"  >
+
+    <form class="w3-responsive" (ngSubmit)="onSearch(searchTermFromBar)" id="search">
+      Find a Specific job: <input type="text" id="searchTermFromBar"  placeholder="Enter Job Title" min="1" max="30" size="20">
+    <button (click)="onSearch()" >Search </button>
+    </form>
+
+  </div>
+</div>

@@ -1,8 +1,11 @@
 <div class="w3-margin">
-    <h2>All registered Users</h2>
-
-    <div class="w3-responsive">
-        <table class="w3-table w3-striped w3-table-all w3-hoverable">
+    <h2>All unapproved Users</h2>
+    <p class="w3-opacity">
+        Found {{users.length}} unapproved users.
+        <span *ngIf="users.length == 0">Good job!</span>
+    </p>
+    <div *ngIf="users.length > 0" class="w3-responsive">
+        <table class="w3-table w3-striped w3-table-all w3-hoverable w3-white">
             <tr>
                 <th width="5%">ID</th>
                 <th width="20%">Username</th>
@@ -23,5 +26,5 @@
     </div>
 
     <hr>
-    <button (click)="goBack()" class="w3-button w3-dark-grey">Go Back</button>
+    <button (click)="goBack()" class="w3-button w3-dark-gray">Go Back</button>
 </div>

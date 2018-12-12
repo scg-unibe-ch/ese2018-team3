@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Job} from '../../_models';
 import {JobService} from '../../_services';
+import {Location} from '@angular/common';
+import {ThemeService} from '../../_services/theme.service';
 
 @Component({
     selector: 'app-my-jobs',
@@ -12,13 +14,17 @@ export class MyJobsPanelComponent implements OnInit {
     jobs: Job[];
 
     constructor(
-        private jobService: JobService
+        private jobService: JobService,
+        private themeService: ThemeService
     ) {
     }
 
     ngOnInit() {
         this.jobs = [];
         this.loadMyJobs();
+        if (this.themeService.getIsNight() == 'true'){
+          this.themeService.changeDesignToNightTheme();
+        }
     }
 
     shortenDescription(job: Job) {

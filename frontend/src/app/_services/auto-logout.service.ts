@@ -5,20 +5,12 @@ import {UserService} from './user.service';
 
 const KEY_WORD = 'lastAction';
 const CHECK_INTERVAL = 1000; // ms
-const AUTO_LOGOUT = 20; //min
+const AUTO_LOGOUT = 5; //min
 
 @Injectable({providedIn: 'root'})
 export class AutoLogoutService {
 
     loggedIn: string;
-
-    get lastAction() {
-        return parseInt(localStorage.get(KEY_WORD));
-    }
-
-    set lastAction(value) {
-        localStorage.setItem(KEY_WORD, value.toString());
-    }
 
     constructor(
         private alert: AlertService,
@@ -28,6 +20,14 @@ export class AutoLogoutService {
         this.check();
         this.initListener();
         this.initInterval();
+    }
+
+    get lastAction() {
+        return parseInt(localStorage.get(KEY_WORD));
+    }
+
+    set lastAction(value) {
+        localStorage.setItem(KEY_WORD, value.toString());
     }
 
     initListener() {

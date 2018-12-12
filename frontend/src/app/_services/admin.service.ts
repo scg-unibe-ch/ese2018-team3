@@ -33,7 +33,7 @@ export class AdminService {
     }
 
     getAllJobs() {
-        return this.http.get<Job[]>(this.jobsUrl);
+        return this.http.get<Job[]>(this.jobsUrl + 'all');
     }
 
     getJobById(id) {

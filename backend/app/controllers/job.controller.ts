@@ -21,6 +21,13 @@ router.get('/', async (req: Request, res: Response) => {
     res.send(instances.map(e => e.toSimplification()));
 });
 
+router.get('/all', async (req: Request, res: Response) => {
+    const instances = await JobModel.findAll();
+
+    res.statusCode = 200;
+    res.send(instances.map(e => e.toSimplification()));
+});
+
 router.post('/', async (req: Request, res: Response) => {
     UserServices.authenticate(req.headers.authorization)
         .then(async user => {

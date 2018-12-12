@@ -36,6 +36,7 @@ export async function jobExamples() {
 
     job1.fromSimplification({
         userId: 3,
+        company: user2.company,
         title: 'Junior Technical Support',
         createdAt: new Date(),
         start: new Date(),
@@ -51,6 +52,7 @@ export async function jobExamples() {
 
     job2.fromSimplification({
         userId: 3,
+        company: user2.company,
         title: 'HR Assistant',
         createdAt: new Date(),
         endDate: '2018-12-23 00:00:00.000 +00:00',
@@ -61,6 +63,7 @@ export async function jobExamples() {
 
     job3.fromSimplification({
         userId: 3,
+        company: user2.company,
         title: 'Senior Project Manager',
         createdAt: new Date(),
         endDate: '2018-12-23 00:00:00.000 +00:00',
@@ -71,6 +74,7 @@ export async function jobExamples() {
 
     job4.fromSimplification({
         userId: 3,
+        company: user2.company,
         title: 'Software Developer',
         createdAt: new Date(),
         endDate: '2018-12-23 00:00:00.000 +00:00',
@@ -81,6 +85,7 @@ export async function jobExamples() {
 
     job5.fromSimplification({
         userId: 3,
+        company: user2.company,
         title: 'Internship Front-End Dev',
         createdAt: new Date(),
         endDate: '2018-12-23 00:00:00.000 +00:00',
@@ -91,6 +96,7 @@ export async function jobExamples() {
 
     job6.fromSimplification({
         userId: 3,
+        company: user2.company,
         title: 'Support for software developers',
         createdAt: new Date(),
         endDate: '2018-12-23 00:00:00.000 +00:00',

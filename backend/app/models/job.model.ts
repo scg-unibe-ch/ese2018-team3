@@ -12,6 +12,9 @@ export class JobModel extends Model<JobModel> {
     userId!: number;
 
     @Column
+    company!: string;
+
+    @Column
     description!: string;
 
     @CreatedAt
@@ -54,6 +57,7 @@ export class JobModel extends Model<JobModel> {
         return {
             'id': this.id,
             'userId': this.userId,
+            'company': this.company,
             'title': this.title,
             'description': this.description,
             'createdAt': this.createdAt,
@@ -72,6 +76,7 @@ export class JobModel extends Model<JobModel> {
 
     fromSimplification(simplification: any): void {
         this.userId = simplification['userId'];
+        this.company = simplification['company'];
         this.title = simplification['title'];
         this.description = simplification['description'];
         this.createdAt = simplification['createdAt'];

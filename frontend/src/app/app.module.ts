@@ -35,6 +35,7 @@ import {ErrorsComponent} from './_errors/errors.component';
 import { SearchComponent } from './search/search.component';
 import { SearchBarComponent } from './search/search-bar/search-bar.component';
 import { SearchingComponent } from './search/searching/searching.component';
+import {AutoLogoutService} from './_services';
 
 
 // @ts-ignore
@@ -82,7 +83,8 @@ import { SearchingComponent } from './search/searching/searching.component';
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: AutoLogoutService, multi:true}
     ],
     bootstrap: [AppComponent]
 })

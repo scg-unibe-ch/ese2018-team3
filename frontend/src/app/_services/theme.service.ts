@@ -57,7 +57,7 @@ export class ThemeService {
     footer.classList.remove("w3-dark-gray")
     footer.classList.add("w3-white");
 
-    sidebar.classList.remove("w3-gray")
+    sidebar.classList.remove("w3-theme-l1")
     sidebar.classList.add("w3-light-gray");
   }
 
@@ -99,6 +99,6 @@ export class ThemeService {
     footer.classList.add("w3-dark-gray");
 
     sidebar.classList.remove("w3-light-gray")
-    sidebar.classList.add("w3-gray");
+    sidebar.classList.add("w3-theme-l1");
   }
 }

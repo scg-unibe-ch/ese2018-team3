@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Job} from '../_models';
 import {JobService} from '../_services';
-import {Location} from '@angular/common';
 import {ThemeService} from '../_services/theme.service';
 
 @Component({
@@ -12,39 +11,50 @@ import {ThemeService} from '../_services/theme.service';
 })
 export class SearchComponent implements OnInit {
 
-  searchTerm: string;
-  jobs: Job[];
+    advancedSearch: boolean = false;
+    jobs: Job[] = [];
 
-  constructor(
-    private httpClient: HttpClient,
-    private jobService: JobService,
-    private themeService: ThemeService
-  ) {  }
+    constructor(
+        private httpClient: HttpClient,
+        private jobService: JobService,
+        private themeService: ThemeService
+    ) {
+    }
 
-  ngOnInit() {
-      if (this.themeService.getIsNight() == 'true'){
-        this.themeService.changeDesignToNightTheme();
-      }
-  }
+    ngOnInit() {
+        if (this.themeService.getIsNight() == 'true') {
+            this.themeService.changeDesignToNightTheme();
+        }
+    }
 
-  shortenDescription(job: Job) {
-    const length = Math.min(job.description.length - 1, 100);
-    let desc = job.description.substr(0, length);
-    if (job.description.length > 100) desc += '...';
-    return desc;
-  }
+    shortenDescription(job: Job) {
+        const length = Math.min(job.description.length - 1, 100);
+        let desc = job.description.substr(0, length);
+        if (job.description.length > 100) desc += '...';
+        return desc;
+    }
 
-  onSearch() {
-    this.jobService.searchJobs(this.get('searchTerm').value).subscribe(
-      (jobs: Job[]) => {
-        this.jobs = jobs;
-      }
-    );
-    console.log(this.jobs[0]);
-  }
+    onSearch() {
+        const query = {
+            company: this.get('company').value,
+            title: this.get('title').value,
+            description: this.get('description').value,
+            occupation: this.get('occupation').value,
+            qualifications: this.get('qualifications').value,
+            remarks: this.get('remarks').value,
+            salary: this.get('salary').value,
+            contact: this.get('contact').value
+        };
 
-  private get(id: string) {
-    return (<HTMLInputElement>document.getElementById(id));
-  }
+        this.jobService.search(query).subscribe( jobs => {
+            this.jobs = jobs;
+            console.log(`Received ${jobs.length} results`);
+        });
+    }
+
+    private get(id: string) {
+        if (!this.advancedSearch) return (<HTMLInputElement>document.getElementById('searchTerm'));
+        return (<HTMLInputElement>document.getElementById(id));
+    }
 
 }

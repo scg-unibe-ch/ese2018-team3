@@ -1,9 +1,47 @@
 <div class="w3-margin">
     <div class="search-bar">
 
-        <form class="w3-responsive" id="search">
-            Find a Specific job: <input id="searchTerm" placeholder="Enter Search Term" size="20" type="text">
-            <button (click)="onSearch()">Search</button>
+        <form *ngIf="!advancedSearch" class="w3-responsive" id="search">
+            <label for="searchTerm">Find a specific Job:</label>
+            <input id="searchTerm" class="w3-input w3-border" placeholder="Enter Search Term" size="20" type="text">
+            <button class="w3-button w3-blue" (click)="onSearch()">Search</button>
+            <a (click)="advancedSearch = true">Advanced Search</a>
+        </form>
+        <form *ngIf="advancedSearch" id="advanced-search">
+            <table>
+                <tr>
+                    <td><label for="company">Company: </label></td>
+                    <td><input class="w3-input w3-border" id="company" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="title">Title: </label></td>
+                    <td><input class="w3-input w3-border" id="title" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="description">Description: </label></td>
+                    <td><input class="w3-input w3-border" id="description" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="qualifications">Qualifications: </label></td>
+                    <td><input class="w3-input w3-border" id="qualifications" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="remarks">Remarks: </label></td>
+                    <td><input class="w3-input w3-border" id="remarks" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="salary">Salary: </label></td>
+                    <td><input class="w3-input w3-border" id="salary" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="contact">Contact: </label></td>
+                    <td><input class="w3-input w3-border" id="contact" type="text"></td>
+                </tr>
+                <tr>
+                    <td><button class="w3-button w3-blue" (click)="onSearch()">Search</button></td>
+                    <td><a (click)="advancedSearch = false">Hide advanced Search</a></td>
+                </tr>
+            </table>
         </form>
 
     </div>

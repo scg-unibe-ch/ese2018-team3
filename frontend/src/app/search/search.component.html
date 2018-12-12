@@ -3,7 +3,7 @@
 
         <form *ngIf="!advancedSearch" class="w3-responsive" id="search">
             <label for="searchTerm">Find a specific Job:</label>
-            <input id="searchTerm" class="w3-input w3-border" placeholder="Enter Search Term" size="20" type="text">
+            <input id="searchTerm" class="w3-input w3-border" type="text">
             <button class="w3-button w3-blue" (click)="onSearch()">Search</button>
             <a (click)="advancedSearch = true">Advanced Search</a>
         </form>
@@ -20,6 +20,10 @@
                 <tr>
                     <td><label for="description">Description: </label></td>
                     <td><input class="w3-input w3-border" id="description" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="occupation">Occupation: </label></td>
+                    <td><input class="w3-input w3-border" id="occupation" type="text"></td>
                 </tr>
                 <tr>
                     <td><label for="qualifications">Qualifications: </label></td>

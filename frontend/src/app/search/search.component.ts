@@ -12,7 +12,7 @@ import {ThemeService} from '../_services/theme.service';
 export class SearchComponent implements OnInit {
 
     advancedSearch: boolean = false;
-    jobs: Job[] = [];
+    jobs: Job[];
 
     constructor(
         private httpClient: HttpClient,
@@ -46,6 +46,7 @@ export class SearchComponent implements OnInit {
             contact: this.get('contact').value
         };
 
+        console.log(`Query: JSON.stringify(query)`);
         this.jobService.search(query).subscribe( jobs => {
             this.jobs = jobs;
             console.log(`Received ${jobs.length} results`);

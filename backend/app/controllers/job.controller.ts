@@ -151,7 +151,7 @@ router.post('/search', async (req: Request, res: Response) => {
     const Op = Sequelize.Op;
     const instances = await JobModel.findAll({
         where: {
-            [Op.or]: [{
+            [Op.or]: {
                 company: {
                     [Op.like]: like(query.company)
                 },
@@ -176,12 +176,12 @@ router.post('/search', async (req: Request, res: Response) => {
                 contact: {
                     [Op.like]: like(query.contact)
                 }
-            }]
+            }
         }
     });
 
     res.statusCode = 200;
-    res.send(instances.map(e => e.id));
+    res.send(instances.map(e => e.toSimplification()));
 });
 
 router.get('/search/:title', async (req: Request, res: Response) => {

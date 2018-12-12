@@ -35,7 +35,6 @@ import {FooterComponent} from './footer/footer.component';
 import {ErrorsComponent} from './_errors/errors.component';
 import {SearchComponent} from './search/search.component';
 import {SearchBarComponent} from './search/search-bar/search-bar.component';
-import {SearchingComponent} from './search/searching/searching.component';
 import {AutoLogoutService} from './_services';
 
 
@@ -73,8 +72,7 @@ import {AutoLogoutService} from './_services';
         AdminJobsComponent,
         AdminJobEditorComponent,
         SearchComponent,
-        SearchBarComponent,
-        SearchingComponent
+        SearchBarComponent
     ],
     imports: [
         BrowserModule,

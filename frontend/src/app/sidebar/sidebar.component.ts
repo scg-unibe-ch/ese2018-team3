@@ -22,9 +22,11 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadAll();
         this.userService.currentUser.subscribe(x => this.loggedIn = x);
-        this.adminService.isAdmin.subscribe(x => this.isAdmin = x);
+        this.adminService.isAdmin.subscribe(x => {
+            this.isAdmin = x;
+            if (this.isAdmin) this.loadAll();
+        });
     }
 
     async loadAll() {

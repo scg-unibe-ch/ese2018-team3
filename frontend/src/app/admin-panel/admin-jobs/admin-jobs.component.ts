@@ -33,13 +33,6 @@ export class AdminJobsComponent implements OnInit {
         this.location.back();
     }
 
-    shortenDescription(job: Job) {
-        const length = Math.min(job.description.length - 1, 50);
-        let d = job.description.substr(0, length);
-        if (job.description.length > 50) d += '...';
-        return d;
-    }
-
     loadUser(userId: number) {
         this.adminService.getUser(userId).subscribe(user => {
             this.user = user;

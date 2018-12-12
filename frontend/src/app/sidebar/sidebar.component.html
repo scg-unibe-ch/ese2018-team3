@@ -3,23 +3,24 @@
         <div *ngIf="loggedIn">
             <h2 class="left">Company Panel</h2>
             <a class="w3-bar-item w3-button" routerLink="/job-creator" target="_top">Create a Job</a>
+            <a class="w3-bar-item w3-button" routerLink="/my-jobs-panel" target="_top">My Jobs</a>
         </div>
 
         <div *ngIf="isAdmin">
             <br>
             <h2 class="left">Admin Panel</h2>
-            <a class="w3-bar-item w3-button" href="/admin-panel/users" target="_top">Users</a>
-            <a class="w3-bar-item w3-button" href="/admin-panel/users-unapproved" target="_top">
+            <a class="w3-bar-item w3-button" routerLink="/admin-panel/users" target="_top">Users</a>
+            <a class="w3-bar-item w3-button" routerLink="/admin-panel/users-unapproved" target="_top">
                 Unapproved Users
                 <i *ngIf="hasUnapprovedUsers" class="fa fa-bell-o w3-right"></i>
             </a>
             <br>
-            <a class="w3-bar-item w3-button" href="/admin-panel/jobs" target="_top">Jobs</a>
-            <a class="w3-bar-item w3-button" href="/admin-panel/jobs-unapproved" target="_top">
+            <a class="w3-bar-item w3-button" routerLink="/admin-panel/jobs" target="_top">Jobs</a>
+            <a class="w3-bar-item w3-button" routerLink="/admin-panel/jobs-unapproved" target="_top">
                 Unapproved Jobs
                 <i *ngIf="hasUnapprovedJobs" class="fa fa-bell-o w3-right"></i>
             </a>
-            <a class="w3-bar-item w3-button" href="/admin-panel/jobs-changed" target="_top">
+            <a class="w3-bar-item w3-button" routerLink="/admin-panel/jobs-changed" target="_top">
                 Changed Jobs
                 <i *ngIf="hasChangedJobs" class="fa fa-bell-o w3-right"></i>
             </a>

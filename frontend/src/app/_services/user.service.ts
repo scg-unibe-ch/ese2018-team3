@@ -51,6 +51,7 @@ export class UserService {
                 this.alert.error(error, true);
             });
         this.clearLogin();
+        location.reload(true);
     }
 
     register(user: any) {

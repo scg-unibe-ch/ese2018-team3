@@ -32,6 +32,8 @@ export class JobCreatorComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
+        if (this.invalidForm()) return;
+
         this.loading = true;
         let job = {
             'title': (<HTMLInputElement>document.getElementById('title')).value,
@@ -57,5 +59,43 @@ export class JobCreatorComponent implements OnInit {
                 this.loading = false;
             }
         )
+    }
+
+    invalidTitle(): boolean {
+        return this.get('title').value.length === 0;
+    }
+
+    invalidDescription(): boolean {
+        return this.get('description').value.length === 0;
+    }
+
+    invalidStart(): boolean {
+        return this.get('start').valueAsDate === null;
+    }
+
+    invalidOccupation(): boolean {
+        return this.get('occupation').value.length === 0;
+    }
+
+    invalidQualifications(): boolean {
+        return this.get('qualifications').value.length === 0;
+    }
+
+    invalidContact(): boolean {
+        return this.get('contact').value.length === 0;
+    }
+
+    // helper method
+    private get(id: string) {
+        return (<HTMLInputElement>document.getElementById(id));
+    }
+
+    private invalidForm(): boolean {
+        return this.invalidTitle()
+            || this.invalidDescription()
+            || this.invalidStart()
+            || this.invalidOccupation()
+            || this.invalidQualifications()
+            || this.invalidContact();
     }
 }

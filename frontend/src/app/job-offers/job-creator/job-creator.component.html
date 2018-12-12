@@ -4,10 +4,16 @@
     <form class="w3-responsive">
         <label for="title">Job Title:</label>
         <input class="w3-input w3-border" id="title" placeholder="A catchy title" type="text">
+        <div *ngIf="submitted && invalidTitle()" class="w3-panel w3-red">
+            Title is required!
+        </div>
         <hr>
 
         <label for="start">Open from:</label>
         <input class="w3-input w3-border" id="start" type="date">
+        <div *ngIf="submitted && invalidStart()" class="w3-panel w3-red">
+            Start date is required!
+        </div>
         <hr>
 
         <label for="endDate">Until:</label>
@@ -16,16 +22,26 @@
 
         <label for="occupation">Occupation:</label>
         <input class="w3-input w3-border" id="occupation" placeholder="0 - 100% | 1x / week" type="text">
+        <div *ngIf="submitted && invalidOccupation()" class="w3-panel w3-red">
+            Occupation is required!
+        </div>
         <hr>
+
 
         <label for="description">Description</label>
         <textarea class="w3-input w3-border" id="description" placeholder="Tell us about the job"
-                  style="resize: none;" rows="10"></textarea>
+                style="resize: none;" rows="10"></textarea>
+        <div *ngIf="submitted && invalidDescription()" class="w3-panel w3-red">
+            Description is required!
+        </div>
         <hr>
-
+                  
         <label for="qualifications">Qualifications</label>
         <textarea class="w3-input w3-border" id="qualifications" placeholder="The needed profile"
                   style="resize: none;" rows="5"></textarea>
+        <div *ngIf="submitted && invalidQualifications()" class="w3-panel w3-red">
+            Qualifications are required!
+        </div>
         <hr>
 
         <label for="remarks">Remarks</label>
@@ -40,6 +56,9 @@
         <label for="contact">Contact</label>
         <textarea class="w3-input w3-border" id="contact" placeholder="How to contact you"
                   style="resize: none;"></textarea>
+        <div *ngIf="submitted && invalidContact()" class="w3-panel w3-red">
+            "Contact is required!
+        </div>
         <hr>
 
         <button (click)="onSubmit()" class="w3-button w3-blue">Submit</button>

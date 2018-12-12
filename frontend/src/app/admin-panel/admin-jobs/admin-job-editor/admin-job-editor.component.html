@@ -4,10 +4,16 @@
     <form class="w3-responsive">
         <label for="title">Job Title:</label>
         <input class="w3-input w3-border" id="title" type="text" value="{{job.title}}">
+        <div *ngIf="submitted && invalidTitle()" class="w3-panel w3-red">
+            Title is required!
+        </div>
         <hr>
 
         <label for="start">Open from:</label>
         <input class="w3-input w3-border" id="start" type="date" value="{{job.start | date: 'dd/MM/yy'}}">
+        <div *ngIf="submitted && invalidStart()" class="w3-panel w3-red">
+            Start date is required!
+        </div>
         <hr>
 
         <label for="endDate">Until:</label>
@@ -16,16 +22,25 @@
 
         <label for="occupation">Occupation:</label>
         <input class="w3-input w3-border" id="occupation" type="text" value="{{job.occupation}}">
+        <div *ngIf="submitted && invalidOccupation()" class="w3-panel w3-red">
+            Occupation is required!
+        </div>
         <hr>
 
         <label for="description">Description</label>
         <textarea class="w3-input w3-border" id="description" style="resize: none;"
                   value="{{job.description}}"></textarea>
+        <div *ngIf="submitted && invalidDescription()" class="w3-panel w3-red">
+            Description is required!
+        </div>
         <hr>
 
         <label for="qualifications">Qualifications</label>
         <textarea class="w3-input w3-border" id="qualifications" style="resize: none;"
                   value="{{job.qualifications}}"></textarea>
+        <div *ngIf="submitted && invalidQualifications()" class="w3-panel w3-red">
+            Qualifications are required!
+        </div>
         <hr>
 
         <label for="remarks">Remarks</label>
@@ -40,6 +55,9 @@
         <label for="contact">Contact</label>
         <textarea class="w3-input w3-border" id="contact" style="resize: none;"
                   value="{{job.contact}}"></textarea>
+        <div *ngIf="submitted && invalidContact()" class="w3-panel w3-red">
+            "Contact is required!
+        </div>
         <hr>
 
         <label for="isApproved">Approval</label>

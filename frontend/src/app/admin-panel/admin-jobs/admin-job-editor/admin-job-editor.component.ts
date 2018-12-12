@@ -113,4 +113,37 @@ export class AdminJobEditorComponent implements OnInit {
     private get(id: string) {
         return (<HTMLInputElement>document.getElementById(id));
     }
+
+    invalidTitle(): boolean {
+        return this.get('title').value.length === 0;
+    }
+
+    invalidDescription(): boolean {
+        return this.get('description').value.length === 0;
+    }
+
+    invalidStart(): boolean {
+        return this.get('start').valueAsDate === null;
+    }
+
+    invalidOccupation(): boolean {
+        return this.get('occupation').value.length === 0;
+    }
+
+    invalidQualifications(): boolean {
+        return this.get('qualifications').value.length === 0;
+    }
+
+    invalidContact(): boolean {
+        return this.get('contact').value.length === 0;
+    }
+
+    private invalidForm(): boolean {
+        return this.invalidTitle()
+            || this.invalidDescription()
+            || this.invalidStart()
+            || this.invalidOccupation()
+            || this.invalidQualifications()
+            || this.invalidContact();
+    }
 }

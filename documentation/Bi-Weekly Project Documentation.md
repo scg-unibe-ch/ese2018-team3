@@ -1,5 +1,5 @@
-### Team Members: Mauro Quarta, Sara Krättli, Julius Oeftiger, Brian Schweigler
-### Project: Job-ForYou (Bi-Weekly)
+## Team Members: Mauro Quarta, Sara Krättli, Julius Oeftiger, Brian Schweigler
+## Project: Job-ForYou (Bi-Weekly)
 
 # **Week #0-1**
 * Done: Got to know the programs (Angual, TypeScript, Express, HTML & PHP)
@@ -33,6 +33,6 @@
 * Issues: Double requests sent by many actions, Admin Panel only shown on reload, side-bar disappears if the window is too small -> how to get it back?
 
 # **Week #12-13**
-* Done: 
-* Tentative Tasks:
-* Issues:
+* Done: Search Function, Presentation Planning, Night Mode
+* Tentative Tasks: Search function / filter for all categories, Deployment for Google Ads
+* Issues: Search Function is case-sensitive, Night-mode and Reloads don't play nice with each other everywhere

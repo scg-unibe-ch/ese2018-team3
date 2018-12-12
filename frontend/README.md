@@ -11,7 +11,7 @@
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build. This `dist` folder is used to put on production server.
 
 ## Deployment
-- For best results, use `ng serve --prod` that will lead to many resources being pre-loaded leading to a speed-up, that may come at the cost of some project stability.
+- For best results, use `ng serve --prod` that will lead to many resources being pre-loaded leading to a speed-up, that may come at the cost of project stability and security.
 
 ## Further development 
 - Run `ng generate component component-name` to generate a new component. 

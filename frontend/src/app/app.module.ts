@@ -22,11 +22,11 @@ import {
     JobsChangedComponent,
     JobsUnapprovedComponent,
     UserEditComponent,
-    UserJobEditorComponent,
     UsersPanelComponent,
     UsersUnapprovedComponent
 } from './admin-panel';
 import {JobDetailComponent} from './job-offers/job-detail';
+import {UserJobEditorComponent} from './user-panel/user-job-editor';
 import {JobCreatorComponent} from './job-offers/job-creator';
 import {MyJobsPanelComponent} from './user-panel/my-jobs-panel/my-jobs-panel.component';
 import {NavbarComponent} from './navbar';

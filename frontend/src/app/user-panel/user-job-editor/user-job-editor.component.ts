@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ThemeService} from '../../../_services/theme.service';
+import {ThemeService} from '../../_services/theme.service';
 
 @Component({
     selector: 'app-user-job-editor',

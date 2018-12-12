@@ -222,7 +222,7 @@ router.get('/changed', async (req: Request, res: Response) => {
         .then(async user => {
             const instances = await JobModel.findAll({
                 where: {
-                    changed: true
+                    hasChanged: true
                 }
             });
 

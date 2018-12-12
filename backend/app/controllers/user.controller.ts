@@ -65,7 +65,7 @@ router.get('/comany/:id', async (req: Request, res: Response) => {
     }
 
     res.statusCode = 200;
-    res.send(instance.id);
+    res.send(instance.company);
 });
 
 router.get('/id/:id', async (req: Request, res: Response) => {

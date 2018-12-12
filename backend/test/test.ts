@@ -8,7 +8,7 @@ export async function jobExamples() {
         username: 'tom',
         password: sha256('tomtom'),
         email: 'tom@tom.com',
-        company: 'Tom',
+        company: 'Tomtastic Solutions',
         isApproved: false
     });
 
@@ -18,7 +18,7 @@ export async function jobExamples() {
         username: 'bob',
         password: sha256('bobbob'),
         email: 'bob@bob.com',
-        company: 'Bob',
+        company: 'Bobby B Technology Inc.',
         isApproved: true
     });
 

@@ -26,8 +26,8 @@ export class AdminJobEditorComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.themeService.getIsNight() == 'true'){
-         this.themeService.changeDesignToNightTheme();
+        if (this.themeService.getIsNight() == 'true') {
+            this.themeService.changeDesignToNightTheme();
         }
         this.aService.getJobById(this.route.snapshot.params.id).subscribe(
             (job: Job) => {
@@ -49,31 +49,21 @@ export class AdminJobEditorComponent implements OnInit {
         this.loading = true;
 
         this.job.title = this.get('title').value;
-        console.log('1');
         this.job.description = this.get('description').value;
-        console.log('2');
-        console.log('3');
         this.job.updatedAt = new Date();
-        console.log('4');
         this.job.endDate = this.get('endDate').valueAsDate;
-        console.log('5');
         this.job.start = this.get('start').valueAsDate;
-        console.log('6');
         this.job.occupation = this.get('occupation').value;
-        console.log('7');
         this.job.qualifications = this.get('qualifications').value;
-        console.log('8');
         this.job.remarks = this.get('remarks').value;
-        console.log('9');
         this.job.salary = this.get('salary').value;
-        console.log('10');
+
         this.job.contact = this.get('contact').value;
-        console.log('11');
+
         this.job.isApproved = this.get('isApproved').checked;
-        console.log('12');
+
         this.job.hasChanged = true;
 
-        console.log('updating now...');
         this.aService.updateJob(this.job).subscribe(
             () => {
                 console.log('successfully updated');
@@ -81,7 +71,6 @@ export class AdminJobEditorComponent implements OnInit {
                 this.loading = false;
             },
             error => {
-                console.log('error');
                 this.alert.error(error);
                 this.loading = false;
             }

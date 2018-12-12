@@ -59,7 +59,7 @@ router.post('/login', async (req: Request, res: Response) => {
 			console.log(genLog() + 'Successfully logged in \'' + req.body.username + '\'');
             let simplification = user.toSimplification();
 
-			const isAdmin = AdminModel.findOne({
+			const isAdmin = await AdminModel.findOne({
 				where: {
 					userId: user.id
 				}

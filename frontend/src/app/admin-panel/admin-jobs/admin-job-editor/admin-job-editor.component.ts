@@ -62,7 +62,7 @@ export class AdminJobEditorComponent implements OnInit {
 
         this.job.isApproved = this.get('isApproved').checked;
 
-        this.job.hasChanged = true;
+        this.job.hasChanged = false;
 
         this.aService.updateJob(this.job).subscribe(
             () => {

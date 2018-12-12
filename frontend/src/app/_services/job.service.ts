@@ -56,6 +56,10 @@ export class JobService implements OnInit {
         return this.http.post<Job[]>(this.jobsUrl + 'search', query);
     }
 
+    delete(job: number) {
+        return this.http.delete(this.jobsUrl + job);
+    }
+
     /* GET Jobs whose title contains the search term */
     searchJobs(title: string) {
         return this.http.get<Job[]>(this.jobsUrl + `search/${title}`);

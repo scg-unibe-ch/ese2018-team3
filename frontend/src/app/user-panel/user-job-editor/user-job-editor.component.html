@@ -1,3 +1,72 @@
-<p>
-    user-job-editor works!
-</p>
+<div class="w3-margin">
+        <h2>Editing '{{job.title}}'</h2>
+    
+        <form class="w3-responsive">
+            <label for="title">Job Title:</label>
+            <input class="w3-input w3-border" id="title" type="text" value="{{job.title}}">
+            <div *ngIf="submitted && invalidTitle()" class="w3-panel w3-red">
+                Title is required!
+            </div>
+            <hr>
+    
+            <label for="start">Open from:</label>
+            <input class="w3-input w3-border" id="start" type="date" value="{{job.start | date: 'yyyy-MM-dd'}}">
+            <div *ngIf="submitted && invalidStart()" class="w3-panel w3-red">
+                Start date is required!
+            </div>
+            <hr>
+    
+            <label for="endDate">Until:</label>
+            <input class="w3-input w3-border" id="endDate" type="date" value="{{job.endDate | date: 'yyyy-MM-dd'}}">
+            <hr>
+    
+            <label for="occupation">Occupation:</label>
+            <input class="w3-input w3-border" id="occupation" type="text" value="{{job.occupation}}">
+            <div *ngIf="submitted && invalidOccupation()" class="w3-panel w3-red">
+                Occupation is required!
+            </div>
+            <hr>
+    
+            <label for="description">Description</label>
+            <textarea class="w3-input w3-border" id="description" style="resize: none;"
+                      value="{{job.description}}"></textarea>
+            <div *ngIf="submitted && invalidDescription()" class="w3-panel w3-red">
+                Description is required!
+            </div>
+            <hr>
+    
+            <label for="qualifications">Qualifications</label>
+            <textarea class="w3-input w3-border" id="qualifications" style="resize: none;"
+                      value="{{job.qualifications}}"></textarea>
+            <div *ngIf="submitted && invalidQualifications()" class="w3-panel w3-red">
+                Qualifications are required!
+            </div>
+            <hr>
+    
+            <label for="remarks">Remarks</label>
+            <textarea class="w3-input w3-border" id="remarks" style="resize: none;"
+                      value="{{job.remarks}}"></textarea>
+            <hr>
+    
+            <label for="salary">Salary:</label>
+            <input class="w3-input w3-border" id="salary" type="text" value="{{job.salary}}">
+            <hr>
+    
+            <label for="contact">Contact</label>
+            <textarea class="w3-input w3-border" id="contact" style="resize: none;"
+                      value="{{job.contact}}"></textarea>
+            <div *ngIf="submitted && invalidContact()" class="w3-panel w3-red">
+                "Contact is required!
+            </div>
+            <hr>
+    
+            <button (click)="onSubmit()" [disabled]="loading" class="w3-button w3-blue">Submit</button>
+            <img *ngIf="loading" class="pl-3"
+                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+            <button (click)="onReset()" class="w3-margin-left w3-button w3-orange">Reset</button>
+            <button (click)="onDelete()" class="w3-right w3-button w3-red">Delete</button>
+        </form>
+        <hr>
+        <button (click)="goBack()" class="w3-button w3-dark-gray">Go Back</button>
+    </div>
+    

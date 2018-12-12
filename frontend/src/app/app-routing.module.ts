@@ -19,7 +19,8 @@ import {
     JobsUnapprovedComponent,
     UserEditComponent,
     UsersPanelComponent,
-    UsersUnapprovedComponent
+    UsersUnapprovedComponent,
+    UserJobEditorComponent
 } from './admin-panel';
 import {JobCreatorComponent} from './job-offers/job-creator';
 import {MyJobsPanelComponent} from './user-panel/my-jobs-panel/my-jobs-panel.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
     {path: 'admin-panel/jobs-changed', component: JobsChangedComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/jobs', component: AdminJobsComponent, canActivate: [AuthGuard]},
     {path: 'admin-panel/jobs/edit/:id', component: AdminJobEditorComponent, canActivate: [AuthGuard]},
+    {path: 'user-panel/jobs/edit/:id', component: UserJobEditorComponent, canActivate: [AuthGuard]},
 
     {path: '404', component: ErrorsComponent},
 

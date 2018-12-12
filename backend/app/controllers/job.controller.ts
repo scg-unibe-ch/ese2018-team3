@@ -11,7 +11,11 @@ function genLog(): string {
 }
 
 router.get('/', async (req: Request, res: Response) => {
-    const instances = await JobModel.findAll();
+    const instances = await JobModel.findAll({
+      where: {
+        isApproved: true
+      }
+    });
 
     res.statusCode = 200;
     res.send(instances.map(e => e.toSimplification()));

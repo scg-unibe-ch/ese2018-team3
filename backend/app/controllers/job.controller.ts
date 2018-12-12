@@ -141,6 +141,9 @@ router.post('/search', async (req: Request, res: Response) => {
     const instances = await JobModel.findAll({
         where: {
             [Op.or]: [{
+                company: {
+                    [Op.like]: like(query.company)
+                },
                 title: {
                     [Op.like]: like(query.title)
                 },

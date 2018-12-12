@@ -3,7 +3,7 @@ export class Job {
     constructor(
         public id: number,
         public userId: number,
-        public companyName: string,
+        public company: string,
         public title: string,
         public description: string,
         public createdAt: Date,

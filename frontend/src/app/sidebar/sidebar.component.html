@@ -9,18 +9,19 @@
             <br>
             <h2 class="left">Admin Panel</h2>
             <a class="w3-bar-item w3-button" href="/admin-panel/users" target="_top">Users</a>
-            <a class="w3-bar-item w3-button" href="/admin-panel/jobs" target="_top">Jobs</a>
             <a class="w3-bar-item w3-button" href="/admin-panel/users-unapproved" target="_top">
                 Unapproved Users
-                <i *ngIf="hasUnapprovedUsers" class="fa fa-bell-o"></i>
+                <i *ngIf="hasUnapprovedUsers" class="fa fa-bell-o w3-right"></i>
             </a>
+            <br>
+            <a class="w3-bar-item w3-button" href="/admin-panel/jobs" target="_top">Jobs</a>
             <a class="w3-bar-item w3-button" href="/admin-panel/jobs-unapproved" target="_top">
                 Unapproved Jobs
-                <i *ngIf="hasUnapprovedJobs" class="fa fa-bell-o"></i>
+                <i *ngIf="hasUnapprovedJobs" class="fa fa-bell-o w3-right"></i>
             </a>
             <a class="w3-bar-item w3-button" href="/admin-panel/jobs-changed" target="_top">
                 Changed Jobs
-                <i *ngIf="hasChangedJobs" class="fa fa-bell-o"></i>
+                <i *ngIf="hasChangedJobs" class="fa fa-bell-o w3-right"></i>
             </a>
         </div>
     </div>

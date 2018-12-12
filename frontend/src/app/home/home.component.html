@@ -3,7 +3,7 @@
     <p>Find your dream job or post a job!</p>
 
     <div><h2>Latest Job Postings</h2></div>
-    <p class="w3-opacity">Showing {{jobs.length}} job postings</p>
+    <p class="w3-opacity">Showing the {{jobs.length}} newest job postings</p>
 
     <ul *ngFor="let job of jobs" class="w3-ul">
         <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">

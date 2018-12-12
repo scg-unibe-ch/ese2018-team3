@@ -47,7 +47,7 @@ export async function jobExamples() {
         remarks: 'It\'s possible to work at home',
         salary: '5400.-',
         contact: 'example@example.com',
-        isApproved: false
+        isApproved: true
     });
 
     job2.fromSimplification({
@@ -58,7 +58,7 @@ export async function jobExamples() {
         endDate: '2018-12-23 00:00:00.000 +00:00',
         description: 'We are looking for HR Assistant to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
         qualifications: 'Bachelors Degree',
-        isApproved: false
+        isApproved: true
     });
 
     job3.fromSimplification({
@@ -69,7 +69,7 @@ export async function jobExamples() {
         endDate: '2018-12-23 00:00:00.000 +00:00',
         description: 'We are looking for Senior Project Manager to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
         qualifications: 'Bachelors Degree',
-        isApproved: false
+        isApproved: true
     });
 
     job4.fromSimplification({
@@ -80,7 +80,7 @@ export async function jobExamples() {
         endDate: '2018-12-23 00:00:00.000 +00:00',
         description: 'We are looking for Software Developer to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
         qualifications: 'Bachelors Degree',
-        isApproved: false
+        isApproved: true
     });
 
     job5.fromSimplification({
@@ -91,7 +91,7 @@ export async function jobExamples() {
         endDate: '2018-12-23 00:00:00.000 +00:00',
         description: 'We are looking for Internship Front-End Dev to fill a vacancy. The Tech Company is an internationally leading Fintech company. The Tech Company is the only independent provider for the IT industry to both develop and operate its own software.',
         qualifications: 'Bachelors Degree',
-        isApproved: false
+        isApproved: true
     });
 
     job6.fromSimplification({

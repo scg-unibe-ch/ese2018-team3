@@ -21,7 +21,7 @@ import {
     UsersUnapprovedComponent
 } from './admin-panel';
 import {JobCreatorComponent} from './job-offers/job-creator';
-import {MyJobsPanelComponent} from './job-offers/my-jobs-panel/my-jobs-panel.component';
+import {MyJobsPanelComponent} from './user-panel/my-jobs-panel/my-jobs-panel.component';
 import {ErrorsComponent} from './_errors/errors.component';
 import {SearchComponent} from './search/search.component';
 

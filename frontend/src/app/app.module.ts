@@ -21,20 +21,21 @@ import {
     AdminPanelComponent,
     JobsChangedComponent,
     JobsUnapprovedComponent,
+    UserEditComponent,
+    UserJobEditorComponent,
     UsersPanelComponent,
     UsersUnapprovedComponent
 } from './admin-panel';
-import {UserEditComponent} from './admin-panel/admin-users-panel/user-editor';
 import {JobDetailComponent} from './job-offers/job-detail';
 import {JobCreatorComponent} from './job-offers/job-creator';
-import {MyJobsPanelComponent} from './job-offers/my-jobs-panel/my-jobs-panel.component';
+import {MyJobsPanelComponent} from './user-panel/my-jobs-panel/my-jobs-panel.component';
 import {NavbarComponent} from './navbar';
 import {SidebarComponent} from './sidebar';
 import {FooterComponent} from './footer/footer.component';
 import {ErrorsComponent} from './_errors/errors.component';
-import { SearchComponent } from './search/search.component';
-import { SearchBarComponent } from './search/search-bar/search-bar.component';
-import { SearchingComponent } from './search/searching/searching.component';
+import {SearchComponent} from './search/search.component';
+import {SearchBarComponent} from './search/search-bar/search-bar.component';
+import {SearchingComponent} from './search/searching/searching.component';
 import {AutoLogoutService} from './_services';
 
 
@@ -54,6 +55,7 @@ import {AutoLogoutService} from './_services';
         HomeComponent,
         JobCreatorComponent,
         JobDetailComponent,
+        AdminJobEditorComponent,
         JobOffersComponent,
         JobsChangedComponent,
         JobsUnapprovedComponent,
@@ -63,6 +65,7 @@ import {AutoLogoutService} from './_services';
         RegisterComponent,
         SidebarComponent,
         UserEditComponent,
+        UserJobEditorComponent,
         UsersPanelComponent,
         UsersUnapprovedComponent,
         FooterComponent,

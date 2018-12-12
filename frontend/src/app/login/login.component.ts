@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 (user: any) => {
                     this.userService.save(user);
+                    location.reload(true);
                     this.alertService.success('Successfully logged in.', true);
                     this.router.navigate([this.returnUrl]);
                 },

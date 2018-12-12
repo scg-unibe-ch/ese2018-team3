@@ -20,9 +20,19 @@ router.get('/', async (req: Request, res: Response) => {
 router.post('/', async (req: Request, res: Response) => {
     UserServices.authenticate(req.headers.authorization)
         .then(async user => {
+            const u = await UserModel.findById(user.id);
+            if (!u) {
+                res.statusCode = 500;
+                res.json({
+                    'message': 'internal server error'
+                });
+                return;
+            }
+
             const instance = new JobModel();
 
             instance.fromSimplification(req.body);
+            instance.company = u.company;
             instance.isApproved = false;
             instance.hasChanged = false;
             instance.userId = user.id;
@@ -131,6 +141,9 @@ router.post('/search', async (req: Request, res: Response) => {
     const instances = await JobModel.findAll({
         where: {
             [Op.or]: [{
+                company: {
+                    [Op.like]: like(query.company)
+                },
                 title: {
                     [Op.like]: like(query.title)
                 },

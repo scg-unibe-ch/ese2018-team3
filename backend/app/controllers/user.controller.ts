@@ -52,22 +52,6 @@ router.get('/', async (req: Request, res: Response) => {
         });
 });
 
-router.get('/comany/:id', async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
-    const instance = await UserModel.findById(id);
-
-    if (instance == null) {
-        res.statusCode = 404;
-        res.json({
-            'message': 'not found'
-        });
-        return;
-    }
-
-    res.statusCode = 200;
-    res.send(instance.company);
-});
-
 router.get('/id/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     UserServices.authenticateSameUser(req.headers.authorization, id)

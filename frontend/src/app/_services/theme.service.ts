@@ -21,7 +21,7 @@ export class ThemeService {
   }
 
   changeDesignToDayTheme() {
-    const header = document.getElementById("topnav");
+    const navbar = document.getElementById("topnav");
     const body = document.getElementById("body");
     const footer = document.getElementById("footer");
     const sidebar = document.getElementById("sidenav");
@@ -48,8 +48,8 @@ export class ThemeService {
 
     document.body.style.backgroundColor = "white";
 
-    header.classList.remove("w3-black")
-    header.classList.add("w3-dark-gray");
+    navbar.classList.remove("w3-black")
+    navbar.classList.add("w3-dark-gray");
 
     body.classList.remove("w3-dark-gray")
     body.classList.add("w3-white");
@@ -62,7 +62,7 @@ export class ThemeService {
   }
 
   changeDesignToNightTheme() {
-    const header = document.getElementById("topnav");
+    const navbar = document.getElementById("topnav");
     const body = document.getElementById("body");
     const footer = document.getElementById("footer");
     const sidebar = document.getElementById("sidenav");
@@ -89,8 +89,8 @@ export class ThemeService {
 
     document.body.style.backgroundColor = "#626262";
 
-    header.classList.remove("w3-dark-gray")
-    header.classList.add("w3-black");
+    navbar.classList.remove("w3-dark-gray")
+    navbar.classList.add("w3-black");
 
     body.classList.remove("w3-white")
     body.classList.add("w3-dark-gray");

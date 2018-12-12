@@ -36,6 +36,7 @@ export class JobDetailComponent implements OnInit {
                 this.alert.error(err, true);
                 this.router.navigate([this.returnUrl]);
             });
+        
       if (this.themeService.getIsNight() == 'true'){
         this.themeService.changeDesignToNightTheme();
       }

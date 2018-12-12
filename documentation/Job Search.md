@@ -6,11 +6,12 @@ The backend currently provides 2 search methods:
 
 <hr>
 
-### /search
+### Backend
 This uses following format to be able to search across many fields in the `JobModel` (except `start`, `endTime` etc. ):
 
 ```javascript
 const query = {
+    company: string,
     title: string,
     description: string,
     occupation: string,
@@ -21,7 +22,7 @@ const query = {
 };
 ```
 
-Currently, we only use the `LIKE` operator, as `ILIKE` unexpectedly leads to errors. 
+Currently, we only use the `LIKE` operator, as `ILIKE` works only for PG dialect. 
 
 ## Frontend
 The frontend should provide two ways of searching: 

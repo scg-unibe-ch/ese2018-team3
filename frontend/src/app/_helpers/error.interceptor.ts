@@ -28,8 +28,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(catchError(err => {
             if (err.status === 401 || 400) {
                 this.userService.logout();
-                this.alert.error('Unauthorized => Automatic Logout', true);
                 this.router.navigate(['/home']);
+                this.alert.error('Unauthorized => Automatic Logout', true);
             }
 
             const error = err.error.message || err.statusText;

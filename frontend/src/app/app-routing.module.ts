@@ -14,7 +14,8 @@ import {AuthGuard} from './_guards';
 import {
     AdminJobEditorComponent,
     AdminJobsComponent,
-    AdminPanelComponent, JobsChangedComponent,
+    AdminPanelComponent,
+    JobsChangedComponent,
     JobsUnapprovedComponent,
     UserEditComponent,
     UsersPanelComponent,

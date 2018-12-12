@@ -30,11 +30,11 @@ export class JobsChangedComponent implements OnInit {
         return desc;
     }
 
-    private loadAllJobs() {
-        this.adminService.getAllChangedJobs().subscribe(jobs => this.jobs = jobs);
-    }
-
     goBack(): void {
         this.location.back();
+    }
+
+    private loadAllJobs() {
+        this.adminService.getAllChangedJobs().subscribe(jobs => this.jobs = jobs);
     }
 }

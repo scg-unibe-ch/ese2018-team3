@@ -30,11 +30,11 @@ export class JobsUnapprovedComponent implements OnInit {
         return desc;
     }
 
-    private loadAllJobs() {
-        this.adminService.getAllUnapprovedJobs().subscribe(jobs => this.jobs = jobs);
-    }
-
     goBack(): void {
         this.location.back();
+    }
+
+    private loadAllJobs() {
+        this.adminService.getAllUnapprovedJobs().subscribe(jobs => this.jobs = jobs);
     }
 }

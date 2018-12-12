@@ -87,7 +87,7 @@ import {AutoLogoutService} from './_services';
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: AutoLogoutService, multi:true}
+        {provide: HTTP_INTERCEPTORS, useClass: AutoLogoutService, multi: true}
     ],
     bootstrap: [AppComponent]
 })

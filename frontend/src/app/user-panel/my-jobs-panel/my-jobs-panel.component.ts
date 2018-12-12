@@ -15,7 +15,8 @@ export class MyJobsPanelComponent implements OnInit {
 
     constructor(
         private jobService: JobService,
-        private themeService: ThemeService
+        private themeService: ThemeService,
+        private location: Location
     ) {
     }
 
@@ -38,6 +39,10 @@ export class MyJobsPanelComponent implements OnInit {
         this.jobService.getFromCurrentUser().subscribe(jobs => {
             this.jobs = jobs;
         })
+    }
+
+    goBack() {
+      this.location.back();
     }
 
 }

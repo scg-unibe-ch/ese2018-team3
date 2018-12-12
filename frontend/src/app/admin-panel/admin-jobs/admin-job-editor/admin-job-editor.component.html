@@ -28,7 +28,7 @@
         <hr>
 
         <label for="description">Description</label>
-        <textarea class="w3-input w3-border" id="description" style="resize: none;"
+        <textarea class="w3-input w3-border" id="description" style="resize: none;" rows="10"
                   value="{{job.description}}"></textarea>
         <div *ngIf="submitted && invalidDescription()" class="w3-panel w3-red">
             Description is required!
@@ -36,7 +36,7 @@
         <hr>
 
         <label for="qualifications">Qualifications</label>
-        <textarea class="w3-input w3-border" id="qualifications" style="resize: none;"
+        <textarea class="w3-input w3-border" id="qualifications" style="resize: none;" rows="5"
                   value="{{job.qualifications}}"></textarea>
         <div *ngIf="submitted && invalidQualifications()" class="w3-panel w3-red">
             Qualifications are required!

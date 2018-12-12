@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {AlertService} from './alert.service';
 import {UserService} from './user.service';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 
 
 const KEY_WORD = 'lastAction';
-const CHECK_INTERVAL = 1000; // ms
 const AUTO_LOGOUT = 5; //min
 
-@Injectable({providedIn: 'root'})
-export class AutoLogoutService {
+@Injectable()
+export class AutoLogoutService implements HttpInterceptor {
 
     loggedIn: string;
 
@@ -19,11 +20,10 @@ export class AutoLogoutService {
         this.userService.currentUser.subscribe(x => this.loggedIn = x);
         this.check();
         this.initListener();
-        this.initInterval();
     }
 
     get lastAction() {
-        return parseInt(localStorage.get(KEY_WORD));
+        return parseInt(localStorage.getItem(KEY_WORD));
     }
 
     set lastAction(value) {
@@ -38,21 +38,21 @@ export class AutoLogoutService {
         this.lastAction = Date.now();
     }
 
-    initInterval() {
-        setInterval(() => {
-            this.check();
-        }, CHECK_INTERVAL);
-    }
-
     check() {
         const now = Date.now();
         const timeleft = this.lastAction + AUTO_LOGOUT * 60 * 1000;
         const diff = timeleft - now;
         const isTimeout = diff < 0;
+        return isTimeout && this.loggedIn;
 
-        if (isTimeout && this.loggedIn) {
+    }
+
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (this.check()) {
             this.userService.logout();
             this.alert.error(`Automatic logout after ${AUTO_LOGOUT} minutes of inactivity.`);
+            return throwError(null);
         }
+        return next.handle(req);
     }
 }

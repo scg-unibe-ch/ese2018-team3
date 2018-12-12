@@ -37,7 +37,7 @@ router.post('/', async (req: Request, res: Response) => {
                 case UserNotFoundError.name:
                     console.log(lg + 'user not found: \'' + req.body.username + '\'');
                     res.statusCode = 404;
-                    res.json({'message': 'not found'});
+                    res.json({'message': 'user not found'});
                     return;
 
                 case UserNotLoggedInError.name:
@@ -70,7 +70,7 @@ router.get('/id/:id', async (req: Request, res: Response) => {
         console.log(genLog() + `${req.params.id} not found`);
         res.statusCode = 404;
         res.json({
-            'message': 'not found'
+            'message': 'resource not found'
         });
         return;
     }
@@ -86,7 +86,7 @@ router.get('/user/:id', async (req: Request, res: Response) => {
     if (user == null) {
         res.statusCode = 404;
         res.json({
-            'message': 'not found'
+            'message': 'resource not found'
         });
         return;
     }
@@ -193,7 +193,7 @@ router.get('/current-user', async (req: Request, res: Response) => {
                 case UserNotFoundError.name:
                     console.log(lg + 'user not found: \'' + req.body.username + '\'');
                     res.statusCode = 404;
-                    res.json({'message': 'not found'});
+                    res.json({'message': 'user not found'});
                     return;
 
                 case UserNotLoggedInError.name:

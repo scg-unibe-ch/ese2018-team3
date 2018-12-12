@@ -1,23 +1,24 @@
 <div class="w3-margin">
-  <div class="search-bar">
+    <div class="search-bar">
 
-    <form class="w3-responsive" (ngSubmit)="onSearch(searchTerm)" id="search">
-      Find a Specific job: <input type="text" id="searchTerm" placeholder="Enter Search Term" size="20">
-      <button (click)="onSearch()" >Search </button>
-    </form>
+        <form class="w3-responsive" id="search">
+            Find a Specific job: <input id="searchTerm" placeholder="Enter Search Term" size="20" type="text">
+            <button (click)="onSearch()">Search</button>
+        </form>
 
-  </div>
-  <h2>Job Offers Matching Your Query</h2>
-  <p class="w3-opacity">Results that fit your query: {{jobs.length}}</p>
+    </div>
+    <h2>Job Offers Matching Your Query</h2>
+    <p *ngIf="!jobs" class="w3-opacity">No search performed. </p>
+    <p *ngIf="jobs.length > 0" class="w3-opacity">Results that fit your query: {{jobs.length}}</p>
 
-  <ul *ngFor="let job of jobs" class="w3-ul">
-    <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">
-      <div class="w3-bar-item">
-        <span class="w3-large w3-left">{{job.title}}</span>
-        <br>
-        <span class="w3-left">{{shortenDescription(job)}}</span>
-      </div>
-    </li>
-  </ul>
+    <ul *ngFor="let job of jobs" class="w3-ul">
+        <li class="w3-bar w3-leftbar w3-border-white w3-hover-border-dark-grey w3-button" routerLink="/jobs/{{job.id}}">
+            <div class="w3-bar-item">
+                <span class="w3-large w3-left">{{job.title}}</span>
+                <br>
+                <span class="w3-left">{{shortenDescription(job)}}</span>
+            </div>
+        </li>
+    </ul>
 
 </div>
